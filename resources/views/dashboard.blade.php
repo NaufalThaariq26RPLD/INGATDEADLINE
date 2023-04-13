@@ -88,12 +88,12 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        @foreach ($user as $users)
+                                        @foreach ($toko as $tokos)
                                             @php
                                                 ++$no3;
                                             @endphp
                                         @endforeach
-                                        <h6>{{ $no3 }}</h6>
+                                        <h6>{{ $toko->views }}</h6>
 
                                     </div>
                                 </div>
@@ -222,8 +222,7 @@
                                     <th scope="col">Gambar</th>
                                     <th scope="col">Nama voucher</th>
                                     <th scope="col">Kategori</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Masa berlaku</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -236,12 +235,11 @@
                                         <th scope="row">{{ ++$no }}</th>
                                         <td>
                                             <div class="image-container"><img class="image"
-                                                    src="{{ asset('storage/' . $row->gambar) }}"></div>
+                                            src="{{ asset('gambarvoucher/' . $row->gambar) }}" style="width: 100px; object-fit: cover"></div>
                                         </td>
                                         <td>{{ $row->nama_voucher }}</td>
                                         <td>{{ $row->kategori }}</td>
-                                        <td>{{ $row->deskripsi }}</td>
-                                        <td>{{ $row->masa_kadaluarsa }}</td>
+                                        <td><i class="bi bi-eye"></i>{{ $row->views}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -269,7 +267,6 @@
 <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
 <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-
 <script>
     am4core.useTheme(am4themes_animated);
 
