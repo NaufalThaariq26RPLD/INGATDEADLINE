@@ -26,7 +26,13 @@ class DashboardController extends Controller
         $voucher=DB::table('vouchers')->paginate(3);
         $user= User::where('level','=','admin')->where('id','=',Auth()->user()->id)->first();
         $toko = Toko::where('id', $user->toko)->first();
-        return view('dashboard',compact('data','kategori','voucher','user','toko'));
+
+        //chart
+        $diterima = Voucher::where('status', "Dikonfirmasi")->count();
+        $ditolak = Voucher::where('status', "Ditolak")->count();
+        $pending = Voucher::where('status', "Menunggu")->count();
+
+        return view('dashboard',compact('data','kategori','voucher','user','toko','diterima','ditolak','pending'));
         $vouchers = voucher::paginate(10);
         echo $vouchers->voucher;
     }

@@ -80,7 +80,7 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Pengguna</h5>
+                                <h5 class="card-title">Pengunjung </h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
@@ -114,7 +114,57 @@
                         <h5 class="card-title">laporan</h5>
 
                         <!-- Line Chart -->
-                        <div id="container"></div>
+                        <style>
+                            body {
+                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                            }
+        
+                            #chartdiv {
+                                width: 550px;
+                                height: 350px;
+                                font-size: 11px;
+                                border: 1px solid #eee;
+                                float: left;
+                            }
+        
+                            #legend {
+        
+                                border: 1px solid #eee;
+                                margin-left: 10px;
+                                float: left;
+                            }
+        
+                            #legend .legend-item {
+                                margin: 10px;
+                                font-size: 15px;
+                                font-weight: bold;
+                                cursor: pointer;
+                            }
+        
+                            #legend .legend-item .legend-value {
+                                font-size: 12px;
+                                font-weight: normal;
+                                margin-left: 22px;
+                            }
+        
+                            #legend .legend-item .legend-marker {
+                                display: inline-block;
+                                width: 12px;
+                                height: 12px;
+                                border: 1px solid #ccc;
+                                margin-right: 10px;
+                            }
+        
+                            #legend .legend-item.disabled .legend-marker {
+                                opacity: 0.5;
+                                background: #ddd;
+                            }
+                        </style>
+                        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+                        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+                        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+                        <div id="chartdiv"></div>
+                        <div id="legend"></div>
                         <!-- End Line Chart -->
 
                     </div>
@@ -143,11 +193,12 @@
                                 <ul>
                                     @foreach ($kategori as $row)
                                         @php
-                                            $count = App\Models\Voucher::where('kategori', $row->Kategori)->count();
+                                            $count = App\Models\Voucher::where('kategori', $row->id)->count();
                                         @endphp
                                         <tr>
                                             <th scope="row"><a href="#">{{ ++$no }}</a></th>
                                             <td>{{ $row->Kategori }}</td>
+
                                             <td>{{ $count }}</td>
                                         </tr>
                                     @endforeach
@@ -162,7 +213,7 @@
             <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        <h5 class="card-title">Voucher Baru Diupload</h5>
+                        <h5 class="card-title">Voucher yang paling banyak dilihat</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
@@ -185,7 +236,7 @@
                                         <th scope="row">{{ ++$no }}</th>
                                         <td>
                                             <div class="image-container"><img class="image"
-                                                    src="{{ asset('gambarvoucher/' . $row->gambar) }} " style="width: 100px; object-fit: cover"></div>
+                                                    src="{{ asset('storage/' . $row->gambar) }}"></div>
                                         </td>
                                         <td>{{ $row->nama_voucher }}</td>
                                         <td>{{ $row->kategori }}</td>
@@ -218,272 +269,73 @@
 <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
 <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
 
 <script>
-    // Create the chart
-    Highcharts.chart('container', {
-        chart: {
-            type: 'pie'
-        },
-        title: {
-            text: 'Data Voucher',
-            align: 'left'
-        },
+    am4core.useTheme(am4themes_animated);
 
-        accessibility: {
-            announceNewData: {
-                enabled: true
-            },
-            point: {
-                valueSuffix: '0'
-            }
-        },
+    // Create chart instance
+    var chart = am4core.create("chartdiv", am4charts.PieChart);
 
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}: {point.y:.1f}'
-                }
-            }
-        },
+    // Add data
+    chart.data = [{
+        "country": "Voucher Yang Diterima",
+        "litres": {{ $diterima }},
+        "color": am4core.color("#52D726")
+    }, {
+        "country": "Voucher Yang Masih Menunggu",
+        "litres": {{ $pending }},
+        "color": am4core.color("#FFEC00")
+    }, {
+        "country": "Voucher Yang Ditolak",
+        "litres": {{$ditolak}},
+        "color": am4core.color("#FF0000")
+    }];
 
-        tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-        },
+    // Add and configure Series
+    var pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "litres";
+    pieSeries.dataFields.category = "country";
+    pieSeries.slices.template.propertyFields.fill = "color";
+    pieSeries.labels.template.disabled = true;
 
-        series: [{
-            name: 'kategori',
-            colorByPoint: true,
-            data: [{
-                    name: 'Baju',
-                    y: 61.04,
-                    drilldown: 'Baju'
-                },
-                {
-                    name: 'Jaket',
-                    y: 9.47,
-                    drilldown: 'Jaket'
-                },
-                {
-                    name: 'Hoodie',
-                    y: 9.32,
-                    drilldown: 'Hoodie'
-                },
-                {
-                    name: 'Celana',
-                    y: 8.15,
-                    drilldown: 'Celana'
-                }
-            ]
-        }],
-        drilldown: {
-            series: [{
-                    name: 'top up',
-                    id: 'top up',
-                    data: [
-                        [
-                            'v97.0',
-                            36.89
-                        ],
-                        [
-                            'v96.0',
-                            18.16
-                        ],
-                        [
-                            'v95.0',
-                            0.54
-                        ],
-                        [
-                            'v94.0',
-                            0.7
-                        ],
-                        [
-                            'v93.0',
-                            0.8
-                        ],
-                        [
-                            'v92.0',
-                            0.41
-                        ],
-                        [
-                            'v91.0',
-                            0.31
-                        ],
-                        [
-                            'v90.0',
-                            0.13
-                        ],
-                        [
-                            'v89.0',
-                            0.14
-                        ],
-                        [
-                            'v88.0',
-                            0.1
-                        ],
-                        [
-                            'v87.0',
-                            0.35
-                        ],
-                        [
-                            'v86.0',
-                            0.17
-                        ],
-                        [
-                            'v85.0',
-                            0.18
-                        ],
-                        [
-                            'v84.0',
-                            0.17
-                        ],
-                        [
-                            'v83.0',
-                            0.21
-                        ],
-                        [
-                            'v81.0',
-                            0.1
-                        ],
-                        [
-                            'v80.0',
-                            0.16
-                        ],
-                        [
-                            'v79.0',
-                            0.43
-                        ],
-                        [
-                            'v78.0',
-                            0.11
-                        ],
-                        [
-                            'v76.0',
-                            0.16
-                        ],
-                        [
-                            'v75.0',
-                            0.15
-                        ],
-                        [
-                            'v72.0',
-                            0.14
-                        ],
-                        [
-                            'v70.0',
-                            0.11
-                        ],
-                        [
-                            'v69.0',
-                            0.13
-                        ],
-                        [
-                            'v56.0',
-                            0.12
-                        ],
-                        [
-                            'v49.0',
-                            0.17
-                        ]
-                    ]
-                },
-                {
-                    name: 'pakaian',
-                    id: 'pakaian',
-                    data: [
-                        [
-                            'v15.3',
-                            0.1
-                        ],
-                        [
-                            'v15.2',
-                            2.01
-                        ],
-                        [
-                            'v15.1',
-                            2.29
-                        ],
-                        [
-                            'v15.0',
-                            0.49
-                        ],
-                        [
-                            'v14.1',
-                            2.48
-                        ],
-                        [
-                            'v14.0',
-                            0.64
-                        ],
-                        [
-                            'v13.1',
-                            1.17
-                        ],
-                        [
-                            'v13.0',
-                            0.13
-                        ],
-                        [
-                            'v12.1',
-                            0.16
-                        ]
-                    ]
-                },
-                {
-                    name: 'furniture',
-                    id: 'furniture',
-                    data: [
-                        [
-                            'v97',
-                            6.62
-                        ],
-                        [
-                            'v96',
-                            2.55
-                        ],
-                        [
-                            'v95',
-                            0.15
-                        ]
-                    ]
-                },
-                {
-                    name: 'penginapan',
-                    id: 'penginapan',
-                    data: [
-                        [
-                            'v96.0',
-                            4.17
-                        ],
-                        [
-                            'v95.0',
-                            3.33
-                        ],
-                        [
-                            'v94.0',
-                            0.11
-                        ],
-                        [
-                            'v91.0',
-                            0.23
-                        ],
-                        [
-                            'v78.0',
-                            0.16
-                        ],
-                        [
-                            'v52.0',
-                            0.15
-                        ]
-                    ]
-                }
-            ]
-        }
+    chart.radius = am4core.percent(95);
+
+    // Create custom legend
+    chart.events.on("ready", function(event) {
+        // populate our custom legend when chart renders
+        chart.customLegend = document.getElementById('legend');
+        pieSeries.dataItems.each(function(row, i) {
+            var color = chart.colors.getIndex(i);
+            var percent = Math.round(row.values.value.percent * 100) / 100;
+            var value = row.value;
+            legend.innerHTML += '<div class="legend-item" id="legend-item-' + i +
+                '" onclick="toggleSlice(' + i + ');" onmouseover="hoverSlice(' + i +
+                ');" onmouseout="blurSlice(' + i + ');" style="color: ' + color +
+                ';"><div class="legend-marker" style="background: ' + row.dataContext.color + '"></div>' + row
+                .category + '<div class="legend-value">' + value + ' | ' + percent + '%</div></div>';
+        });
     });
-</script>
+
+    function toggleSlice(item) {
+        var slice = pieSeries.dataItems.getIndex(item);
+        if (slice.visible) {
+            slice.hide();
+        } else {
+            slice.show();
+        }
+    }
+
+    function hoverSlice(item) {
+        var slice = pieSeries.slices.getIndex(item);
+        slice.isHover = true;
+    }
+
+    function blurSlice(item) {
+        var slice = pieSeries.slices.getIndex(item);
+        slice.isHover = false;
+    }
+        </script>
+
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 

@@ -26,8 +26,10 @@ class RouteController extends Controller
         $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
         $vr = DB::table('kategoris')->count();
 
-
-
+        //chart
+        $diterima = Voucher::where('status', "Dikonfirmasi")->count();
+        $ditolak = Voucher::where('status', "Ditolak")->count();
+        $pending = Voucher::where('status', "Menunggu")->count();
 
 
         return view('index', [
@@ -36,7 +38,7 @@ class RouteController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('data', 'kategori', 'voucher', 'user', 'vr'));
+        ], compact('data', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending'));
     }
 
     public function user(Request $request)
