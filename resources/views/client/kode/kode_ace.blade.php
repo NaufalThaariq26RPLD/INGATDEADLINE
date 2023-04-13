@@ -13,6 +13,11 @@
 <br>
 <div class="container pt-50">
     <div class="section-title text-center mb-25 wow fadeInUp">
+      @php
+      DB:: table('vouchers')
+      ->where('id', $data->id)
+      ->increment('views');
+      @endphp
       <span class="sub-title">KODE VOUCHER</span>
       <h2>{{ $data->tokos->nama_toko }}</h2>
   </div>
