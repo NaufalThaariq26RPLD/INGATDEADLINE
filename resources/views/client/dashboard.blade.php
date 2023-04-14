@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-title text-center mb-75 wow fadeInUp">
-                    <h2>YANG KAMU CARI..</h2>
+                    <h2>SENG MBOK GOLEKI</h2>
                 </div>
             </div>
         </div>
