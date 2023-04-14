@@ -43,7 +43,6 @@ class DashboardController extends Controller
             'views' => $voucher -> views+1
         ]);
 
-
         $toko = Toko::find($views);
         $toko->update([
             'views' => $toko -> views+1

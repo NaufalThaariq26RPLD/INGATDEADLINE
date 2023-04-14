@@ -29,7 +29,7 @@
                                         @foreach ($kategori as $kategori)
                                             <option value="{{ $kategori->id }}"
                                                 {{ request('search') === $kategori->id ? 'selected' : '' }}>
-                                                {{ $kategori->kategori }}</option>
+                                                {{ $kategori->Kategori }}</option>
                                         @endforeach
                                     </select>
                                 </div>
