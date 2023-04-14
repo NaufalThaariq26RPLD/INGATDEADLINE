@@ -61,6 +61,11 @@
 
                         @foreach ($data as $data)
                             <div class="col-lg-4 col-md-6 col-sm-12">
+                                @php
+                                DB:: table('tokos')
+                                ->where('id', $data->id)
+                                ->increment('views');
+                                @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
                                     <div class="listing-thumbnail">

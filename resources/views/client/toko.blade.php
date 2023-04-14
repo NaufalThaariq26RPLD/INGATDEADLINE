@@ -62,7 +62,7 @@
                                 
                             </div>
                             <div class="form_group">
-                                <a href="login.html" class="main-btn icon-btn">Search Now</a>
+                                <a href="/products" class="main-btn icon-btn">Search Now</a>
                             </div>
                         </form>
                     </div>
