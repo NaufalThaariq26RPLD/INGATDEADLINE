@@ -47,6 +47,7 @@ use App\Http\Controllers\LoginSuperController;
 Route::get('/', [HomeController::class, 'index_client']);
 Route::get('/dashboard', [HomeController::class, 'index_client'])->name('dashboarduser');
 Route::get('/toko', [TokoController::class, 'index_client'])->name('tokouser');
+Route::get('/toko/search',[TokoController::class,'index_client'])->name('search');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 
@@ -133,7 +134,10 @@ Route::middleware('admin','auth')->group(function () {
     Route::get('/adminuser', [LoginSuperController::class, 'adminuser'])->name('adminuser');
     // DASHBOARD
 
-    Route::get('/admin/toko', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/toko', [DashboardController::class, 'Chart'])->name('dashboard');
+    Route::get('/admin/toko', [DashboardController::class, 'index'])->name('index');
+
+
 
     // DATA VOUCHER
 
