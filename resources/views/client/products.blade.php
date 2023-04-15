@@ -100,14 +100,7 @@
                         @endforeach
 
 
-
-
                     </div>
-
-
-
-
-
 
                 </div>
 

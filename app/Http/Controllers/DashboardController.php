@@ -22,8 +22,7 @@ class DashboardController extends Controller
 
     public function Chart(){
         $kategori=kategori::all();
-        $data=DB::table('kategoris')->paginate(3);
-        $voucher=DB::table('vouchers')->paginate(3);
+        $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
         $user= User::where('level','=','admin')->where('id','=',Auth()->user()->id)->first();
         $toko = Toko::where('id', $user->toko)->first();
         
@@ -34,16 +33,16 @@ class DashboardController extends Controller
         $pending = Voucher::where('status', "Menunggu")->count();
 
 
-        return view('dashboard',compact('data','kategori','voucher','user','toko','diterima','ditolak','pending'));
+        return view('dashboard',compact('kategori','voucher','user','toko','diterima','ditolak','pending'));
     }
-    public function index($views)
+    public function index($id=0)
     {
-        $voucher = voucher::find($views);
+        $voucher = voucher::find($id);
         $voucher->update([
             'views' => $voucher -> views+1
         ]);
 
-        $toko = Toko::find($views);
+        $toko = Toko::find($id);
         $toko->update([
             'views' => $toko -> views+1
         ]);
