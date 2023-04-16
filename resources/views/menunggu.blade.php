@@ -20,7 +20,7 @@
                         <div class="d-flex" style="justify-content: space-between">
                         <h5 class="card-title">Data Voucher Menunggu </h5>
                            
-                            <form action="/kategoritoko" class="d-flex gap-3">
+                        <form action="/kategoritoko" class="d-flex gap-3">
                             <div class="search-form">
                                 <div class="form_group">
                                     <select class="form-select" style="width: 150px" name="search"
@@ -34,6 +34,8 @@
                                     </select>
                                 </div>
                                 </div>
+
+                               
                                 <button type="submit" style="width: 40%" class="btn btn-primary">Cari</button>
                             </form>
                         </div>
