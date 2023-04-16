@@ -36,6 +36,11 @@
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
+            {{-- @php
+            DB:: table('vouchers')
+            ->where('kode', $data->kode)
+            ->increment('terlaris');
+            @endphp --}}
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>
                   <button type="button" class="btn btn-danger"  style="margin-left:-3px ; height: 45px;" id="salin_btn" >Salin Kode</button>
