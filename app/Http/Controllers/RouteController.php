@@ -20,7 +20,7 @@ class RouteController extends Controller
 {
     public function index()
     {
-        $data = Toko::all();
+        $toko = Toko::all();
         $kategori = Kategori::all();
         $user = DB::table('users')->where('level', '=', 'user')->get();
         $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
@@ -38,7 +38,7 @@ class RouteController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('data', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending'));
+        ], compact('toko', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending'));
     }
 
     public function user(Request $request)

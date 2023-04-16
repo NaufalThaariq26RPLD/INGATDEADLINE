@@ -230,7 +230,7 @@
                                     $no = 0;
                                     $no1 = 0;
                                 @endphp
-                                @foreach ($voucher as $row)
+                                @foreach ($voucher_best as $row)
                                     <tr>
                                         <th scope="row">{{ ++$no }}</th>
                                         <td>
@@ -238,7 +238,7 @@
                                             src="{{ asset('gambarvoucher/' . $row->gambar) }}" style="width: 100px; object-fit: cover"></div>
                                         </td>
                                         <td>{{ $row->nama_voucher }}</td>
-                                        <td>{{ $row->kategori }}</td>
+                                        <td>{{ $row->kategoris->Kategori }}</td>
                                         <td><i class="bi bi-eye"></i>{{ $row->views}}</td>
                                     </tr>
                                 @endforeach
@@ -248,6 +248,44 @@
                 </div>
             </div>
             <!-- End Right side columns -->
+
+            <!-- data terlaris-->
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Voucher terlaris</h5>
+
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col"><i class="bi bi-graph-up-arrow"></i>Pengguna</th>
+                                    <th scope="col">Gambar</th>
+                                    <th scope="col">Nama voucher</th>
+                                    <th scope="col">Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 0;
+                                    $no1 = 0;
+                                @endphp
+                                @foreach ($voucher_terlaris as $row)
+                                    <tr>
+                                        <th scope="row" class="text-center">{{ $row->terlaris }}</th>
+                                        <td>
+                                            <div class="image-container"><img class="image"
+                                            src="{{ asset('gambarvoucher/' . $row->gambar) }}" style="width: 100px; object-fit: cover"></div>
+                                        </td>
+                                        <td>{{ $row->nama_voucher }}</td>
+                                        <td>{{ $row->kategoris->Kategori }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end data terlaris-->
 
         </div>
     </section>

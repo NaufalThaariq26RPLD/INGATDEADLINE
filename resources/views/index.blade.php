@@ -118,7 +118,7 @@
                                         <i class="bi bi-shop"></i>
                                     </div>
                                     <div class="ps-3">
-                                        @foreach ($data as $tokos)
+                                        @foreach ($toko as $tokos)
                                             @php
                                                 ++$no4;
                                             @endphp
@@ -148,39 +148,37 @@
             </div><!-- End Reports -->
 
             <!-- Recent Sales -->
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        <h5 class="card-title">Jumlah Voucher</h5>
+                        <h5 class="card-title">Toko terlaris</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr class="text-center">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Jumlah voucher</th>
+                                    <th scope="col"><i class="bi bi-graph-up-arrow"></i>Pengguna</th>
+                                    <th scope="col">Gambar</th>
+                                    <th scope="col">Nama Toko</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 0;
+                                    $no1 = 0;
                                 @endphp
-                                @foreach ($kategori as $row)
-                                    @php
-                                        $count = App\Models\Voucher::where('kategori', $row->id)->count();
-                                    @endphp
+                                @foreach ($toko_terlaris as $row)
                                     <tr>
-                                        <th scope="row"><a href="#">{{ ++$no }}</a></th>
-                                        <td>{{ $row->Kategori }}</td>
-
-                                        <td>{{ $count }}</td>
+                                        <th scope="row" class="text-center">{{ $row->terlaris }}</th>
+                                        <td><div class="image-container"><img class="image" src="{{ asset('logotoko/'.$table->logo) }}" style="width:100px; object-fit: cover"></div>
+                                        </td>
+                                        <td>{{ $row->nama_toko }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div><!-- End Recent Sales -->
+            </div><!-- End Recent Sales --> --}}
         </div>
     </section>
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nama_toko');
             $table->string('logo');
             $table->string('link_website');
+            $table->integer('views')->default(0);
+            $table->integer('terlaris')->default(0);
             $table->timestamps();
         });
     }

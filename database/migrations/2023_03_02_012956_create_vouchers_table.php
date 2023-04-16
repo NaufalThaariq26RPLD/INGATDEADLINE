@@ -21,10 +21,12 @@ return new class extends Migration
             $table->string('gambar')->nullable();
             $table->string('toko');
             $table->string('kategori');
+            $table->integer('views')->default(0);
             $table->string('keterangan')->nullable();
             $table->date('masa_kadaluarsa');
             $table->enum('status',['Dikonfirmasi','Ditolak','Menunggu'])->default('Menunggu');
-            $table->integer('kuota');
+            $table->integer('kuota')->default(0);
+            $table->integer('terlaris')->default(0);
             $table->string('syarat')->nullable();
             $table->timestamps();
         });
