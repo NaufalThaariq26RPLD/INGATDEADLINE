@@ -62,8 +62,12 @@
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 @php
+<<<<<<< HEAD
                                 $hitung = $datas->views + 1;    
                                 App\Models\Toko::where('id',$datas->id)->update ([ 'views' => $hitung ]);
+=======
+                                app\Models\Toko::where('id',$datas->id)->update ([ 'views' => $datas->views + 1 ]);
+>>>>>>> 70f9e912b1cdb34ca370115bc0c3606a5e792175
                                 @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
