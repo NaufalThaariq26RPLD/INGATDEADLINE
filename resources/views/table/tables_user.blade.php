@@ -1,5 +1,7 @@
 @include('partial.sidebar-navbar')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -20,10 +22,10 @@
                 <div class="card-body">
                   <h5 class="card-title">Data User</h5>
 
-                  <table class="table table-borderless datatable">
+                  <table class="table table-borderless datatable" id="myTable">
                     <thead>
-                      <tr>
-                        <th scope="col">ID</th>
+                      <tr></tr>
+                        <th scope="col">No</th>
                         <th scope="col">Email</th>
                         <th scope="col">Username</th>
 
@@ -31,9 +33,12 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $no=0;
+                        @endphp
                         @foreach ($data as $table)
                         <tr>
-                            <th scope="row"><a href="#">{{ $table->id }}</a></th>
+                            <th scope="row"><a href="#">{{ ++$no }}</a></th>
                             <td><a href="#" class="text-primary">{{ $table->email }}</a></td>
                             <td>{{ $table->username }}</td>
 
@@ -72,7 +77,9 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    let table = new DataTable('#myTable');
+  </script>
 </body>
 
 </html>

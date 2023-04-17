@@ -21,7 +21,8 @@
                   <h5 class="card-title">Data Voucher Diterima</h5>
                   <table class="table table-borderless datatable">
                     <thead>
-                      <tr>
+                      <tr></tr>
+                        <th><input style="font-size: 20px;clear:" type="checkbox" name="" id="select_all_ids" class="form-check-input"></th>
                         <th scope="col">No</th>
                         <th scope="col">Nama Voucher</th>
                         <th scope="col">Deskripsi Voucher</th>
@@ -48,6 +49,7 @@
 
 
                         <tr>
+                            <th><input style="font-size: 20px" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value="{{ $table->id }}"></th>
                             <th scope="row">{{ ++$no }}</th>
                             <td>{{ $table->nama_voucher }}</td>
                             <td >{{ $table->deskripsi }}</td>
@@ -77,7 +79,8 @@
                   <h5 class="card-title">Data Voucher Ditolak</h5>
                   <table class="table table-borderless datatable">
                     <thead>
-                      <tr>
+                      <tr></tr>
+                        <th><input style="font-size: 20px;clear:" type="checkbox" name="" id="select_all_ids" class="form-check-input"></th>
                         <th scope="col">No</th>
                         <th scope="col" >Nama Voucher</th>
                         <th scope="col">Deskripsi Voucher</th>
@@ -96,7 +99,8 @@
                         $toko2 = App\Models\Toko::where('id', $table2->toko)->first();
                         $kategori2 = App\Models\Kategori::where('id', $table2->kategori)->first();
                       @endphp
-                        <tr>
+                        <tr id="voucher{{ $table2->id }}">
+                            <th><input style="font-size: 20px" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value="{{ $table2->id }}"></th>
                             <th scope="row">{{ ++$no1 }}</th>
                             <td>{{ $table2->nama_voucher }}</td>
                             <td >{{ $table2->deskripsi }}</td>

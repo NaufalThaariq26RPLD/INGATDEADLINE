@@ -14,18 +14,16 @@ class FaqController extends Controller
     public function index(){
         return view('faq', [
             'title' => 'FAQ',
-            'data2' => Faq::where('status', 'Dikonfirmasi')->paginate(5),
-            'data' => Faq::where('status', 'Menunggu')->get(),
+            'data2' => Faq::where('status', 'Dikonfirmasi')->paginate(10),
+            'data' => Faq::where('status', 'Menunggu')->paginate(10),
         ]);
     }
     public function faq_admin(Faq $faq){
-        return view('faq', [
+        return view('faq',[
             'title' => 'FAQ',
-            'data' => Faq::where('status', 'Menunggu')->paginate(5),
-            'data2' => Faq::where('status', 'Dikonfirmasi')->paginate(5),
-            'FAQ' => $data = DB::table('faqs')
-            ->orderBy('created_at', 'desc')
-            ->paginate(5)
+            'data' => Faq::where('status', 'Menunggu')->orderBy('created_at', 'desc')->paginate(5,['*'],'data'),
+            'data2' => Faq::where('status', 'Dikonfirmasi')->orderBy('created_at', 'desc')->paginate(5,['*'],'data2'),
+            'FAQ' => Faq::orderBy('created_at', 'desc')->paginate(5),
 
         ]);
     }
@@ -34,6 +32,8 @@ class FaqController extends Controller
     {
         //
         $validasi = $request->validate([
+            'email' => 'required',
+            'username' => 'required',
             'pertanyaan' => 'required'
         ]);
 
@@ -43,13 +43,15 @@ class FaqController extends Controller
             return back()->with('success','Question Sudah Ada !!');
 
 
-        }else if($check->count() < 1){
+        }
+        else if($check->count() < 1){
             Faq::create([
-                'email' => Auth()->user()->email,
+                'email' => $validasi['email'],
+                'username' => $validasi['username'],
                 'pertanyaan' => $validasi['pertanyaan'],
                 'answer' => null
             ]);
-        return redirect('/FAQ')->with('success', 'Faq Berhasil Untuk Dikirim');
+        return redirect('/FAQ');
 
         }
     }
@@ -67,12 +69,12 @@ class FaqController extends Controller
             'FAQ' => DB::table('faqs')
             ->orderBy('created_at', 'desc')
             ->paginate(5),
-        ],compact('data')); 
+        ],compact('data'));
     }
 
     public function show($id)
     {
-        //
+
         return view('faq_balas', [
             'title' => 'FAQ',
             'FAQ' => DB::table('faqs')
@@ -116,6 +118,11 @@ class FaqController extends Controller
             return back()->with('error','Data Yang Akan Di Hapus Tidak Tersedia!!');
         }
 
+    }
+    public function faqall(Request $request){
+        $ids = $request->ids;
+        Faq::whereIn('id',$ids)->delete();
+        return response()->json(['success'=>'Data berhasil Dihapus!']);
     }
 
 }

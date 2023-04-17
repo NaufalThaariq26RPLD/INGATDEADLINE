@@ -129,6 +129,17 @@ Route::middleware('superadmin', 'auth')->group(function () {
     Route::get('/faqtampil/{id}', [FaqController::class, 'show']);
     Route::get('/faqupdates/{id}', [FaqController::class, 'tampilfaq']);
     Route::post('/faqupdate/{id}', [FaqController::class, 'update']);
+
+    Route::delete('/deleteadminselected', [RouteController::class, 'deleteadminall'])->name('deleteadminall');
+    Route::delete('/deletetokoselected', [RouteController::class, 'deletetokoall'])->name('deletetokoselected');
+    Route::delete('/deletesuperall', [RouteController::class, 'deletesuperall'])->name('deletesuperall');
+    Route::post('/konfirmasiall', [RouteController::class, 'konfirmasiall'])->name('konfirmasiall');
+    Route::post('/tolakall', [RouteController::class, 'tolakall'])->name('tolakall');
+    Route::post('/kategoriall', [RouteController::class, 'kategoriall'])->name('kategoriall');
+    Route::post('/voucherall', [RouteController::class, 'voucherall'])->name('voucherall');
+    Route::delete('/faqall', [FaqController::class, 'faqall'])->name('faqall');
+    Route::get('/searchfaq', [RouteController::class, 'searchfaq'])->name('searchfaq');
+    Route::get('/searchfaq2', [RouteController::class, 'searchfaq2'])->name('searchfaq2');
 });
 
 Route::middleware('admin', 'auth')->group(function () {
@@ -136,7 +147,6 @@ Route::middleware('admin', 'auth')->group(function () {
     // DASHBOARD
 
     Route::get('/admin/toko', [DashboardController::class, 'Chart'])->name('dashboard');
-    Route::get('/data_voucher', [DashboardController::class, 'voucher'])->name('datavoucher');
     Route::get('/deletevoucher/{id}', [DashboardController::class, 'deletevoucher'])->name('deletevoucher');
 
     // DATA VOUCHER
@@ -180,6 +190,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginSuperController::class, 'logout'])->name('logout');
 });
 
-Route::get('test', function () {
-    echo "aa";
-});
