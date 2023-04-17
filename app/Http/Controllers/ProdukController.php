@@ -22,7 +22,7 @@ class ProdukController extends Controller
             $data->where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('deskripsi', 'like', '%'.request('search').'%');
         }
         return view('client.products', [
-            'data' => $data->get()
+            'data' => $data->paginate(1)
         ]);
     }
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TolakController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\client\SettingController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
@@ -49,6 +49,9 @@ Route::get('/dashboard', [HomeController::class, 'index_client'])->name('dashboa
 Route::get('/toko', [TokoController::class, 'index_client'])->name('tokouser');
 Route::get('/toko/search',[TokoController::class,'index_client'])->name('search');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/FAQ', [FaqController::class, 'client_index']);
+Route::get('/products', [ProdukController::class, 'index']);
+
 
 
 
@@ -65,10 +68,8 @@ Route::get('/tentang', function () {
 });
 
 Route::middleware('user','auth')->group(function () {
-    Route::get('/FAQ', [FaqController::class, 'client_index']);
     Route::post('/add/faq', [FaqController::class, 'store']);
     Route::get('/kode/{id}', [ProdukController::class, 'kode']);
-    Route::get('/products', [ProdukController::class, 'index']);
 });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginSuperController::class, 'login'])->name('login');

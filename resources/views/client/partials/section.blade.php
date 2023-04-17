@@ -25,7 +25,7 @@
                                     <div class="counter-item counter-item-one wow fadeInUp">
                                         <div class="info">
                                             <h4>TOTAL <br> VOUCHER</h4>
-                                            <h3><span class="count">100</span> +</h3>
+                                            <h3><span class="count">{{ $total_voucher->count() }}</span> +</h3>
                                         </div>
                                     </div>
                                 </div>

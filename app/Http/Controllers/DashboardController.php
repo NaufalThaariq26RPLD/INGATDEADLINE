@@ -60,8 +60,11 @@ class DashboardController extends Controller
         if(request('search')){
             $search = voucher::where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('kategori', 'like', '%' . request('search') . '%')->get();
         }
+
+
         return view('client.dashboard', [
             'search' => $search,
+        
         ]);
     }
 

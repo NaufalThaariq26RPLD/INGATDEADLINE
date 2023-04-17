@@ -8,7 +8,7 @@
                                 <h1 class="wow fadeInUp" wow-data-delay="30mss" style="font-size: 5rem;font-weight: bold">Beragam Kode Voucher dan Penawaran Disini</h1>
                                 <!-- <h3 class="wow fadeInDown" wow-data-delay="50ms">People Don’t Take,Trips Take People</h3> -->
                                 <div class="hero-search-wrapper wow fadeInUp" wow-data-delay="70ms">
-                                    <form action="/dashboard">
+                                    <form action="/dashboard#d">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-5 col-sm-12">
                                                 <div class="form_group">

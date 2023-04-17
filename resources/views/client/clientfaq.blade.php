@@ -11,7 +11,7 @@
                             <div class="page-title">
                                 <h1 class="title">FAQ</h1>
                                 <ul class="breadcrumbs-link">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="/dashboard" class="link-dark">Home</a></li>
                                     <li class="active">FAQ</li>
                                 </ul>
                             </div>
@@ -73,12 +73,6 @@
                                     @csrf
                                     <div class="row">
 
-                                        <div class="col-lg-6">
-                                            <div class="form_group">
-                                                <input type="hidden"  name="email" value="{{ Auth::user()->email }}" required>
-                                                <input type="hidden" name="username" value="{{ Auth::user()->username }}" required>
-                                            </div>
-                                        </div>
 
                                         <div class="col-lg-12">
                                             <div class="form_group">
