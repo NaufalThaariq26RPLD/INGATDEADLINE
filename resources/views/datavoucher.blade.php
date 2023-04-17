@@ -72,7 +72,7 @@
                                                         <td>{{ $row->nama_voucher }}</td>
                                                         <td style="max-width: 150px;">{{ $row->deskripsi }}</td>
                                                         <td>{{ $row->kode }}</td>
-                                                        <td>{{ $row->kategori }}</td>
+                                                        <td>{{ $row->kategoris->Kategori }}</td>
                                                         <td>{{ $row->kuota }}</td>
                                                         <td><span class="badge text-bg-success">{{ $row->status }}</span>
                                                         </td>
