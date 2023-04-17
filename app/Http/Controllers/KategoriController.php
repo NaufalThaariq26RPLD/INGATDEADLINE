@@ -31,7 +31,7 @@ class KategoriController extends Controller
         $data = Voucher::where('status',$status)->Get();
         return  view('kategori',['select'=>$status],compact('data'));
     }
-    public function kategori()
+    public function kategori($status)
     {
         $data=Kategori::all();
         // $kategori=DB::table('vouchers')->where('kategori','=',$kategori);
