@@ -17,10 +17,11 @@
             <div class="col-lg-6  w-100">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <div class="d-flex" style="justify-content: space-between">
+                        
                         <h5 class="card-title">Data Voucher Menunggu </h5>
                            
                         <form action="/kategoritoko" class="d-flex gap-3">
+                        <div class="d-flex" style="justify-content: space-between">
                             <div class="search-form">
                                 <div class="form_group">
                                     <select class="form-select" style="width: 150px" name="search"

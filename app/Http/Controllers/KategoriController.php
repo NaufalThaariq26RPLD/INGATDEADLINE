@@ -26,7 +26,12 @@ class KategoriController extends Controller
         return view('kategori', compact('user','toko','data','kategori', 'tittle'));
         
     }
-    public function kategori()
+    public function status($status)
+    {
+        $data = Voucher::where('status',$status)->Get();
+        return  view('kategori',['select'=>$status],compact('data'));
+    }
+    public function kategori($status)
     {
         $data=Kategori::all();
         // $kategori=DB::table('vouchers')->where('kategori','=',$kategori);
@@ -36,12 +41,18 @@ class KategoriController extends Controller
         }else{
             $data1 = voucher::get();
         }
+        if(request('status')){
+            $data2 = Voucher::where('status',$status)->Get();
+           
+        }
 
 
         return view('client.admin.kategori.kategori',[
             'data' => $data,
             'data1' => $data1,
-            'tittle' => request('search')
+            'data2' => $data2,
+            'tittle' => request('search'),
+            'select' => $status
     
     
         ]);

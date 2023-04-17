@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\Toko;
 use App\Models\User;
 use App\Models\Admin;
@@ -25,7 +26,7 @@ class RouteController extends Controller
         $user = DB::table('users')->where('level', '=', 'user')->get();
         $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
         $vr = DB::table('kategoris')->count();
-        $toko_terlaris = Toko::orderBy('views', 'DESC')->paginate(10);
+        $toko_terlaris = Toko::orderBy('terlaris', 'DESC')->paginate(10);
 
         //chart
         $diterima = Voucher::where('status', "Dikonfirmasi")->count();
@@ -39,7 +40,7 @@ class RouteController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('toko', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending','toko_terlaris'));
+        ], compact('toko', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending', 'toko_terlaris'));
     }
 
     public function user(Request $request)
@@ -135,7 +136,7 @@ class RouteController extends Controller
     }
     public function superadmin(Request $request)
     {
-        $user = User::where('level','superadmin')->get();
+        $user = User::where('level', 'superadmin')->get();
         return view('table.tables_super', [
             'title' => 'SuperAdmin',
             'FAQ' => $data = DB::table('faqs')
@@ -217,7 +218,7 @@ class RouteController extends Controller
         return view('table.data_toko', [
             'title' => 'Data Toko',
             'FAQ' => $data = DB::table('faqs')
-                ->where('status','Menunggu')
+                ->where('status', 'Menunggu')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -354,6 +355,7 @@ class RouteController extends Controller
     }
     public function validasi(Request $request)
     {
+        echo "test";
         $voucher = Voucher::where('status', 'menunggu')->get();
         return view('table.validasi', [
             'title' => 'Validasi',
@@ -490,5 +492,103 @@ class RouteController extends Controller
         } else {
             return redirect()->route('profil')->with('status', '');
         }
+    }
+    public function deleteadminall(Request $request)
+    {
+        $ids = $request->ids;
+        User::whereIn('id', $ids)->delete();
+        return response()->json(['success' => 'Data berhasil dihapus!']);
+    }
+    public function deletesuperall(Request $request)
+    {
+        $ids = $request->ids;
+        User::whereIn('id', $ids)->delete();
+        return response()->json(['success' => 'Data berhasil dihapus!']);
+    }
+    public function deletetokoall(Request $request)
+    {
+        $ids = $request->ids;
+        Toko::whereIn('id', $ids)->delete();
+        User::whereIn('toko', $ids)->delete();
+        Voucher::whereIn('toko', $ids)->delete();
+        return response()->json(['success' => 'Data berhasil dihapus!']);
+    }
+
+    public function konfirmasiall(Request $request)
+    {
+        $ids = $request->ids;
+        Voucher::whereIn('toko', $ids)->update(['status' => 'Dikonfirmasi']);
+        return response()->json(['success' => 'Data berhasil Dikonfirmasi!']);
+    }
+    public function kategoriall(Request $request)
+    {
+        $ids = $request->ids;
+        Kategori::whereIn('id', $ids)->delete();
+        Voucher::whereIn('kategori', $ids)->delete();
+        return response()->json(['success' => 'Data berhasil Dihapus!']);
+    }
+
+    public function voucherall(Request $request)
+    {
+        $ids = $request->ids;
+        Voucher::whereIn('id', $ids)->delete();
+        return response()->json(['success' => 'Data berhasil Dihapus!']);
+    }
+    public function searchfaq(Request $request)
+    {
+        $output = "";
+        $faq = Faq::where('username', 'like', '%' . $request->search . '%')->orWhere('email', 'like', '%' . $request->search . '%')->orWhere('pertanyaan', 'like', '%' . $request->search . '%')->get();
+        foreach ($faq as $faqs) {
+            $output .= '<div class="alert alert-info"
+            style="display: flex; justify-content: space-between; position: relative; gap: 0px 10px;overflow:auto" id="faqq' . $faqs->id . ' ">
+            <div>
+                <h1 style="font-size: 12px; font-weight: bold">From : ' . $faqs->username . ' </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Email :  ' . $faqs->email . ' </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Pertanyaan : ' . $faqs->pertanyaan . '
+                </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Jawaban :  ' . $faqs->answer . ' </h1>
+            </div>
+
+            <a href="/faqupdates/ ' . $faqs->id . ' " class="alert-link"
+                style="font-weight:bold; color: black; margin-left: auto; display: inline-block; margin-top: auto; margin-bottom: auto; width: 10%; float: right">Update
+                <i class="bi bi-pencil-square"></i><a
+                    style="font-weight:bold; color: black; display: inline-block; margin-top: auto; margin-bottom: auto; width: 10%; float: right"
+                    class="alert-link" href="/faqdelete/ ' . $faqs->id . ' ">
+                    <i class="bi bi-x-lg"></i> Hapus
+                </a>
+                <input style="font-weight:bold; color: black; display: inline-block; margin-top: auto; margin-bottom: auto; font-size: 20px; float: right;" type="checkbox" name="idss" id="checkboxx" class="form-check-input checkbox_idss" value=" ' . $faqs->id . ' ">
+
+        </div>';
+        }
+        return response($output);
+    }
+    public function searchfaq2(Request $request)
+    {
+        $output = "";
+        $faq = Faq::where('username', 'like', '%' . $request->search . '%')->orWhere('email', 'like', '%' . $request->search . '%')->orWhere('pertanyaan', 'like', '%' . $request->search . '%')->orWhere('answer', 'like', '%' . $request->search . '%')->get();
+
+        foreach ($faq as $faqs) {
+            $output .= '<div class="alert alert-info"
+            style="display: flex; justify-content: space-between; position: relative; gap: 0px 10px;overflow:auto" id="faqq' . $faqs->id . ' ">
+            <div>
+                <h1 style="font-size: 12px; font-weight: bold">From : ' . $faqs->username . ' </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Email :  ' . $faqs->email . ' </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Pertanyaan : ' . $faqs->pertanyaan . '
+                </h1>
+                <h1 style="font-size: 12px; font-weight: bold">Jawaban :  ' . $faqs->answer . ' </h1>
+            </div>
+
+            <a href="/faqupdates/ ' . $faqs->id . ' " class="alert-link"
+                style="font-weight:bold; color: black; margin-left: auto; display: inline-block; margin-top: auto; margin-bottom: auto; width: 10%; float: right">Update
+                <i class="bi bi-pencil-square"></i><a
+                    style="font-weight:bold; color: black; display: inline-block; margin-top: auto; margin-bottom: auto; width: 10%; float: right"
+                    class="alert-link" href="/faqdelete/ ' . $faqs->id . ' ">
+                    <i class="bi bi-x-lg"></i> Hapus
+                </a>
+                <input style="font-weight:bold; color: black; display: inline-block; margin-top: auto; margin-bottom: auto; font-size: 20px; float: right;" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value=" ' . $faqs->id . ' ">
+
+        </div>';
+        }
+        return response($output);
     }
 }

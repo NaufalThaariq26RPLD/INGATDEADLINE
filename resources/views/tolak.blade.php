@@ -17,8 +17,28 @@
           <div class="col-lg-6  w-100">
             <div class="card shadow mb-4">
               <div class="card-body">
+              
                 <h5 class="card-title">Data Voucher Ditolak</h5>
-              <div class="row">
+                <form action="/kategoritoko" class="d-flex gap-3">
+                <div class="d-flex" style="justify-content: space-between">
+                            <div class="search-form">
+                                <div class="form_group">
+                                    <select class="form-select" style="width: 150px" name="search"
+                                        aria-label="Default select example">
+                                        <option data-dsplay="Category" value="">Kategori</option>
+                                        @foreach ($kategori as $kategori)
+                                            <option value="{{ $kategori->id }}"
+                                                {{ request('search') === $kategori->id ? 'selected' : '' }}>
+                                                {{ $kategori->Kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                </div>
+
+                               
+                                <button type="submit" style="width: 40%" class="btn btn-primary">Cari</button>
+                            </form>
+</div>
 
             <div class="card-body">
                 <div class="table-responsive text-center">

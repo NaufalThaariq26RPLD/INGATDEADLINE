@@ -17,6 +17,7 @@
             <div class="col-lg-6  w-100">
                 <div class="card shadow mb-4">
                     <div class="card-body">
+                    
                         <h5 class="card-title">Data Voucher Dikonfirmasi</h5>
                         <div class="card-header py-2">
                             <a type="button" href="/tambahvoucher" class="m-0 font-weight-bold btn btn-success"><i
@@ -24,6 +25,7 @@
                                 Tambah Data +</a>
                         </div>
                         <form action="/kategoritoko" class="d-flex gap-3">
+                        <div class="d-flex" style="justify-content: space-between">
                             <div class="search-form">
                                 <div class="form_group">
                                     <select class="form-select" style="width: 150px" name="search"
@@ -39,9 +41,10 @@
                                 </div>
 
                                 
-                                <button type="submit" style="width: 40%" class="btn btn-primary">Cari</button>
+                                <button type="submit" style="width: 10" class="btn btn-primary">Cari</button>
                             </form>
-                        <div class="row">
+</div>
+
 
                             <div class="card-body">
                                 <div class="table-responsive text-center">
@@ -72,7 +75,7 @@
                                                         <td>{{ $row->nama_voucher }}</td>
                                                         <td style="max-width: 150px;">{{ $row->deskripsi }}</td>
                                                         <td>{{ $row->kode }}</td>
-                                                        <td>{{ $row->kategori }}</td>
+                                                        <td>{{ $row->kategoris->Kategori }}</td>
                                                         <td>{{ $row->kuota }}</td>
                                                         <td><span class="badge text-bg-success">{{ $row->status }}</span>
                                                         </td>

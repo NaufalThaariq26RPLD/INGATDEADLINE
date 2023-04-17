@@ -46,22 +46,17 @@
                   <div>
                     <a href="{{ $data->link }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
                   </div>
+                @php
+                app\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
+                @endphp
 
               </div>
                 </div>
                 <hr>
-{{-- 
-                @php
-                  $syarat = explode('|', $data->syarat);
-                @endphp --}}
             <div class="col-md-8">
               <div class="card-body">
                 <p class="card-title">Syarat dan Ketentuan :</p>
                 <li>{{ $data->syarat }}</li>
-{{-- 
-                @foreach ($syarat as $sarat)
-                  <li>{{ $sarat }}</li>
-                @endforeach --}}
               </div>
               </div>
             </div>
