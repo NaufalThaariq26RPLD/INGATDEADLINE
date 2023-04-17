@@ -47,7 +47,7 @@ use App\Http\Controllers\LoginSuperController;
 Route::get('/', [HomeController::class, 'index_client']);
 Route::get('/dashboard', [HomeController::class, 'index_client'])->name('dashboarduser');
 Route::get('/toko', [TokoController::class, 'index_client'])->name('tokouser');
-Route::get('/toko/search',[TokoController::class,'index_client'])->name('search');
+Route::get('/toko/search', [TokoController::class, 'index_client'])->name('search');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/FAQ', [FaqController::class, 'client_index']);
 Route::get('/products', [ProdukController::class, 'index']);
@@ -67,7 +67,7 @@ Route::get('/tentang', function () {
     return view('client.tentang');
 });
 
-Route::middleware('user','auth')->group(function () {
+Route::middleware('user', 'auth')->group(function () {
     Route::post('/add/faq', [FaqController::class, 'store']);
     Route::get('/kode/{id}', [ProdukController::class, 'kode']);
 });
@@ -78,7 +78,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/registeruser', [LoginSuperController::class, 'registeruser']);
 });
 
-Route::middleware('superadmin','auth')->group(function () {
+Route::middleware('superadmin', 'auth')->group(function () {
     Route::get('/user', [LoginSuperController::class, 'user'])->name('profil');
     Route::get('/table_user', [RouteController::class, 'user'])->name('user');
     Route::post('/updateprofil/{id}', [RouteController::class, 'updateprofil'])->name('updateprofil');
@@ -132,7 +132,7 @@ Route::middleware('superadmin','auth')->group(function () {
     Route::post('/faqupdate/{id}', [FaqController::class, 'update']);
 });
 
-Route::middleware('admin','auth')->group(function () {
+Route::middleware('admin', 'auth')->group(function () {
     Route::get('/adminuser', [LoginSuperController::class, 'adminuser'])->name('adminuser');
     // DASHBOARD
 
@@ -179,4 +179,8 @@ Route::middleware('admin','auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginSuperController::class, 'logout'])->name('logout');
+});
+
+Route::get('test', function () {
+    echo "aa";
 });
