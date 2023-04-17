@@ -160,6 +160,7 @@ Route::middleware('admin','auth')->group(function () {
     // KATEGORI
 
     Route::get('/kategoritoko', [KategoriController::class, 'index'])->name('kategoritoko');
+    Route::get('/kategoritoko/{status}', [KategoriController::class, 'status'])->name('status');
 
     // KONFIRMASI
 
