@@ -151,7 +151,7 @@
             <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        <h5 class="card-title">Toko terlaris</h5>
+                        <h5 class="card-title">Toko yang banyak dikunjungi</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
@@ -168,7 +168,7 @@
                                 @endphp
                                 @foreach ($toko_terlaris as $row)
                                     <tr>
-                                        <th scope="row" class="text-center">{{ $row->terlaris }}</th>
+                                        <th scope="row" class="text-center">{{ $row->views }}</th>
                                         <td><div class="image-container"><img class="image" src="{{ asset('logotoko/'.$row->logo) }}" style="width:100px; object-fit: cover"></div>
                                         </td>
                                         <td>{{ $row->nama_toko }}</td>

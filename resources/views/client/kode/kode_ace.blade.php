@@ -38,7 +38,6 @@
               <div class="d-flex justify-content-between">
                 @php
                 app\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
-
                 @endphp
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>

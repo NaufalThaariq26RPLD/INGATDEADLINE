@@ -62,9 +62,7 @@
                         @foreach ($data as $data)
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 @php
-                                DB:: table('tokos')
-                                ->where('id', $data->id)
-                                ->increment('views');
+                                app\Models\Toko::where('id',$data->id)->update ([ 'views' => $data->views + 1 ]);
                                 @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
@@ -84,11 +82,6 @@
                                             <span class="status st-close">DISKON 25%</span>
                                         </div>
                                     </div>
-                                    {{-- @php
-                                    DB:: table('tokos')
-                                    ->where('id', $data->id)
-                                    ->increment('terlaris');
-                                    @endphp --}}
                                     <div class="listing-content">
                                         <h3 class="title">
                                             {{ $data->nama_voucher }}</h3>
