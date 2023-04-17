@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('client.layout.main')
 
 @section('container')
       <!--====== Start Preloader ======-->

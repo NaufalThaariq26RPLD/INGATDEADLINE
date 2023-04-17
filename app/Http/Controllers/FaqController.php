@@ -34,8 +34,6 @@ class FaqController extends Controller
     {
         //
         $validasi = $request->validate([
-            'email' => 'required',
-            'username' => 'required',
             'pertanyaan' => 'required'
         ]);
 
@@ -47,12 +45,11 @@ class FaqController extends Controller
 
         }else if($check->count() < 1){
             Faq::create([
-                'email' => $validasi['email'],
-                'username' => $validasi['username'],
+                'email' => Auth()->user()->email,
                 'pertanyaan' => $validasi['pertanyaan'],
                 'answer' => null
             ]);
-        return redirect('/FAQ');
+        return redirect('/FAQ')->with('success', 'Faq Berhasil Untuk Dikirim');
 
         }
     }

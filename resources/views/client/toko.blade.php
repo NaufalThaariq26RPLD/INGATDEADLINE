@@ -17,7 +17,7 @@
                     <div class="page-title">
                         <h1 class="title">Toko</h1>
                         <ul class="breadcrumbs-link">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="/dashboard" class="link-dark">Home</a></li>
                             <li class="active">Toko</li>
                         </ul>
                     </div>
@@ -34,41 +34,44 @@
             <div class="col-lg-4">
                 <div class="sidebar-widget-area">
                     <div class="widget search-listing-widget mb-30 wow fadeInUp">
-                        <h4 class="widget-title">Filter Search</h4>
-                        <form>
+                        <h4 class="widget-title">Filter Cari</h4>
+                        <form action="/toko">
                             <div class="search-form">
                                 <div class="form_group">
-                                    <input type="search" class="form_control" placeholder="Search keyword" name="search" required>
+                                    <input type="search" class="form_control" placeholder="Cari Disini" name="search" value="{{ request('search') }}">
                                     <i class="ti-search"></i>
                                 </div>
                                 <div class="form_group">
-                                    <select class="wide">
-                                        <option data-dsplay="Category">Category</option>
-                                        <option value="01">Hotel</option>
-                                        <option value="02">Furniture</option>
-                                        <option value="03">Pakaian</option>
-                                        <option value="03">Top Up</option>
+                                    <select class="wide" name="kategori">
+                                        <option data-dsplay="Category" value="">Kategori</option>
+                                        @foreach ($kategori as $kategoris)
+                                            
+                                        <option value="{{ $kategoris->id }}" {{ (request('kategori') == $kategoris->id )? 'selected' : '' }}>{{ $kategoris->Kategori }}</option>
+                                        @endforeach
+
                                     </select>
                                 </div>
-                                <div class="form_group">
-                                    <select class="wide">
+                                {{-- <div class="form_group">
+                                    <select class="wide" name="toko">
                                         <option data-dsplay="Category">Toko</option>
-                                        <option value="01">Uniqlo</option>
-                                        <option value="02">Codashop</option>
-                                        <option value="03">Oyo</option>
-                                        <option value="03">Ace</option>
+                                        @foreach ($filter_toko as $toko)
+                                            
+                                        <option value="{{ $toko->id }}">{{ $toko->nama_toko }}</option>
+                                        @endforeach
+                                        
                                     </select>
-                                </div>
+                                </div> --}}
                                 
                             </div>
                             <div class="form_group">
-                                <a href="login.html" class="main-btn icon-btn">Search Now</a>
+                                <button type="submit" class="main-btn icon-btn">Cari disini</button>
                             </div>
                         </form>
                     </div>
                     
                 </div>
             </div>
+
             <div class="col-lg-8">
                 <div class="listing-search-filter mb-40">
                     <div class="row">
@@ -82,24 +85,31 @@
                 </div>
                 <div class="listing-grid-wrapper">
                     <div class="row">
+                        @if (request('search'))
 
-                        @foreach ($data as $data)
+
+                            @if($data->count() <  1)
+                                <h1 style="text-transform: uppercase; text-align: center">{{ request('search') }} YANG KAMU CARI BELOM DITEMUKAN</h1>
+                            @endif
+                            
+                        @endif
+                        @foreach ($data as $datas)
                             
 
                         <div class="col-md-4 col-sm-12">
                             <div class="listing-item listing-grid-item-two mb-30 wow fadeInUp">
                                 <div class="listing-thumbnail">
-                                    <img src="{{ asset('logotoko/'.$data->logo) }}" alt="Client Image" style="width: 100%; height: 300px; object-fit: cover">
+                                    <img src="{{ asset('logotoko/'.$datas->logo) }}" alt="Client Image" style="width: 100%; height: 300px; object-fit: cover">
                                     <span class="featured-btn">Pakaian</span>
                                    
                                 </div>
                                 <div class="listing-content">
-                                    <h3 class="title"><a href="login.html">{{ $data->nama_toko }}</a></h3>
+                                    <h3 class="title">{{ $datas->nama_toko }}</a></h3>
                                     <p>Platform Belanja Pakaian Online</p>
                                     <div class="listing-meta">
                                         <ul>
                                         <form action="/products">
-                                            <button name="toko" type="submit" class="btn btn-outline-warning" value="{{ $data->id }}">Lihat</button>
+                                            <button name="toko" type="submit" class="btn btn-outline-warning" value="{{ $datas->id }}">Lihat</button>
                                         </form>
                                         </ul>
                                     </div>
@@ -113,20 +123,7 @@
 
                     </div>
 
-                    <nav aria-label="Page navigation example" style=" justify-content: center; ">
-                        <ul class="pagination justify-content-center">
-                          <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          
-                          <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                          </li>
-                        </ul>
-                      </nav>
+                    {{ $data->links('vendor.pagination.bootstrap-4') }}
 
                 </div>
                 </div>

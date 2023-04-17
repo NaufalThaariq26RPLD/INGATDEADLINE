@@ -4,49 +4,43 @@
 @section('container')
 @include('client.partials.hero')
 @include('client.partials.category')
-@if ($search !== null)
+@if (request('search'))
       <!--====== Start Listing Section ======-->
-  <section class="listing-grid-area pt-115 pb-75">
+  <section class="listing-grid-area pt-115 pb-75" id="d">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="section-title text-center mb-75 wow fadeInUp">
-                    <h2>YANG KAMU CARI..</h2>
+                <div class="section-title text-center mb-75 wow fadeInUp" style="margin-top: 40px">
+                    @if($search->count() > 0)
+                    <h2 style="text-transform: uppercase">{{ request('search') }} YANG KAMU CARI</h2>
+                    
+                    @else
+                        <h2 style="text-transform: uppercase">{{ request('search') }} TIDAK ADA</h2>
+                    @endif
                 </div>
             </div>
         </div>
-
         <div class="row">
             @foreach ($search as $search)
                 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="10ms">
                     <div class="listing-thumbnail">
-                        <img src=" {{ asset('admin/img/icon2/'.$search->gambar) }}" alt="Listing Image">
+                        <img src=" {{ asset('gambarvoucher/'.$search->gambar) }}" alt="Listing Image" style="width: 100% ; height: 500px; object-fit: cover">
                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                             <div class="meta-icon-title d-flex align-items-center">
                                 <div class="icon">
                                     <i class="fa-solid fa-store"></i>
                                 </div>
                                 <div class="title">
-                                    <h6>SHOPEE</h6>
+                                    <h6>{{ $search->tokos->nama_toko }}</h6>
                                 </div>
                             </div>
                             <span class="status st-open "><a href="https://shopee.co.id/?gclid=Cj0KCQiAxbefBhDfARIsAL4XLRoZyXSdV310ghlCY9mmjT-NG3rDlgJ8D_ehupU2hKUsIbDlePlCjBYaAhcLEALw_wcB" target="_blank" >Buka</a></sp>                                </div>
                     </div>
                     <div class="listing-content">
-                        <h3 class="title"><a href="listing-details-1.html">{{ $search->nama_voucher }}</a></h3>
-                        <div class="ratings">
-                            <ul class="ratings ratings-three">
-                                <li class="star"><i class="flaticon-star-1"></i></li>
-                                <li class="star"><i class="flaticon-star-1"></i></li>
-                                <li class="star"><i class="flaticon-star-1"></i></li>
-                                <li class="star"><i class="flaticon-star-1"></i></li>
-                                <li class="star"><i class="flaticon-star-1"></i></li>
-                                <li><span><a href="#">(02 Reviews)</a></span></li>
-                            </ul>
-                        </div>
-                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $search->keterangan }}</span>
+                        <h3 class="title">{{ $search->nama_voucher }}</h3>
+                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $search->deskripsi }}</span>
                         <div class="listing-meta">
                             <ul>
                                 <li><span>GETVOUCHER</span></li>
