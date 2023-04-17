@@ -315,15 +315,15 @@
     chart.data = [{
         "country": "Voucher Yang Diterima",
         "litres": {{ $diterima }},
-        "color": am4core.color("#52D726")
+        "color": am4core.color("#009FBD")
     }, {
         "country": "Voucher Yang Masih Menunggu",
         "litres": {{ $pending }},
-        "color": am4core.color("#FFEC00")
+        "color": am4core.color("#088395")
     }, {
         "country": "Voucher Yang Ditolak",
         "litres": {{$ditolak}},
-        "color": am4core.color("#FF0000")
+        "color": am4core.color("#0A4D68")
     }];
 
     // Add and configure Series
