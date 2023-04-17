@@ -27,6 +27,8 @@ return new class extends Migration
             $table->enum('status',['Dikonfirmasi','Ditolak','Menunggu'])->default('Menunggu');
             $table->integer('kuota')->default(0);
             $table->integer('terlaris')->default(0);
+            $table->text('link');
+            $table->integer('diskon');
             $table->string('syarat')->nullable();
             $table->timestamps();
         });

@@ -114,7 +114,6 @@ Route::middleware('superadmin','auth')->group(function () {
     Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
     Route::get('/konfirmasi/{id}/{status}', [RouteController::class, 'konfirmasi'])->name('konfirmasi');
     Route::get('/tolak/{id}/{status}', [RouteController::class, 'tolak'])->name('tolak');
-    Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
 
     Route::get('/kategori', [RouteController::class, 'kategori'])->name('kategori');
     Route::get('/tambahkategori', [RouteController::class, 'tambahkategori'])->name('tambahkategori');
@@ -136,14 +135,11 @@ Route::middleware('admin','auth')->group(function () {
     // DASHBOARD
 
     Route::get('/admin/toko', [DashboardController::class, 'Chart'])->name('dashboard');
-    Route::get('/data_voucher', [DashboardController::class, 'voucher'])->name('datavoucher');
     Route::get('/deletevoucher/{id}', [DashboardController::class, 'deletevoucher'])->name('deletevoucher');
 
-    Route::get('/validasi', [DashboardController::class, 'validasi'])->name('validasi');
-    Route::post('/updatetolak/{id}', [DashboardController::class, 'updatetolak'])->name('updatetolak');
-    Route::get('/konfirmasi/{id}/{status}', [DashboardController::class, 'konfirmasi'])->name('konfirmasi');
-    Route::get('/tolak/{id}/{status}', [DashboardController::class, 'tolak'])->name('tolak');
-    Route::post('/updatetolak/{id}', [DashboardController::class, 'updatetolak'])->name('updatetolak');
+    // Route::get('/konfirmasi/{id}/{status}', [DashboardController::class, 'konfirmasi'])->name('konfirmasi');
+    // Route::get('/tolak/{id}/{status}', [DashboardController::class, 'tolak'])->name('tolak');
+   
 
     // DATA VOUCHER
 

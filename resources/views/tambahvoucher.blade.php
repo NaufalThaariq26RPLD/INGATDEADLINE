@@ -37,6 +37,18 @@
                   </div>
                 </div>
                 <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Diskon</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="diskon" required placeholder="diskon">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Link Toko</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="link" required placeholder="link">
+                  </div>
+                </div>
+                <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" name="deskripsi" id="deskripsi" required placeholder="Deskripsi">
@@ -48,7 +60,6 @@
                   <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
                       <div class="col-sm-10">
                         <select value="" required id="kategori" name="kategori" class="form-select">
-                    <option>Baju</option>
                     @foreach ($kategori as $kategoris)
                     <option value="{{ $kategoris->id }}">{{ $kategoris->Kategori }}</option>
                     @endforeach

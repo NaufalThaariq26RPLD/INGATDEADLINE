@@ -39,7 +39,8 @@ class DashboardController extends Controller
     }
     public function index($id=0)
     {
-        $voucher = voucher::find($id);
+        $voucher = Voucher::find($id);
+        dd ($voucher);
         $voucher->update([
             'views' => $voucher -> views+1
         ]);
