@@ -64,7 +64,11 @@
                                 
                             </div>
                             <div class="form_group">
+<<<<<<< HEAD
                                 <button type="submit" class="main-btn icon-btn">Cari disini</button>
+=======
+                                <a href="/products" class="main-btn icon-btn">Search Now</a>
+>>>>>>> 75b9bedc9d3a91f630ac7608dd2dddf8fd02577b
                             </div>
                         </form>
                     </div>

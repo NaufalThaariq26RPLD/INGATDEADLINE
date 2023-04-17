@@ -61,6 +61,9 @@
 
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-6 col-sm-12">
+                                @php
+                                app\Models\Toko::where('id',$data->id)->update ([ 'views' => $data->views + 1 ]);
+                                @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
                                     <div class="listing-thumbnail">
@@ -97,12 +100,13 @@
                         {{ $data->links('vendor.pagination.bootstrap-4') }}
 
 
-
-
                     </div>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 75b9bedc9d3a91f630ac7608dd2dddf8fd02577b
                 </div>
 
 

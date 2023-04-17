@@ -13,6 +13,11 @@
 <br>
 <div class="container pt-50">
     <div class="section-title text-center mb-25 wow fadeInUp">
+      @php
+      DB:: table('vouchers')
+      ->where('id', $data->id)
+      ->increment('views');
+      @endphp
       <span class="sub-title">KODE VOUCHER</span>
       <h2>{{ $data->tokos->nama_toko }}</h2>
   </div>
@@ -31,6 +36,9 @@
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
+                @php
+                app\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
+                @endphp
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>
                   <button type="button" class="btn btn-danger"  style="margin-left:-3px ; height: 45px;" id="salin_btn" >Salin Kode</button>

@@ -23,6 +23,24 @@
                                     class="bi bi-database-add"></i>
                                 Tambah Data +</a>
                         </div>
+                        <form action="/kategoritoko" class="d-flex gap-3">
+                            <div class="search-form">
+                                <div class="form_group">
+                                    <select class="form-select" style="width: 150px" name="search"
+                                        aria-label="Default select example">
+                                        <option data-dsplay="Category" value="">Kategori</option>
+                                        @foreach ($kategori as $kategori)
+                                            <option value="{{ $kategori->id }}"
+                                                {{ request('search') === $kategori->id ? 'selected' : '' }}>
+                                                {{ $kategori->Kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                </div>
+
+                                
+                                <button type="submit" style="width: 40%" class="btn btn-primary">Cari</button>
+                            </form>
                         <div class="row">
 
                             <div class="card-body">

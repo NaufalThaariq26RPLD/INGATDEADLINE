@@ -118,7 +118,7 @@
                                         <i class="bi bi-shop"></i>
                                     </div>
                                     <div class="ps-3">
-                                        @foreach ($data as $tokos)
+                                        @foreach ($toko as $tokos)
                                             @php
                                                 ++$no4;
                                             @endphp
@@ -141,8 +141,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">Kategori</h5>
-                        <div id="container"></div>
-
+                        <div id="chartdiv"></div>
                     </div>
 
                 </div>
@@ -152,29 +151,27 @@
             <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        <h5 class="card-title">Jumlah Voucher</h5>
+                        <h5 class="card-title">Toko yang banyak dikunjungi</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr class="text-center">
-                                    <th scope="col">No</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Jumlah voucher</th>
+                                    <th scope="col"><i class="bi bi-graph-up-arrow"></i>Pengguna</th>
+                                    <th scope="col">Gambar</th>
+                                    <th scope="col">Nama Toko</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 0;
+                                    $no1 = 0;
                                 @endphp
-                                @foreach ($kategori as $row)
-                                    @php
-                                        $count = App\Models\Voucher::where('kategori', $row->Kategori)->count();
-                                    @endphp
+                                @foreach ($toko_terlaris as $row)
                                     <tr>
-                                        <th scope="row"><a href="#">{{ ++$no }}</a></th>
-                                        <td>{{ $row->Kategori }}</td>
-
-                                        <td>{{ $count }}</td>
+                                        <th scope="row" class="text-center">{{ $row->views }}</th>
+                                        <td><div class="image-container"><img class="image" src="{{ asset('logotoko/'.$row->logo) }}" style="width:100px; object-fit: cover"></div>
+                                        </td>
+                                        <td>{{ $row->nama_toko }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -201,261 +198,160 @@
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script>
-    // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
 
-    // Create the chart
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            align: 'left',
-            text: 'Data Kategori'
-        },
-        accessibility: {
-            announceNewData: {
-                enabled: true
-            }
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: 'Total voucher per kategori'
-            }
-
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.1f}'
-                }
-            }
-        },
-
-        tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-        },
-
-        series: [{
-            name: 'Uniqlo',
-            colorByPoint: true,
-            data: [{
-                    name: 'Top Up',
-                    y: 90.99,
-                    drilldown: 'TopUp'
-                },
-                {
-                    name: 'Pakainan',
-                    y: 19.84,
-                    drilldown: 'Pakainan'
-                },
-                {
-                    name: 'Furniture',
-                    y: 4.18,
-                    drilldown: 'Furniture'
-                },
-                {
-                    name: 'Penginapan',
-                    y: 4.12,
-                    drilldown: 'Penginapan'
-                },
-            ]
-        }],
-        drilldown: {
-            breadcrumbs: {
-                position: {
-                    align: 'right'
-                }
-            },
-            series: [{
-                    name: 'Top Up',
-                    id: 'TopUp',
-                    data: [
-                        [
-                            'v65.0',
-                            0.1
-                        ],
-                        [
-                            'v64.0',
-                            1.3
-                        ],
-                        [
-                            'v63.0',
-                            53.02
-                        ],
-                        [
-                            'v62.0',
-                            1.4
-                        ],
-                        [
-                            'v61.0',
-                            0.88
-                        ],
-                        [
-                            'v60.0',
-                            0.56
-                        ],
-                        [
-                            'v59.0',
-                            0.45
-                        ],
-                        [
-                            'v58.0',
-                            0.49
-                        ],
-                        [
-                            'v57.0',
-                            0.32
-                        ],
-                        [
-                            'v56.0',
-                            0.29
-                        ],
-                        [
-                            'v55.0',
-                            0.79
-                        ],
-                        [
-                            'v54.0',
-                            0.18
-                        ],
-                        [
-                            'v51.0',
-                            0.13
-                        ],
-                        [
-                            'v49.0',
-                            2.16
-                        ],
-                        [
-                            'v48.0',
-                            0.13
-                        ],
-                        [
-                            'v47.0',
-                            0.11
-                        ],
-                        [
-                            'v43.0',
-                            0.17
-                        ],
-                        [
-                            'v29.0',
-                            0.26
-                        ]
-                    ]
-                },
-                {
-                    name: 'Pakainan',
-                    id: 'Pakainan',
-                    data: [
-                        [
-                            'v58.0',
-                            1.02
-                        ],
-                        [
-                            'v57.0',
-                            7.36
-                        ],
-                        [
-                            'v56.0',
-                            0.35
-                        ],
-                        [
-                            'v55.0',
-                            0.11
-                        ],
-                        [
-                            'v54.0',
-                            0.1
-                        ],
-                        [
-                            'v52.0',
-                            0.95
-                        ],
-                        [
-                            'v51.0',
-                            0.15
-                        ],
-                        [
-                            'v50.0',
-                            0.1
-                        ],
-                        [
-                            'v48.0',
-                            0.31
-                        ],
-                        [
-                            'v47.0',
-                            0.12
-                        ]
-                    ]
-                },
-                {
-                    name: 'Furniture',
-                    id: 'Furniture',
-                    data: [
-                        [
-                            'v11.0',
-                            6.2
-                        ],
-                        [
-                            'v10.0',
-                            0.29
-                        ],
-                        [
-                            'v9.0',
-                            0.27
-                        ],
-                        [
-                            'v8.0',
-                            0.47
-                        ]
-                    ]
-                },
-                {
-                    name: 'Penginapan',
-                    id: 'Penginapan',
-                    data: [
-                        [
-                            'v11.0',
-                            3.39
-                        ],
-                        [
-                            'v10.1',
-                            0.96
-                        ],
-                        [
-                            'v10.0',
-                            0.36
-                        ],
-                        [
-                            'v9.1',
-                            0.54
-                        ],
-                        [
-                            'v9.0',
-                            0.13
-                        ],
-                        [
-                            'v5.1',
-                            0.2
-                        ]
-                    ]
-                },
-            ]
-        }
+{{-- Chart --}}
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+    }
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    
+    <!-- Chart code -->
+    <script>
+    am5.ready(function() {
+    
+    // Create root element
+    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+    var root = am5.Root.new("chartdiv");
+    
+    
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
+    
+    
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/
+    var chart = root.container.children.push(am5xy.XYChart.new(root, {
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+      pinchZoomX: true
+    }));
+    
+    // Add cursor
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+    var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+    cursor.lineY.set("visible", false);
+    
+    
+    // Create axes
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+    var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+    xRenderer.labels.template.setAll({
+      rotation: -90,
+      centerY: am5.p50,
+      centerX: am5.p100,
+      paddingRight: 15
     });
-</script>
+    
+    xRenderer.grid.template.setAll({
+      location: 1
+    })
+    
+    var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+      maxDeviation: 0.3,
+      categoryField: "country",
+      renderer: xRenderer,
+      tooltip: am5.Tooltip.new(root, {})
+    }));
+    
+    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+      maxDeviation: 0.3,
+      renderer: am5xy.AxisRendererY.new(root, {
+        strokeOpacity: 0.1
+      })
+    }));
+    
+    
+    // Create series
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+    var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+      name: "Series 1",
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueYField: "value",
+      sequencedInterpolation: true,
+      categoryXField: "country",
+      tooltip: am5.Tooltip.new(root, {
+        labelText: "{valueY}"
+      })
+    }));
+
+    // Create custom legend
+    chart.events.on("ready", function(event) {
+        Series.dataItems.each(function(row, i) {
+            var percent = Math.round(row.values.value.percent * 100) / 100;
+            var value = row.value;
+            legend.innerHTML += '<div class="legend-item" id="legend-item-' + i +
+                '" onclick="toggleSlice(' + i + ');" onmouseover="hoverSlice(' + i +
+                ');" onmouseout="blurSlice(' + i + ');" style="color: ' + color +
+                ';"><div class="legend-marker" style="background: ' + row.dataContext.color + '"></div>' + row
+                .category + '<div class="legend-value">' + value + ' | ' + percent + '%</div></div>';
+        });
+    });
+    
+    series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+    series.columns.template.adapters.add("fill", function(fill, target) {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    series.columns.template.adapters.add("stroke", function(stroke, target) {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    
+    // Set data
+    var data = [{
+      country: " diterima",
+      value: {{ $diterima }}
+    }, {
+      country: "masih menunggu",
+      value: {{ $pending }}
+    }, {
+      country: "ditolak",
+      value: {{ $ditolak }}
+    }];
+
+    function toggleSlice(item) {
+        var slice = Series.dataItems.getIndex(item);
+        if (slice.visible) {
+            slice.hide();
+        } else {
+            slice.show();
+        }
+    }
+
+    function hoverSlice(item) {
+        var slice = Series.slices.getIndex(item);
+        slice.isHover = true;
+    }
+
+    function blurSlice(item) {
+        var slice = Series.slices.getIndex(item);
+        slice.isHover = false;
+    }
+
+    xAxis.data.setAll(data);
+    series.data.setAll(data);
+    
+    
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    series.appear(1000);
+    chart.appear(1000, 100);
+    
+    }); // end am5.ready()
+    </script>
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
@@ -463,3 +359,4 @@
 </body>
 
 </html>
+        
