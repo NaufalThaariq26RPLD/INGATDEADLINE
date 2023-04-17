@@ -19,6 +19,8 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <h5 class="card-title">Data Voucher Diterima</h5>
+                  <a href="#" id="deleteallselecteddata" type="button" class="btn btn-danger mb-2">Hapus Semua Data Yang Dipilih <i class="bi bi-x-lg"></i></a>
+
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr></tr>
@@ -48,7 +50,7 @@
                         @endphp
 
 
-                        <tr>
+                        <tr id="voucher{{ $table->id }}">
                             <th><input style="font-size: 20px" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value="{{ $table->id }}"></th>
                             <th scope="row">{{ ++$no }}</th>
                             <td>{{ $table->nama_voucher }}</td>
@@ -80,7 +82,7 @@
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr></tr>
-                        <th><input style="font-size: 20px;clear:" type="checkbox" name="" id="select_all_ids" class="form-check-input"></th>
+                        <th><input style="font-size: 20px;clear:" type="checkbox" name="" id="select_all_idss" class="form-check-input"></th>
                         <th scope="col">No</th>
                         <th scope="col" >Nama Voucher</th>
                         <th scope="col">Deskripsi Voucher</th>
@@ -99,8 +101,8 @@
                         $toko2 = App\Models\Toko::where('id', $table2->toko)->first();
                         $kategori2 = App\Models\Kategori::where('id', $table2->kategori)->first();
                       @endphp
-                        <tr id="voucher{{ $table2->id }}">
-                            <th><input style="font-size: 20px" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value="{{ $table2->id }}"></th>
+                        <tr id="voucherr{{ $table2->id }}">
+                            <th><input style="font-size: 20px" type="checkbox" name="idss" id="checkboxx" class="form-check-input checkbox_idss" value="{{ $table2->id }}"></th>
                             <th scope="row">{{ ++$no1 }}</th>
                             <td>{{ $table2->nama_voucher }}</td>
                             <td >{{ $table2->deskripsi }}</td>
@@ -175,9 +177,62 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    $(function(e){
+    $("#select_all_idss").click(function(){
+        $('.checkbox_idss').prop('checked',$(this).prop('checked'));
+    });
+    $('#deleteallselecteddataa').click(function(e){
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=idss]:checked').each(function(){
+            all_ids.push($(this).val());
+        });
+
+        $.ajax({
+            url:"{{ route('voucherall') }}",
+            type:"DELETE",
+            data:{
+                ids:all_ids,
+                _token:'{{csrf_token()}}'
+            },
+            success:function(response){
+                $.each(all_ids,function(key,val){
+                    $('#voucherr'+val).remove();
+                })
+            }
+        })
+    })
+    $("#select_all_ids").click(function(){
+        $('.checkbox_ids').prop('checked',$(this).prop('checked'));
+    });
+    $('#deleteallselecteddata').click(function(e){
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=ids]:checked').each(function(){
+            all_ids.push($(this).val());
+        });
+
+        $.ajax({
+            url:"{{ route('voucherall') }}",
+            type:"DELETE",
+            data:{
+                ids:all_ids,
+                _token:'{{csrf_token()}}'
+            },
+            success:function(response){
+                $.each(all_ids,function(key,val){
+                    $('#voucher'+val).remove();
+                })
+            }
+        })
+    })
+    });
+</script>
 
 </body>
 
