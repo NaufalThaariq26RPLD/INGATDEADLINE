@@ -108,6 +108,7 @@ Route::middleware('superadmin', 'auth')->group(function () {
 
 
     Route::get('/data_voucher', [RouteController::class, 'voucher'])->name('datavoucher');
+    
     Route::get('/deletevoucher/{id}', [RouteController::class, 'deletevoucher'])->name('deletevoucher');
 
     Route::get('/validasi', [RouteController::class, 'validasi'])->name('validasi');
