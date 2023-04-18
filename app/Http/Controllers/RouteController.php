@@ -36,7 +36,7 @@ class RouteController extends Controller
 
         return view('index', [
             'title' => 'Dashboard',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -57,10 +57,14 @@ class RouteController extends Controller
     }
     public function admin(Request $request)
     {
+<<<<<<< Updated upstream
         $admin = User::where('level', 'admin')->paginate(10);
+=======
+        $admin = User::where('level', 'admin')->paginate(5);
+>>>>>>> Stashed changes
         return view('table.tables_admin', [
             'title' => 'Admin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -71,7 +75,7 @@ class RouteController extends Controller
         $toko = Toko::all();
         return view('form.tambahadmin', [
             'title' => 'Tambah Data Admin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
         ], compact('toko'));
@@ -137,10 +141,10 @@ class RouteController extends Controller
     }
     public function superadmin(Request $request)
     {
-        $user = User::where('level', 'superadmin')->get();
+        $user = User::where('level', 'superadmin')->paginate(5);
         return view('table.tables_super', [
             'title' => 'SuperAdmin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -151,7 +155,7 @@ class RouteController extends Controller
     {
         return view('form.tambahsuper', [
             'title' => 'Tambah Data SuperAdmin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
         ]);
