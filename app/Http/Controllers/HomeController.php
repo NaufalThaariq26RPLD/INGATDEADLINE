@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Voucher;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -27,10 +28,13 @@ class HomeController extends Controller
         }
 
 
+
         return view('client.dashboard', [
             'search' => $search->paginate(8),
-            'latest' => Voucher::with('tokos')->latest()->paginate(10),
+            'latest' => Voucher::with('tokos')->where('status', 'dikonfirmasi')->latest()->paginate(10),
             'total_voucher' => voucher::where('status', 'dikonfirmasi')->get(),
+            'voucher_digunakan' => voucher::where('status', 'dikonfirmasi')->sum('terlaris'),
+            'user_aktif' => User::where('level', 'user')->get()
         ]);
     }
 }

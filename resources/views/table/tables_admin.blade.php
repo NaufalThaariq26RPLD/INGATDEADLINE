@@ -53,7 +53,7 @@
                                             class="btn btn-danger mt-2"><i class="bi bi-x-lg"></i> Hapus</a></td>
                                 </tr>
                             @endforeach
-                            {{ $admin->links() }}
+                            {{ $admin->links('vendor.pagination.simple-bootstrap-4') }}
 
                         </tbody>
                     </table>

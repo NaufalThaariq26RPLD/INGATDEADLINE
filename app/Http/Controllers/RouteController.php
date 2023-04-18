@@ -48,15 +48,16 @@ class RouteController extends Controller
         $data = User::where('level', 'user')->get();
         return view('table.tables_user', [
             'title' => 'User',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
-                ->get()
+                ->get(),
+                'data' => $data
 
         ], compact('data'));
     }
     public function admin(Request $request)
     {
-        $admin = User::where('level', 'admin')->get();
+        $admin = User::where('level', 'admin')->paginate(10);
         return view('table.tables_admin', [
             'title' => 'Admin',
             'FAQ' => $data = DB::table('faqs')

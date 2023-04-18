@@ -36,6 +36,9 @@
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
+                @php
+                App\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
+                @endphp
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>
                   <button type="button" class="btn btn-danger"  style="margin-left:-3px ; height: 45px;" id="salin_btn" >Salin Kode</button>
@@ -44,7 +47,7 @@
                 @endphp
                 </div>
                   <div>
-                    <a href="https://www.ruparupa.com/acestore/p/soleil-kursi-ayun-krem-beige.html?itm_source=product-recommendation-search-result-ace&itm_campaign=direct-search&itm_term=10488570&itm_device=desktop" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
+                    <a href="{{ $data->link }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
                   </div>
 
               </div>
@@ -53,7 +56,9 @@
             <div class="col-md-8">
               <div class="card-body">
                 <p class="card-title">Syarat dan Ketentuan :</p>
-                <li>{{ $data->syarat }}</li>
+                @foreach ($syarat as $s)
+                  <li>{{ $s }}</li>
+                @endforeach
               </div>
               </div>
             </div>

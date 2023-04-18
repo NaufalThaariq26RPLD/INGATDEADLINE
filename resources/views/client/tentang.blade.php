@@ -155,7 +155,7 @@
     <!--====== End Features Section ======-->
     <!--====== Start Testimonial Section ======-->
     <!--====== Start Testimonial Section ======-->
-    <section class="team-area pt-115 pb-85">
+    <section class="team-area pt-100 pb-85">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -342,11 +342,11 @@
      </section>
 
     <!--====== Start Team Section ======-->
-    <section class="team-area pt-115 pb-85">
+    <section class="team-area pt-90 pb-85">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <div class="section-title text-center mb-50 wow fadeInUp">
+                    <div class="section-title text-center mb-30 wow fadeInUp">
                         <span class="sub-title">GOSIP.COM</span>
                         <h2>TEAM</h2>
                     </div>

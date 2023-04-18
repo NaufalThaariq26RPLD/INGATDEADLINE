@@ -79,7 +79,7 @@
                                                     <h6>{{ $datas->tokos->nama_toko }}</h6>
                                                 </div>
                                             </div>
-                                            <span class="status st-close">DISKON 25%</span>
+                                            <span class="status st-close">DISKON {{ $datas->diskon }}%</span>
                                         </div>
                                     </div>
                                     <div class="listing-content">
@@ -101,6 +101,7 @@
 
 
                     </div>
+
 
 
                 </div>

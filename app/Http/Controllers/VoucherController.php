@@ -42,8 +42,10 @@ class VoucherController extends Controller
             'status' => 'required',
             'toko' => 'required',
             'syarat' => 'required',
-            'masa_kadaluarsa' => 'required|date',
-            'gambar' => 'file|image'
+            'masa_kadaluarsa' => 'required|date|after_or_equal:'.now(),
+            'gambar' => 'file|image',
+            'diskon' => 'required',
+            'link' => 'required'
         ]);
 
         if ($files = $request->file('gambar')) {
@@ -62,7 +64,9 @@ class VoucherController extends Controller
             'toko' => $request->toko,
             'syarat' => $request->syarat,
             'masa_kadaluarsa' => $request->masa_kadaluarsa,
-            'gambar' => $name
+            'gambar' => $name,
+            'diskon' => $request->diskon,
+            'link' => $request->link
 
         ]);
 
@@ -152,7 +156,9 @@ class VoucherController extends Controller
             'nama_voucher' => $request->nama_voucher,
             'deskripsi' => $request->deskripsi,
             'kategori' => $request->kategori,
-            'kuota' => $request->kuota
+            'kuota' => $request->kuota,
+            'link' => $request->link,
+            'diskon' => $request->diskon
         ]);
         return redirect()->route('panding')->with('success', 'Data Berhasil Di Edit');
     }

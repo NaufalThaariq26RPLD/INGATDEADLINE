@@ -115,7 +115,6 @@ Route::middleware('superadmin', 'auth')->group(function () {
     Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
     Route::get('/konfirmasi/{id}/{status}', [RouteController::class, 'konfirmasi'])->name('konfirmasi');
     Route::get('/tolak/{id}/{status}', [RouteController::class, 'tolak'])->name('tolak');
-    Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
 
     Route::get('/kategori', [RouteController::class, 'kategori'])->name('kategori');
     Route::get('/tambahkategori', [RouteController::class, 'tambahkategori'])->name('tambahkategori');

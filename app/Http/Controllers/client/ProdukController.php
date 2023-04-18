@@ -23,12 +23,13 @@ class ProdukController extends Controller
     }
 
     public function kode($id){
-
+        dd('aa');
         $data = Voucher::where('id', $id)->first();
 
         $data2 = Voucher::where('toko', $data->toko)->get();
         return view('kode.kode_ace', [
             'data' => $data,
+            'syarat' => explode(',', $data->syarat),
             'data2' => $data2
         ]);
     }
