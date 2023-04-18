@@ -248,9 +248,9 @@
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
     xRenderer.labels.template.setAll({
-      rotation: -90,
+      rotation: 0,
       centerY: am5.p50,
-      centerX: am5.p100,
+      centerX: am5.p50,
       paddingRight: 15
     });
     
