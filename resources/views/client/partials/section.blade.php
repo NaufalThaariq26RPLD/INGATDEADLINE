@@ -33,7 +33,7 @@
                                     <div class="counter-item counter-item-one wow fadeInUp">
                                         <div class="info">
                                             <h4>VOUCHER YANG DIGUNAKAN</h4>
-                                            <h3><span class="count">72</span> +</h3>
+                                            <h3><span class="count">{{ $voucher_digunakan }}</span> +</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                     <div class="counter-item counter-item-one wow fadeInUp">
                                         <div class="info">
                                             <h4>JUMLAH USER AKTIF</h4>
-                                            <h3><span class="count">50</span> +</h3>
+                                            <h3><span class="count">{{ $user_aktif->count() }}</span> +</h3>
                                         </div>
                                     </div>
                                 </div>

@@ -43,6 +43,7 @@
                             $no=0;
                             $no1=0;
                         @endphp
+                        {{-- @dd($voucher) --}}
                         @foreach ($voucher as $table)
                         @php
                         $toko = App\Models\Toko::where('id', $table->toko)->first();

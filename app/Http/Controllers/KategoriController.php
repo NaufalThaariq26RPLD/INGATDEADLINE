@@ -41,16 +41,19 @@ class KategoriController extends Controller
         }else{
             $data1 = voucher::get();
         }
-        if(request('status')){
-            $data2 = Voucher::where('status',$status)->Get();
+        if(request('status','search')){
+            $data1 = Voucher::where('kategori', 'like', '%' . request('search').'%')->orWhere('status','like', '%' . request($status) . '%')->Get();
            
+        }
+        else{
+            $data1 = Voucher::get();
         }
 
 
         return view('client.admin.kategori.kategori',[
             'data' => $data,
             'data1' => $data1,
-            'data2' => $data2,
+            'data2' => $data1,
             'tittle' => request('search'),
             'select' => $status
     

@@ -56,7 +56,9 @@
             <div class="col-md-8">
               <div class="card-body">
                 <p class="card-title">Syarat dan Ketentuan :</p>
-                <li>{{ $data->syarat }}</li>
+                @foreach ($syarat as $s)
+                  <li>{{ $s }}</li>
+                @endforeach
               </div>
               </div>
             </div>

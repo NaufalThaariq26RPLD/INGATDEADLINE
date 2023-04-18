@@ -36,6 +36,7 @@
                         @php
                             $no=0;
                         @endphp
+
                         @foreach ($data as $table)
                         <tr>
                             <th scope="row"><a href="#">{{ ++$no }}</a></th>

@@ -15,24 +15,24 @@ class ProdukController extends Controller
         $data = Voucher::latest();
 
         if(request('toko')){
-            $data->where('toko', request('toko'));
+            $data->where('toko', request('toko'))->where('status', 'dikonfirmasi');
         }
 
         if(request('search')){
-            $data->where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('deskripsi', 'like', '%'.request('search').'%');
+            $data->where('status', 'dikonfirmasi')->where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('deskripsi', 'like', '%'.request('search').'%');
         }
         return view('client.products', [
-            'data' => $data->paginate(1)
+            'data' => $data->where('status', 'dikonfirmasi')->paginate(1)
         ]);
     }
 
     public function kode($id){
-
         $data = Voucher::where('id', $id)->first();
 
-        $data2 = Voucher::where('toko', $data->toko)->get();
+        $data2 = Voucher::where('status', 'dikonfirmasi')->where('toko', $data->toko)->get();
         return view('client.kode.kode_ace', [
             'data' => $data,
+            'syarat' => explode(';', $data->syarat),
             'data2' => $data2
         ]);
     }

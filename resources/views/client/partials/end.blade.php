@@ -38,8 +38,10 @@
         <script>
             const SalinBtn = document.getElementById('salin_btn')
             const CodeValue = document.getElementById('code_value')
+            const btnarea = document.querySelectorAll('.btn-copy');
             
             SalinBtn.onclick = () => {
+
                 CodeValue.select();    // Selects the text inside the input
                 document.execCommand('copy');    // Simply copies the selected text to clipboard 
                  Swal.fire({         //displays a pop up with sweetalert
