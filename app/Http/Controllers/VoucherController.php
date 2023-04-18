@@ -42,7 +42,7 @@ class VoucherController extends Controller
             'status' => 'required',
             'toko' => 'required',
             'syarat' => 'required',
-            'masa_kadaluarsa' => 'required|date',
+            'masa_kadaluarsa' => 'required|date|after_or_equal:'.now(),
             'gambar' => 'file|image',
             'diskon' => 'required',
             'link' => 'required'
