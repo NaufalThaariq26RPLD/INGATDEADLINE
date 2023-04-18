@@ -72,7 +72,8 @@
                                 <form action="/add/faq" method="post">
                                     @csrf
                                     <div class="row">
-
+                                        <input type="hidden" name="username" id="username" value="{{ Auth::user()->username }}">
+                                        <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
 
                                         <div class="col-lg-12">
                                             <div class="form_group">
