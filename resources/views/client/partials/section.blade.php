@@ -18,7 +18,7 @@
                             <p style="line-height:10%">B. Klik dan cari diskon sesuai kebutuhan kamu </p>
                             <p style="line-height:10%">C. Segera gunakan voucher tersebut </p>
                         </div>
-
+                        <img src="{{ asset('img/bg1.png') }}" alt="">
                         <div class="counter-area pt-120">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-ms-12">
