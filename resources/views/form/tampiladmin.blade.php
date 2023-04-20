@@ -14,7 +14,16 @@
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row">
-
+        @error('username')
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('username') }}
+          </div>
+        @enderror
+        @error('email')
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('email') }}
+          </div>
+        @enderror
 
           <div class="card">
             <div class="card-body">
@@ -26,20 +35,16 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Username</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="username" id="username" value="{{ $data->username }}">
+                    <input type="text" class="form-control" name="username" id="username" value="{{ $data->username }}" placeholder="Masukkan Username">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" id="email" value="{{ $data->email }}">
+                    <input type="email" class="form-control" name="email" id="email" value="{{ $data->email }}" placeholder="Masukkan Email">
                   </div>
                 </div>
-                @error('email')
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> Email Sudah Digunakan
-                  </div>
-                @enderror
+
                 <div class="row mb-3">
 
                   <div class="col-sm-10">

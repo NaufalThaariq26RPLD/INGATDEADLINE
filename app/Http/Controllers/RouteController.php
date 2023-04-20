@@ -38,7 +38,7 @@ class RouteController extends Controller
 
         return view('index', [
             'title' => 'Dashboard',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -60,9 +60,10 @@ class RouteController extends Controller
     public function admin(Request $request)
     {
         $admin = User::where('level', 'admin')->paginate(10);
+
         return view('table.tables_admin', [
             'title' => 'Admin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -73,7 +74,7 @@ class RouteController extends Controller
         $toko = Toko::all();
         return view('form.tambahadmin', [
             'title' => 'Tambah Data Admin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
         ], compact('toko'));
@@ -81,18 +82,23 @@ class RouteController extends Controller
     public function insertadmin(Request $request)
     {
         $validateddata = $request->validate([
-            'username' => 'required|min:4|unique:admins,username,except,id',
-            'password' => 'required',
-            'toko' => 'required|unique:admins,toko,except,id',
-            'email' => 'required|email|unique:admins,email,except,id'
+            'username' => 'required|max:191|min:4|unique:users,username,except,id',
+            'password' => 'required|min:5|max:191',
+            'toko' => 'required|unique:users,toko,except,id',
+            'email' => 'required|max:191|email|unique:users,email,except,id'
         ], [
-            'username.required' => 'Username is required',
-            'username.unique' => 'Username already in use',
-            'password.required' => 'Password is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already use',
-            'toko.required' => 'Toko is required',
-            'toko.unique' => 'Toko cannot be duplicate',
+            'username.required' => 'Masukkan Username Terlebih Dahulu!',
+            'username.max' => 'Panjang Maksimal Username 191',
+            'username.unique' => 'Username Telah Dipakai',
+            'username.min' => 'Panjang Minimal Username  4',
+            'password.min' => 'Panjang Minimal Password  4',
+            'password.max' => 'Panjang Maksimal Password 191',
+            'password.required' => 'Masukkan Password Terlebih Dahulu!',
+            'email.required' => 'Masukkan Email Terlebih Dahulu!',
+            'email.max' => 'Panjang Maksimal Email 191',
+            'email.unique' => 'Email Telah Dipakai',
+            'toko.required' => 'Masukkan Toko Terlebih Dahulu!',
+            'toko.unique' =>  'Toko Telah Dipakai',
 
         ]);
 
@@ -119,13 +125,16 @@ class RouteController extends Controller
     public function updateadmin(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'username' => 'required|min:4|unique:admins,username,' . $request->id . ',id',
-            'email' => 'required|unique:admins,email,' . $request->id . ',id'
+            'username' => 'required|min:4|max:191|unique:users,username,' . $request->id . ',id',
+            'email' => 'required|max:191|unique:users,email,' . $request->id . ',id'
         ], [
-            'username.required' => 'Username is required',
-            'username.unique' => 'Username already in use',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already use',
+            'username.required' => 'Masukkan Username terlebih Dahulu',
+            'username.unique' => 'Username Telah Dipakai',
+            'username.max' => 'Panjang Maksimal Username 191',
+            'email.required' => 'Masukkan Email Terlebih Dahulu',
+            'email.unique' => 'Email Telah Dipakai',
+            'username.max' => 'Panjang Maksimal Email 191',
+
         ]);
         $data = User::find($id);
         $data->update($request->all());
@@ -139,10 +148,10 @@ class RouteController extends Controller
     }
     public function superadmin(Request $request)
     {
-        $user = User::where('level', 'superadmin')->get();
+        $user = User::where('level', 'superadmin')->paginate(5);
         return view('table.tables_super', [
             'title' => 'SuperAdmin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
@@ -153,7 +162,7 @@ class RouteController extends Controller
     {
         return view('form.tambahsuper', [
             'title' => 'Tambah Data SuperAdmin',
-            'FAQ' => $data = DB::table('faqs')
+            'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
         ]);
@@ -161,15 +170,20 @@ class RouteController extends Controller
     public function insertsuper(Request $request)
     {
         $validateddata = $request->validate([
-            'username' => 'required|min:4|unique:superadmins,username,except,id',
-            'password' => 'required|min:4',
-            'email' => 'required|unique:superadmins,email,' . $request->id . ',id'
-        ], [
-            'username.required' => 'Username is required',
-            'password.required' => 'Password is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already use',
-            'username.unique' => 'Username already use',
+            'username' => 'required|min:4|max:191|unique:users,username,except,id',
+            'password' => 'required|min:4|max:191',
+            'email' => 'required|max:191|unique:users,email,' . $request->id . ',id'
+        ],[
+            'username.required' => 'Username Telah Dipakai',
+            'username.min' => 'Panjang Minimal Username 4',
+            'username.max' => 'Panjang Maksimal Username 191',
+            'password.required' => 'Masukkan Terlebih Dahulu',
+            'password.min' => 'Panjang Minimal Password 4',
+            'password.max' => 'Panjang Maksimal Password 191',
+            'email.required' => 'Masukkan Email Terlebih Dahulu',
+            'email.unique' => 'Email Telah Dipakai',
+            'email.max' => 'Panjang Maksimal Email 191',
+            'username.unique' => 'Username Telah Dipakai',
 
         ]);
         User::create([
@@ -196,12 +210,15 @@ class RouteController extends Controller
     public function updatesuper(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'username' => 'required|min:4|unique:superadmins,username,' . $request->id . ',id',
-            'email' => 'required|min:4|unique:superadmins,email,' . $request->id . ',id'
+            'username' => 'required|min:4|max:191|unique:users,username,' . $request->id . ',id',
+            'email' => 'required|max:191|unique:users,email,' . $request->id . ',id'
         ], [
-            'username.required' => 'Name is required',
-            'email.required' => 'Password is required',
-            'email.unique' => 'Email already use',
+            'username.required' => 'Username Telah Dipakai',
+            'email.required' => 'Masukkan Email Terlebih Dahulu',
+            'email.unique' => 'Email Telah Dipakai',
+            'username.min' => 'Panjang Minimal Username 4',
+            'username.max' => 'Panjang Maksimal Username 191',
+            'email.max' => 'Panjang Maksimal Email 191',
 
         ]);
         $data = User::find($id);
@@ -240,16 +257,17 @@ class RouteController extends Controller
     public function inserttoko(Request $request)
     {
         $validateddata = $request->validate([
-            'nama_toko' => 'required|unique:tokos,nama_toko,' . $request->id . ',id',
+            'nama_toko' => 'required|unique:tokos,nama_toko,' . $request->id . ',id|max:191',
             'link_website' => 'required|url',
-            'logo' => 'required|file'
+            'logo' => 'required|file|image'
         ], [
-            'nama_toko.required' => 'Nama Toko is required',
-            'link_website.required' => 'Link Website is required',
-            'link_website.url' => 'Link Website should be url',
-            'logo.required' => 'Logo is required',
-            'logo.file' => 'Logo should be file',
-            'email.unique' => 'Email already use',
+            'nama_toko.required' => 'Masukkan Nama Toko Terlebih Dahulu',
+            'nama_toko.max' => 'Panjang Maksimal Nama Toko 191',
+            'link_website.required' => 'Masukkan Link Website Terlebih Dahulu',
+            'link_website.url' => 'Link Website Harus Berupa Link',
+            'logo.required' => 'Masukkan Logo Terlebih Dahulu',
+            'logo.file' => 'Logo Harus Berbentuk File',
+            'logo.image' => 'Logo Harus Berupa Gambar',
 
         ]);
 
@@ -281,16 +299,17 @@ class RouteController extends Controller
     public function updatetoko(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'nama_toko' => 'required|unique:tokos,nama_toko,' . $request->id . ',id',
+            'nama_toko' => 'required|max:191|unique:tokos,nama_toko,' . $request->id . ',id',
             'link_website' => 'required|url',
-            'logo' => 'file'
+            'logo' => 'file|image'
         ], [
-            'nama_toko.required' => 'Nama Toko is required',
-            'link_website.required' => 'Link Website is required',
-            'link_website.url' => 'Link Website should be url',
-            'logo.required' => 'Logo is required',
-            'logo.file' => 'Logo should be file',
-            'email.unique' => 'Email already use',
+            'nama_toko.required' => 'Masukkan Nama Toko Terlebih Dahulu',
+            'nama_toko.max' => 'Panjang Maksimal Nama Toko 191',
+            'link_website.required' => 'Masukkan Link Website Terlebih Dahulu',
+            'link_website.url' => 'Link Website Harus Berupa Link',
+            'logo.required' => 'Masukkan Logo Terlebih Dahulu',
+            'logo.file' => 'Logo Harus Berupa File',
+            'logo.image' => 'Logo Harus Berupa Gambar',
 
         ]);
         $data = Toko::find($id);
@@ -333,6 +352,7 @@ class RouteController extends Controller
     {
         Toko::find($id)->delete();
         User::where('toko', $id)->delete();
+        Voucher::where('toko', $id)->delete();
 
         return redirect()->route('toko');
     }
@@ -422,10 +442,10 @@ class RouteController extends Controller
     public function insertkategori(Request $request)
     {
         $validateddata = $request->validate([
-            'kategori' => 'required|unique:kategoris,Kategori,except,id',
+            'kategori' => 'required|max:191|unique:kategoris,Kategori,except,id',
         ], [
-            'kategori.required' => 'Kategori is required',
-            'kategori.unique' => 'Kategori already use',
+            'kategori.required' => 'Masukan Kategori Terlebih Dahulu',
+            'kategori.unique' => 'Kategori Tidak Bisa Duplikat',
 
 
         ]);
@@ -436,10 +456,10 @@ class RouteController extends Controller
     public function updatekategori(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'kategori' => 'required|unique:kategoris,Kategori,' . $request->id . ',id'
+            'kategori' => 'required|max:191|unique:kategoris,Kategori,' . $request->id . ',id'
         ], [
-            'kategori.required' => 'Kategori is required',
-            'kategori.unique' => 'Kategori already use',
+            'kategori.required' => 'Masukan Kategori Terlebih Dahulu',
+            'kategori.unique' => 'Kategori Tidak Bisa Duplikat',
 
         ]);
         $data = Kategori::find($id);
@@ -457,16 +477,18 @@ class RouteController extends Controller
     public function updateprofil(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'username' => 'required',
-            'email' => 'required|email|unique:superadmins,email,' . $request->id . ',id'
+            'username' => 'required|min:4|max:191',
+            'email' => 'required|max:191|email|unique:users,email,' . $request->id . ',id'
         ], [
-            'username.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.email' => 'Pleas insert valid email',
-            'email.unique' => 'Email already in  use',
+            'username.required' => 'Username Telah Dipakai',
+            'email.required' => 'Masukkan Email Terlebih Dahulu',
+            'email.unique' => 'Email Telah Dipakai',
+            'username.min' => 'Panjang Minimal Username 4',
+            'username.max' => 'Panjang Maksimal Username 191',
+            'email.max' => 'Panjang Maksimal Email 191',
 
         ]);
-        $data = Superadmin::find($id);
+        $data = User::find($id);
         $data->update($request->all());
         return redirect()->route('user');
     }
@@ -484,7 +506,7 @@ class RouteController extends Controller
             'new_password_confirmation.same' => 'Konfirmasi Password is incorrect',
         ]);
 
-        $user = Superadmin::find($id);
+        $user = User::find($id);
         $current_password = $user->password;
         if (Hash::check($request->current_password, $current_password)) {
             $user->update([

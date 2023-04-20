@@ -15,7 +15,21 @@
 
     <section class="section">
       <div class="row">
-
+        @if ($errors->has('username'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('username') }}
+           </div>
+        @endif
+        @if ($errors->has('password'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('password') }}
+           </div>
+        @endif
+        @if ($errors->has('email'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('email') }}
+           </div>
+        @endif
 
           <div class="card">
             <div class="card-body">
@@ -38,21 +52,7 @@
                   </div>
                 </div>
 
-                @if ($errors->has('username'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('username') }}
-                   </div>
-                @endif
-                @if ($errors->has('password'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('password') }}
-                   </div>
-                @endif
-                @if ($errors->has('email'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('email') }}
-                   </div>
-                @endif
+
 
 
                 <div class="row mb-3">
