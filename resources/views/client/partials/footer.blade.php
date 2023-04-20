@@ -19,9 +19,6 @@
       <a href="https://www.instagram.com/get_voucher123/" class="me-4 text-light">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="https://github.com/NaufalThaariq26RPLD/INGATDEADLINE/tree/main" class="me-4 text-light">
-        <i class="fab fa-github"></i>
-      </a>
     </div>
     <!-- Right -->
   </section>
@@ -69,12 +66,18 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase text-light  fw-bold mb-4">KONTAK</h6>
-          <p class="text-light "><i class="fas fa-home me-3"></i> GETVOUCHER</p>
+          <p class="text-light ">
+            <a href="/dashboard"><i class="fas fa-home me-3"></i></a>
+            GETVOUCHER
+          </p>
           <p class="text-light">
-            <i class="fas fa-envelope me-3"></i>
+            <a href="mailto:getvoucher842@gmail.com"><i class="fas fa-envelope me-3"></i></a>
             getvoucher842@gmail.com
           </p>
-          <p class="text-light"><i class="fas fa-phone me-3"></i> 081252464430</p>
+          <p class="text-light">
+            <a href=""https://wa.me/6281252464430?text=Isi Pesan""><i class="fa-brands fa-whatsapp fa-lg me-3"></i></a>
+            081252464430
+          </p>
         </div>
         <!-- Grid column -->
       </div>

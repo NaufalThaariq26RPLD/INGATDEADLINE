@@ -290,13 +290,13 @@
     // Create custom legend
     chart.events.on("ready", function(event) {
         Series.dataItems.each(function(row, i) {
-            var percent = Math.round(row.values.value.percent * 100) / 100;
+            var percent = Math.round(row.value.percent * 100) / 100;
             var value = row.value;
             legend.innerHTML += '<div class="legend-item" id="legend-item-' + i +
                 '" onclick="toggleSlice(' + i + ');" onmouseover="hoverSlice(' + i +
                 ');" onmouseout="blurSlice(' + i + ');" style="color: ' + color +
                 ';"><div class="legend-marker" style="background: ' + row.dataContext.color + '"></div>' + row
-                .category + '<div class="legend-value">' + value + ' | ' + percent + '%</div></div>';
+                .country + '<div class="legend-value">' + value + ' | ' + percent + '%</div></div>';
         });
     });
     
@@ -314,12 +314,6 @@
     var data = [{
       country: " diterima",
       value: {{ $diterima }}
-    }, {
-      country: "masih menunggu",
-      value: {{ $pending }}
-    }, {
-      country: "ditolak",
-      value: {{ $ditolak }}
     }];
 
     function toggleSlice(item) {

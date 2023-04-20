@@ -22,17 +22,19 @@ class RouteController extends Controller
     public function index()
     {
         $toko = Toko::all();
-        $kategori = Kategori::all();
+        $kategori = Kategori::all()->toArray();
         $user = DB::table('users')->where('level', '=', 'user')->get();
         $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
         $vr = DB::table('kategoris')->count();
         $toko_terlaris = Toko::orderBy('terlaris', 'DESC')->paginate(10);
 
-        //chart
-        $diterima = Voucher::where('status', "Dikonfirmasi")->count();
-        $ditolak = Voucher::where('status', "Ditolak")->count();
-        $pending = Voucher::where('status', "Menunggu")->count();
 
+        //chart
+        $k = implode(',', array_column($kategori, 'id'));
+        $f = explode(',', $k);
+        $a = array_map('intval', $f);
+
+        $diterima = Voucher::whereIn('kategori', $a)->count();
 
         return view('index', [
             'title' => 'Dashboard',
@@ -40,7 +42,7 @@ class RouteController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('toko', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'ditolak', 'pending', 'toko_terlaris'));
+        ], compact('toko', 'kategori', 'voucher', 'user', 'vr', 'diterima', 'toko_terlaris'));
     }
 
     public function user(Request $request)
