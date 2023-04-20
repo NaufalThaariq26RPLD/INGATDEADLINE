@@ -75,7 +75,7 @@
             getvoucher842@gmail.com
           </p>
           <p class="text-light">
-            <a href=""https://wa.me/6281252464430?text=Isi Pesan""><i class="fa-brands fa-whatsapp fa-lg me-3"></i></a>
+            <a href="https://wa.me/6281252464430"><i class="fa-brands fa-whatsapp fa-lg me-3"></i></a>
             081252464430
           </p>
         </div>
