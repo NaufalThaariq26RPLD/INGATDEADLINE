@@ -32,7 +32,7 @@ class ProdukController extends Controller
         $data2 = Voucher::where('status', 'dikonfirmasi')->where('toko', $data->toko)->get();
         return view('client.kode.kode_ace', [
             'data' => $data,
-            'syarat' => explode(';', $data->syarat),
+            'syarat' => explode(',', $data->syarat),
             'data2' => $data2
         ]);
     }

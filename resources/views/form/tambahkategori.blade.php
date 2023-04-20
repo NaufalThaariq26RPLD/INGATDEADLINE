@@ -9,7 +9,11 @@
 
     <section class="section">
       <div class="row">
-
+        @if ($errors->has('Kategori'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('kategori') }}
+           </div>
+        @endif
 
           <div class="card">
             <div class="card-body">
@@ -24,11 +28,7 @@
                     <input type="text" class="form-control" name="kategori" id="kategori" placeholder="Masukkan Kategori">
                   </div>
                 </div>
-                @if ($errors->has('Kategori'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('Kategori') }}
-                   </div>
-                @endif
+
 
                 <div class="row mb-3">
 

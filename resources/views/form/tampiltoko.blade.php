@@ -9,7 +9,21 @@
 
     <section class="section">
         <div class="row">
-
+            @if ($errors->has('nama_toko'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('nama_toko') }}
+            </div>
+        @endif
+        @if ($errors->has('logo'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('logo') }}
+            </div>
+        @endif
+        @if ($errors->has('link_website'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('link_website') }}
+            </div>
+        @endif
 
             <div class="card">
                 <div class="card-body">
@@ -38,21 +52,7 @@
                                     placeholder="Link Website Toko" value="{{ $data->link_website }}">
                             </div>
                         </div>
-                        @if ($errors->has('nama_toko'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('nama_toko') }}
-                            </div>
-                        @endif
-                        @if ($errors->has('logo'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('logo') }}
-                            </div>
-                        @endif
-                        @if ($errors->has('link_website'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('link_website') }}
-                            </div>
-                        @endif
+
 
 
                         <div class="row mb-3">

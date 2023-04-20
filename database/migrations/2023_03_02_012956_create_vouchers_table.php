@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_voucher');
-            $table->string('deskripsi');
+            $table->longText('nama_voucher');
+            $table->longText('deskripsi');
             $table->string('kode');
             $table->string('gambar')->nullable();
             $table->string('toko');
             $table->string('kategori');
             $table->integer('views')->default(0);
-            $table->string('keterangan')->nullable();
+            $table->longText('keterangan')->nullable();
             $table->date('masa_kadaluarsa');
             $table->enum('status',['Dikonfirmasi','Ditolak','Menunggu'])->default('Menunggu');
             $table->integer('kuota')->default(0);
             $table->integer('terlaris')->default(0);
-            $table->text('link');
+            $table->longText('link');
             $table->integer('diskon');
             $table->string('syarat')->nullable();
             $table->timestamps();
