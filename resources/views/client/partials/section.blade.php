@@ -25,7 +25,7 @@
                                 <div class="col-lg-4 col-md-4 col-ms-12">
                                     <div class="counter-item counter-item-one wow fadeInUp">
                                         <div class="info">
-                                            <h4>TOTAL <br> VOUCHER</h4>
+                                            <h4>TOTAL <br> VOUCHERRRRRRRRRRRRR</h4>
                                             <h3><span class="count">{{ $total_voucher->count() }}</span> +</h3>
                                         </div>
                                     </div>
