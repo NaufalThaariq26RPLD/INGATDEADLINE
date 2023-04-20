@@ -222,7 +222,7 @@
                                     <th scope="col">Gambar</th>
                                     <th scope="col">Nama voucher</th>
                                     <th scope="col">Kategori</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col">Dilihat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -239,7 +239,7 @@
                                         </td>
                                         <td>{{ $row->nama_voucher }}</td>
                                         <td>{{ $row->kategoris->Kategori }}</td>
-                                        <td><i class="bi bi-eye"></i>{{ $row->views}}</td>
+                                        <td class="text-center">{{ $row->views}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -315,15 +315,15 @@
     chart.data = [{
         "country": "Voucher Yang Diterima",
         "litres": {{ $diterima }},
-        "color": am4core.color("#009FBD")
+        "color": am4core.color("#FFE162")
     }, {
         "country": "Voucher Yang Masih Menunggu",
         "litres": {{ $pending }},
-        "color": am4core.color("#088395")
+        "color": am4core.color("#2FA4FF")
     }, {
         "country": "Voucher Yang Ditolak",
         "litres": {{$ditolak}},
-        "color": am4core.color("#0A4D68")
+        "color": am4core.color("#FE6244")
     }];
 
     // Add and configure Series

@@ -42,13 +42,13 @@
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>
                   <button type="button" class="btn btn-danger"  style="margin-left:-3px ; height: 45px;" id="salin_btn" >Salin Kode</button>
+                @php
+                App\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
+                @endphp
                 </div>
                   <div>
                     <a href="{{ $data->link }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
                   </div>
-                @php
-                app\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
-                @endphp
 
               </div>
                 </div>

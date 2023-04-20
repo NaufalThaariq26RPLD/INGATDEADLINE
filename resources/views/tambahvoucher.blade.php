@@ -54,6 +54,7 @@
                       <input type="text" class="form-control" name="deskripsi" id="deskripsi" required placeholder="Deskripsi">
                       <input type="hidden" id="status" name="status" value="Menunggu">
                       <input type="hidden" name="toko" id="toko" value="{{ Auth::user()->tokos->id }}">
+                     
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -79,6 +80,7 @@
                     <div class="col-sm-10">
                       <textarea name="syarat" id="syarat" cols="30" rows="5" class="form-control"></textarea>
                     </div>
+                    <p><center>JIKA SYARAT DAN KETERANGAN INGIN SEPERTI LIST HARAP GUNKANAN "," </center></p>
                 </div>
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Kuota</label>
