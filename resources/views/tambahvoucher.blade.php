@@ -164,15 +164,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-    let today = new Date();
-let inputDate = new Date("2023-04-20");
-
-if (inputDate > today) {
-  console.log("Tanggal yang dimasukkan tidak boleh lebih dari tanggal sekarang");
-}
-
-  </script>
 
 </body>
 

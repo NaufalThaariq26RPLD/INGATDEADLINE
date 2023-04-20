@@ -144,6 +144,11 @@
                             <i class="bi bi-circle"></i><span>Data Voucher Ditolak</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/tolakvoucher">
+                            <i class="bi bi-circle"></i><span>Data Voucher Diklaim</span>
+                        </a>
+                    </li>
                 </ul>
             </li><!-- End Data Nav -->
 
