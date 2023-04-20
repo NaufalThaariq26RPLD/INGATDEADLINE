@@ -11,14 +11,15 @@
                 <div class="col-lg-7">
                     <div class="download-content-box download-content-box-one">
                         <div class="section-title section-title-left mb-25 wow fadeInUp">
-                            <h2 class="" style="margin-top: 100px;">BAGAIMANA GETVOUCHER BEKERJA?</h2>
+                            <h2 class="" style="">BAGAIMANA GETVOUCHER BEKERJA?</h2>
                         </div>
                         <div>
-                            <p style="line-height:10%">A. Cari diskon atau cashback berdasarkan toko atau kategori </p>
+                            {{-- <p style="line-height:10%">A. Cari diskon atau cashback berdasarkan toko atau kategori </p>
                             <p style="line-height:10%">B. Klik dan cari diskon sesuai kebutuhan kamu </p>
-                            <p style="line-height:10%">C. Segera gunakan voucher tersebut </p>
+                            <p style="line-height:10%">C. Segera gunakan voucher tersebut </p> --}}
+                            <img src="{{ asset('img/bg2.png') }}" alt="" style="width: 700px; object-fit: contain">
+
                         </div>
-                        <img src="{{ asset('img/bg1.png') }}" alt="">
                         <div class="counter-area pt-120">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-ms-12">
