@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
             $table->string('nama_toko');
+            $table->text('deskripsi');
             $table->string('logo');
             $table->longText('link_website');
             $table->integer('views')->default(0);

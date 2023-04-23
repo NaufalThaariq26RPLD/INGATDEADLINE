@@ -66,14 +66,29 @@
                   </div>
 
                 </div>
+                @if (Session::has('warning'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="justify-content: space-between; display: flex">
+                    {{ Session('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  @elseif (Session::has('success'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert" style="justify-content: space-between; display: flex">
+                    {{ Session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="background-color: transparent">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
                     <div class="col-lg-8">
                         <div class="contact-wrapper-one mb-30 wow fadeInRight">
                             <div class="contact-form">
                                 <form action="/add/faq" method="post">
                                     @csrf
                                     <div class="row">
-                                        <input type="hidden" name="username" id="username" value="{{ Auth::user()->username }}">
-                                        <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
+
 
                                         <div class="col-lg-12">
                                             <div class="form_group">

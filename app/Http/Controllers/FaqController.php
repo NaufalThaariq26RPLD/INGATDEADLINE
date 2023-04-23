@@ -32,26 +32,24 @@ class FaqController extends Controller
     {
         //
         $validasi = $request->validate([
-            'email' => 'required',
-            'username' => 'required',
             'pertanyaan' => 'required'
         ]);
 
         $check = Faq::where('pertanyaan', $validasi['pertanyaan'])->get();
 
         if($check->count() > 0){
-            return back()->with('success','Question Sudah Ada !!');
+            return back()->with('warning','Question Sudah Ada !!');
 
 
         }
         else if($check->count() < 1){
             Faq::create([
-                'email' => $validasi['email'],
-                'username' => $validasi['username'],
+                'email' => Auth()->user()->email,
                 'pertanyaan' => $validasi['pertanyaan'],
                 'answer' => null
             ]);
-        return redirect('/FAQ');
+            return back()->with('success','Berhasil Menambah Question, Silahkan Tunggu Balasan Dari Admin !!');
+        
 
         }
     }

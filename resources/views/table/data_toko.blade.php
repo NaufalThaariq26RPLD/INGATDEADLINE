@@ -43,7 +43,7 @@
                             <th scope="row"><a href="#">{{ ++$no }}</a></th>
                             <td>{{ $table->nama_toko }}</td>
                             <td><div class="image-container"><img class="image" src="{{ asset('logotoko/'.$table->logo) }}" style="width:100px; object-fit: cover"></div></td>
-                            <td>{{ $table->link_website }}</td>
+                            <td><a href="{{ $table->link_website }} " target="_blank" style="font-weight: bold">Link Website {{ $table->nama_toko }}</a></td>
                             <td><a href="/edittoko/{{ $table->id }}" type="button" class="btn btn-success" ><i class="bi bi-pencil"></i> Edit </a><br><a href="/hapustoko/{{ $table->id }}" type="button" class="btn btn-danger mt-2"><i class="bi bi-x-lg"></i> Hapus </a></td>
 
                           </tr>

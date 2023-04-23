@@ -57,7 +57,7 @@
 
                       </div>
 
-                        {{ $data->appends(["data2"=> $data2->currentPage()])->links() }}
+                        {{ $data->links('vendor.pagination.simple-bootstrap-4') }}
                 </div>
 
             </div>

@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach ($search as $search)
+            @foreach ($searchs as $search)
                 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="10ms">
@@ -42,15 +42,14 @@
                         <h3 class="title">{{ $search->nama_voucher }}</h3>
                         <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $search->deskripsi }}</span>
                         <div class="listing-meta">
-                            <ul>
-                                <li><span>GETVOUCHER</span></li>
-                            </ul>
+                            <center> <a href="/kode/{{ $latests->id }}"
+                                class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
-
+            {{ $searchs->links('vendor.pagination.bootstrap-4') }}
 
 
 

@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="section-title text-center mb-75 wow fadeInUp">
-                    <span class="sub-title">VOUCHER UNGGULAN</span>
+                    <span class="sub-title">VOUCHER TERLARIS</span>
                     <h2>REKOMENDASI BUAT KAMU</h2>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="10ms">
                     <div class="listing-thumbnail">
                         <img src=" {{ asset('gambarvoucher/'.$latests->gambar) }}" alt="Listing Image" style="width: 100% ; height: 500px; object-fit: cover">
-                        <span class="featured-btn">Unggulan</span>
+                        <span class="featured-btn">Terlaris</span>
                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                             <div class="meta-icon-title d-flex align-items-center">
                                 <div class="icon">
@@ -39,16 +39,15 @@
                         <h3 class="title">{{ $latests->nama_voucher }}</h3>
                         <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $latests->deskripsi }}</span>
                         <div class="listing-meta">
-                            <ul>
-                                <li><span>GETVOUCHER</span></li>
-                            </ul>
+                            <center> <a href="/kode/{{ $latests->id }}"
+                                class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
 
-
+            {{ $latest->links('vendor.pagination.bootstrap-4') }}
 
         </div>
     </div>

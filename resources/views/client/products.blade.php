@@ -72,8 +72,8 @@
 
                                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                                             <div class="meta-icon-title d-flex align-items-center">
-                                                <div class="icon">
-                                                    <img src="{{ asset('images/uniqlo.jpeg') }}" alt="">
+                                                <div class="icon" style="overflow: hidden">
+                                                    <img src="{{ asset('logotoko/'.$datas->tokos->logo) }}" alt="" style="border-radius: 100%">
                                                 </div>
                                                 <div class="title">
                                                     <h6>{{ $datas->tokos->nama_toko }}</h6>
@@ -85,12 +85,10 @@
                                     <div class="listing-content">
                                         <h3 class="title">
                                             {{ $datas->nama_voucher }}</h3>
-                                        <span class="badge bg-danger">Kadaluwarsa Tanggal
-                                            {{ \Carbon\Carbon::parse($datas->masa_kadaluarsa)->format('d F') }}</span>
                                         <span class="price"
                                             style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $datas->deskripsi }}</span><br>
                                         <center> <a href="/kode/{{ $datas->id }}"
-                                                class="btn btn-outline-warning">LIHAT</a></center>
+                                            class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>
 
                                     </div>
                                 </div>

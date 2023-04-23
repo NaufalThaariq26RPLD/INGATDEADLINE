@@ -259,6 +259,7 @@ class RouteController extends Controller
         $validateddata = $request->validate([
             'nama_toko' => 'required|unique:tokos,nama_toko,' . $request->id . ',id|max:191',
             'link_website' => 'required|url',
+            'deskripsi' => 'required',
             'logo' => 'required|file|image'
         ], [
             'nama_toko.required' => 'Masukkan Nama Toko Terlebih Dahulu',
@@ -280,6 +281,7 @@ class RouteController extends Controller
         $data = Toko::create([
             'nama_toko' => $request->nama_toko,
             'link_website' => $request->link_website,
+            'deskripsi' => $request->deskripsi,
             'logo' => $name,
         ]);
 
@@ -301,6 +303,7 @@ class RouteController extends Controller
         $validateddata = $request->validate([
             'nama_toko' => 'required|max:191|unique:tokos,nama_toko,' . $request->id . ',id',
             'link_website' => 'required|url',
+            'deskripsi' => 'required',
             'logo' => 'file|image'
         ], [
             'nama_toko.required' => 'Masukkan Nama Toko Terlebih Dahulu',
@@ -343,6 +346,7 @@ class RouteController extends Controller
         Toko::where('id', $id)->update([
             'nama_toko' => $request->nama_toko,
             'logo' => $img,
+            'deskripsi' => $request->deskripsi,
             'link_website' => $request->link_website
         ]);
 

@@ -89,7 +89,7 @@
                   <div>
                     <h4 style=" white-space: nowrap;
 
-                    ">{{ $faqs->username }}</h4>
+                    ">{{ $faqs->email }}</h4>
                     <p style="max-width:300px;text-overflow: ellipsis; overflow: hidden ">{{ $faqs->pertanyaan }}</p>
                   </div>
                 </a>

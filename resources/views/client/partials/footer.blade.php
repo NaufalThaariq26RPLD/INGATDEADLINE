@@ -48,16 +48,16 @@
           VOUCHER
           </h6>
           <p>
-            <a href="#!" class="text-light">PAKAIAN</a>
+            <a href="#!" class="text-light" style="text-decoration: none">PAKAIAN</a>
           </p>
           <p>
-            <a href="#!" class="text-light">ELEKTRONIK</a>
+            <a href="#!" class="text-light" style="text-decoration: none">ELEKTRONIK</a>
           </p>
           <p>
-            <a href="#!" class="text-light">PENGINAPAN</a>
+            <a href="#!" class="text-light" style="text-decoration: none">PENGINAPAN</a>
           </p>
           <p>
-            <a href="#!" class="text-light">KEBUTUHAN RUMAH TANGGA</a>
+            <a href="#!" class="text-light" style="text-decoration: none">KEBUTUHAN RUMAH TANGGA</a>
           </p>
         </div>
         <!-- Grid column -->

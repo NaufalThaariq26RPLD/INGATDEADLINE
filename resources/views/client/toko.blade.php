@@ -97,7 +97,8 @@
                             
 
                         <div class="col-md-4 col-sm-12">
-                            <div class="listing-item listing-grid-item-two mb-30 wow fadeInUp">
+
+                            {{-- <div class="listing-item listing-grid-item-two mb-30 wow fadeInUp">
                                 <div class="listing-thumbnail">
                                     <img src="{{ asset('logotoko/'.$datas->logo) }}" alt="Client Image" style="width: 100%; height: 300px; object-fit: cover">
                                     <span class="featured-btn">Pakaian</span>
@@ -114,7 +115,18 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="{{ asset('logotoko/'.$datas->logo) }}" alt="Card image cap" style="width: 100%; height: 300px; object-fit: contain">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ $datas->nama_toko }}</h5>
+                                  <p class="card-text" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ $datas->deskripsi }}</p>
+
+                                    <form action="/products">
+                                        <button name="toko" type="submit" class="btn btn-outline-warning btn-block" style="display: block; width: 100%" value="{{ $datas->id }}">Lihat</button>
+                                    </form>
+                                </div>
+                              </div>
                         </div>
                         @endforeach
 
