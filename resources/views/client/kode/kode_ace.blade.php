@@ -19,7 +19,7 @@
       ->increment('views');
       @endphp
       <span class="sub-title">KODE VOUCHER</span>
-      <h2>{{ $data->tokos->nama_toko }}</h2>
+      <h2 style="font-family: serif">{{ $data->tokos->nama_toko }}</h2>
   </div>
   <div class="card mb-5 mt-5" style="max-width: 2000px;">
       <div class="row ">
@@ -30,8 +30,8 @@
           <div class="card-body">
             <a href="/products"  class="btn btn-outline-danger" style="float: right;">KEMBALI</a>
             <br/>
-            <h5 class="card-title text-dark">{{ $data->nama_voucher }}</h5>
-            <span class="badge bg-warning text-dark">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('d F')  }}</span>
+            <h5 class="card-title text-dark" style="font-weight:bold">{{ $data->nama_voucher }}</h5>
+            <span class="badge bg-warning text-dark" style="margin-bottom: 10px">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('d F')  }}</span>
             <span class="badge bg-warning text-dark">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('d F')  }}</span>
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
@@ -76,7 +76,7 @@
                 <div class="col-lg-6">
                     <div class="section-title text-center mb-50 wow fadeInUp">
                         <span class="sub-title">REKOMENDASI</span>
-                        <h3>Voucher Produk {{ $data->tokos->nama_toko }} Lainnya</h3>
+                        <h3 style="font-family: serif">Voucher Produk {{ $data->tokos->nama_toko }} Lainnya</h3>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 
                     <img class="card-img-top" src="{{ asset('gambarvoucher/'.$data2->gambar) }}"  alt="Card image cap" style="height: 250px; object-fit: cover;">
                     <div class="card-body">
-                      <center><a href="/kode/{{ $data2->id }}">{{ $data2->nama_voucher }}</a></center>
+                      <center><a href="/kode/{{ $data2->id }}" style="text-decoration: none; color:black; font-weight: bold">{{ $data2->nama_voucher }}</a></center>
                     </div>
                     </div>
                     </div>

@@ -1,5 +1,5 @@
 <!--====== Start Listing Section ======-->
-<section class="listing-grid-area pt-115 pb-75">
+<section class="listing-grid-area pt-75 pb-75">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -19,7 +19,6 @@
                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="10ms">
                     <div class="listing-thumbnail">
                         <img src=" {{ asset('gambarvoucher/'.$latests->gambar) }}" alt="Listing Image" style="width: 100% ; height: 500px; object-fit: cover">
-                        <span class="featured-btn">Terlaris</span>
                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                             <div class="meta-icon-title d-flex align-items-center">
                                 <div class="icon">

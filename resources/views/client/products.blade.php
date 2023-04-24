@@ -85,7 +85,7 @@
                                     <div class="listing-content">
                                         <h3 class="title">
                                             {{ $datas->nama_voucher }}</h3>
-                                        <span class="price"
+                                        <span class="lead"
                                             style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $datas->deskripsi }}</span><br>
                                         <center> <a href="/kode/{{ $datas->id }}"
                                             class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>

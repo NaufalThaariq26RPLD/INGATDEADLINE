@@ -89,7 +89,10 @@
 
 
                             @if($data->count() <  1)
-                                <h1 style="text-transform: uppercase; text-align: center">{{ request('search') }} YANG KAMU CARI BELOM DITEMUKAN</h1>
+
+                            <img src="{{ asset('img/search-icon1.png') }}" alt="" style="width:300px; object-fit: contain; display: flex; justify-content: center; margin: auto">
+
+                                <h1 style="text-transform: uppercase; font-family: serif; font-size: 30px; text-align: center; margin-top: 20px">{{ request('search') }} YANG KAMU CARI BELOM DITEMUKAN</h1>
                             @endif
                             
                         @endif
@@ -120,7 +123,7 @@
                                 <img class="card-img-top" src="{{ asset('logotoko/'.$datas->logo) }}" alt="Card image cap" style="width: 100%; height: 300px; object-fit: contain">
                                 <div class="card-body">
                                   <h5 class="card-title">{{ $datas->nama_toko }}</h5>
-                                  <p class="card-text" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ $datas->deskripsi }}</p>
+                                  <p class="lead" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ $datas->deskripsi }}</p>
 
                                     <form action="/products">
                                         <button name="toko" type="submit" class="btn btn-outline-warning btn-block" style="display: block; width: 100%" value="{{ $datas->id }}">Lihat</button>
