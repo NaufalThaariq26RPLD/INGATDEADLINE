@@ -64,4 +64,12 @@ class KategoriController extends Controller
         // ]);
 
     }
+
+    public function footer_kategori(){
+     $data = kategori::get();
+     
+     return view('client.partials.footer', [
+        'data_kategori' => $data
+     ]);
+    }
 }

@@ -47,19 +47,12 @@
           <h6 class="text-uppercase text-light fw-bold mb-4">
           VOUCHER
           </h6>
+          @foreach($kategori_footer as $kategori_footer)
           <p>
-            <a href="#!" class="text-light" style="text-decoration: none">PAKAIAN</a>
+            <a href="/products?kategori={{ $kategori_footer->id }}" class="text-light" style="text-decoration: none">{{ $kategori_footer->Kategori }}</a>
           </p>
-          <p>
-            <a href="#!" class="text-light" style="text-decoration: none">ELEKTRONIK</a>
-          </p>
-          <p>
-            <a href="#!" class="text-light" style="text-decoration: none">PENGINAPAN</a>
-          </p>
-          <p>
-            <a href="#!" class="text-light" style="text-decoration: none">KEBUTUHAN RUMAH TANGGA</a>
-          </p>
-        </div>
+          @endforeach
+        </div> 
         <!-- Grid column -->
 
         <!-- Grid column -->

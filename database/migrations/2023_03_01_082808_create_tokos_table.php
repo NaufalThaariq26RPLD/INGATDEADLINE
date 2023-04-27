@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('logo');
             $table->longText('link_website');
-            $table->integer('views')->default(0);
-            $table->integer('terlaris')->default(0);
             $table->timestamps();
         });
     }

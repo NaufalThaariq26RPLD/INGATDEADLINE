@@ -21,6 +21,10 @@ class ProdukController extends Controller
         if(request('search')){
             $data->where('status', 'dikonfirmasi')->where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('deskripsi', 'like', '%'.request('search').'%');
         }
+
+        if(request('kategori')){
+            $data->where('status', 'dikonfirmasi')->where('kategori', request('kategori'));
+        }
         return view('client.products', [
             'data' => $data->where('status', 'dikonfirmasi')->paginate(1)
         ]);

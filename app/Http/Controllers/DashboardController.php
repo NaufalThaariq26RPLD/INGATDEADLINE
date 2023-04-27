@@ -26,8 +26,7 @@ class DashboardController extends Controller
         $voucher_best = Voucher::where('status', 'dikonfirmasi')->orderBy('views', 'DESC')
 ->paginate(10);
         $user= User::where('level','=','admin')->where('id','=',Auth()->user()->id)->first();
-        $toko = Toko::where('id', $user->toko)->first();
-        $voucher_terlaris = Voucher::where('status', 'dikonfirmasi')->orderBy('terlaris', 'DESC')->paginate(10);        
+        $toko = Toko::where('id', $user->toko)->first();       
 
         //chart
         $diterima = Voucher::where('status', "Dikonfirmasi")->count();
@@ -35,7 +34,7 @@ class DashboardController extends Controller
         $pending = Voucher::where('status', "Menunggu")->count();
 
 
-        return view('dashboard',compact('kategori','voucher','user','toko','diterima','ditolak','pending', 'voucher_best','voucher_terlaris'));
+        return view('dashboard',compact('kategori','voucher','user','toko','diterima','ditolak','pending', 'voucher_best'));
     }
     public function index($id=0)
     {
