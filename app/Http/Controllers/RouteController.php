@@ -537,7 +537,7 @@ class RouteController extends Controller
     public function konfirmasiall(Request $request)
     {
         $ids = $request->ids;
-        Voucher::whereIn('toko', $ids)->update(['status' => 'Dikonfirmasi']);
+        Voucher::whereIn('id', $ids)->update(['status' => 'Dikonfirmasi']);
         return response()->json(['success' => 'Data berhasil Dikonfirmasi!']);
     }
     public function kategoriall(Request $request)
