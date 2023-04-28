@@ -32,8 +32,8 @@ class HomeController extends Controller
         return view('client.dashboard', [
             'searchs' => $search->paginate(8),
             'latest' => Voucher::with('tokos')->where('status', 'dikonfirmasi')->latest()->paginate(10),
-            'total_voucher' => voucher::where('status', 'dikonfirmasi')->get(),
-            'voucher_digunakan' => voucher::where('status', 'dikonfirmasi')->sum('terlaris'),
+            'total_voucher' => Voucher::where('status', 'dikonfirmasi')->get(),
+            'voucher_digunakan' => Voucher::where('status', 'dikonfirmasi')->sum('terlaris'),
             'user_aktif' => User::where('level', 'user')->get()
         ]);
     }
