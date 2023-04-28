@@ -149,14 +149,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $no = 0;
-                                    $no1 = 0;
-                                @endphp
+                                
                                 @foreach ($toko as $row)
+                                @php
+                                $total= App\Models\Voucher::where('toko',$row->id)->count();
+                                @endphp
                                     <tr>
                                         <td class="text-center">{{ $row->nama_toko }}</td>
-                                        {{-- <th scope="row" class="text-center">{{ $row->vouchers->voucher }}</th> --}}
+                                        <td class="text-center">{{ $total }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

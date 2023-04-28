@@ -27,13 +27,17 @@ class RouteController extends Controller
         $voucher = DB::table('vouchers')->where('status', '=', 'Dikonfirmasi')->get();
         $vr = DB::table('kategoris')->count();
 
+        foreach($toko as $tokos){
+            $total= Voucher::where('toko',$tokos->id)->count();
+        }
+
         return view('index', [
             'title' => 'Dashboard',
             'FAQ' => DB::table('faqs')
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('toko', 'kategori', 'voucher', 'user', 'vr'));
+        ], compact('toko', 'kategori', 'voucher', 'user', 'vr' , 'total'));
     }
 
     public function user(Request $request)
