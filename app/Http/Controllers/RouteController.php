@@ -37,7 +37,7 @@ class RouteController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get()
 
-        ], compact('toko', 'kategori', 'voucher', 'user', 'vr'));
+        ], compact('toko', 'kategori', 'voucher', 'user', 'vr' , 'total'));
     }
 
     public function user(Request $request)
