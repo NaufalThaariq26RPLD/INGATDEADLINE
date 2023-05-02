@@ -16,7 +16,7 @@
                                     <nav class="main-menu">
                                         <ul>
                                             <li class="menu-item ">
-                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Halaman</a>
+                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Beranda</a>
 
                                             </li>
                                             <li class="menu-item"><a href="/tentang"

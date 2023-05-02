@@ -88,12 +88,12 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        @foreach ($toko as $tokos)
+                                        @foreach ($toko_terlaris as $tokos)
                                             @php
                                                 ++$no3;
                                             @endphp
                                         @endforeach
-                                        <h6>{{ $toko->views }}</h6>
+                                        <h6>{{ $toko_terlaris->views }}</h6>
 
                                     </div>
                                 </div>

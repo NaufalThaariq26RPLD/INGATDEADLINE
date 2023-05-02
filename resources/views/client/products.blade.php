@@ -18,7 +18,7 @@
                         <div class="page-title">
                             <h1 class="title">SEMUA PRODUK </h1>
                             <ul class="breadcrumbs-link">
-                                <li><a href="/dashboard" class="link-dark">Halaman</a></li>
+                                <li><a href="/dashboard" class="link-dark">Beranda</a></li>
                                 <li class="active">Produk</li>
                             </ul>
                         </div>
@@ -61,6 +61,11 @@
 
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-6 col-sm-12">
+                                @php
+                                DB:: table('tokos')
+                                ->where('id', $datas->id)
+                                ->increment('views');
+                                @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
                                     <div class="listing-thumbnail">

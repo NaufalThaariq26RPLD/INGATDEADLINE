@@ -17,7 +17,7 @@
                     <div class="page-title">
                         <h1 class="title">Toko</h1>
                         <ul class="breadcrumbs-link">
-                            <li><a href="/dashboard" class="link-dark">Halaman</a></li>
+                            <li><a href="/dashboard" class="link-dark">Beranda</a></li>
                             <li class="active">Toko</li>
                         </ul>
                     </div>
