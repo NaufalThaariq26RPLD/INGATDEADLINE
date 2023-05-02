@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\voucher;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -15,9 +16,9 @@ class ClientKategoriController extends Controller
         // $kategori=DB::table('vouchers')->where('kategori','=',$kategori);
 
         if(request('search')){
-            $data1 = voucher::where('nama_voucher', 'like', '%' . request('search').'%')->orWhere('kategori', 'like', '%' .request('search') . '%')->get();
+            $data1 = Voucher::where('nama_voucher', 'like', '%' . request('search').'%')->orWhere('kategori', 'like', '%' .request('search') . '%')->whereDate('masa_kadaluarsa','>=',Carbon::now()->toDateString())->get();
         }else{
-            $data1 = voucher::get();
+            $data1 = Voucher::whereDate('masa_kadaluarsa','>=',Carbon::now()->toDateString())->get();
         }
 
 
@@ -25,8 +26,8 @@ class ClientKategoriController extends Controller
             'data' => $data,
             'data1' => $data1,
             'tittle' => request('search')
-    
-    
+
+
         ]);
         // return view('admin.kategori.tablesgeneral', [
         //     'data' => Voucher::where('kategori', $kategori)

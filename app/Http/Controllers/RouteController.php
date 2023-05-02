@@ -126,6 +126,7 @@ class RouteController extends Controller
             'username.required' => 'Masukkan Username terlebih Dahulu',
             'username.unique' => 'Username Telah Dipakai',
             'username.max' => 'Panjang Maksimal Username 191',
+            'username.min' => 'Panjang Minimal Username 4',
             'email.required' => 'Masukkan Email Terlebih Dahulu',
             'email.unique' => 'Email Telah Dipakai',
             'username.max' => 'Panjang Maksimal Email 191',
@@ -342,7 +343,8 @@ class RouteController extends Controller
             'nama_toko' => $request->nama_toko,
             'logo' => $img,
             'deskripsi' => $request->deskripsi,
-            'link_website' => $request->link_website
+            'link_website' => $request->link_website,
+            'updated_at' => now()
         ]);
 
         return redirect()->route('toko');
@@ -371,13 +373,13 @@ class RouteController extends Controller
     }
     public function deletevoucher(Request $request, $id)
     {
-        $data = voucher::find($id);
+        $data = Voucher::find($id);
         $data->delete();
         return redirect()->back();
     }
     public function validasi(Request $request)
     {
-        echo "test";
+
         $voucher = Voucher::where('status', 'menunggu')->get();
         return view('table.validasi', [
             'title' => 'Validasi',
@@ -441,9 +443,11 @@ class RouteController extends Controller
     public function insertkategori(Request $request)
     {
         $validateddata = $request->validate([
-            'kategori' => 'required|max:191|unique:kategoris,Kategori,except,id',
+            'kategori' => 'required|max:191|min:3|unique:kategoris,Kategori,except,id',
         ], [
             'kategori.required' => 'Masukan Kategori Terlebih Dahulu',
+            'kategori.max' => 'Panjang Maksimal Kategori 191',
+            'kategori.min' => 'Panjang Minimal Kategori 3',
             'kategori.unique' => 'Kategori Tidak Bisa Duplikat',
 
 
@@ -455,9 +459,11 @@ class RouteController extends Controller
     public function updatekategori(Request $request, $id)
     {
         $validateddata = $request->validate([
-            'kategori' => 'required|max:191|unique:kategoris,Kategori,' . $request->id . ',id'
+            'kategori' => 'required|max:191|min:3|unique:kategoris,Kategori,' . $request->id . ',id'
         ], [
             'kategori.required' => 'Masukan Kategori Terlebih Dahulu',
+            'kategori.max' => 'Panjang Maksimal Kategori 191',
+            'kategori.min' => 'Panjang Minimal Kategori 3',
             'kategori.unique' => 'Kategori Tidak Bisa Duplikat',
 
         ]);
