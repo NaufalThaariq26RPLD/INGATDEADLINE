@@ -58,6 +58,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <td><a href="/tickets/status/{{$Ticket->id}}" class="btn @if ($Ticket->status_ticket == "Direspon")
+                            btn-success
+                            @endif
+                            @if ($Ticket->status_ticket == "Menunggu")
+                            btn-warning
+                        @endif" onclick="return confirm('Respon laporan?')">{{$Ticket->status_ticket}}</a></td>
 
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -81,7 +87,7 @@
                                                     <h6>{{ $datas->tokos->nama_toko }}</h6>
                                                 </div>
                                             </div>
-                                            <span class="status st-close">DISKON {{ $datas->diskon }}%</span>
+                                            <span class="status st-close">{{ $datas->kategoris->Kategori }}</span>
                                         </div>
                                     </div>
                                     <div class="listing-content">
@@ -90,7 +96,7 @@
                                         <span class="lead"
                                             style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $datas->deskripsi }}</span><br>
                                         <center> <a href="/kode/{{ $datas->id }}"
-                                            class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>
+                                            class="btn btn-outline-warning btn-block" style="display: block">Lihat Voucher</a></center>
 
                                     </div>
                                 </div>
@@ -102,8 +108,6 @@
 
                     </div>
 
-
-
                 </div>
 
 
@@ -114,3 +118,5 @@
 
     <!--====== End Products Section ======-->
 @endsection
+
+

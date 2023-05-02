@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\voucher;
+use Carbon\Carbon;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class ClientDashboardController extends Controller
         $search = null;
 
         if(request('search')){
-            $search = voucher::where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('kategori', 'like', '%' . request('search') . '%')->get();
+            $search = Voucher::where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('kategori', 'like', '%' . request('search') . '%')->whereDate('masa_kadaluarsa','>=',Carbon::now()->toDateString())->get();
         }
         return view('client.dashboard', [
             'search' => $search,

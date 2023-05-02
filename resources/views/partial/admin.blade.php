@@ -68,7 +68,7 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('logotoko/' .Auth::user()->tokos->logo) }}" alt="Profile">
+                        <img src="{{ asset('logotoko/' .Auth::User()->tokos->logo) }}" alt="Profile">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->username }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -142,11 +142,6 @@
                     <li>
                         <a href="/tolakvoucher">
                             <i class="bi bi-circle"></i><span>Data Voucher Ditolak</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/tolakvoucher">
-                            <i class="bi bi-circle"></i><span>Data Voucher Diklaim</span>
                         </a>
                     </li>
                 </ul>

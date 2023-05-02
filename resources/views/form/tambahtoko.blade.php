@@ -39,12 +39,6 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi Toko</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi Toko" value="{{ old('nama_toko') }}">
-                  </div>
-                </div>
-                <div class="row mb-3">
                   <label for="inputNumber" class="col-sm-2 col-form-label">Logo Toko</label>
                   <div class="col-sm-10">
                     <input class="form-control" type="file" id="formFile" name="logo" id="logo" placeholder="Logo Toko">

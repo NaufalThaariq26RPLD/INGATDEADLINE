@@ -59,6 +59,7 @@ Route::get('/products', [ProdukController::class, 'index']);
 
 Route::middleware('user')->group(function () {
     Route::get('/setting', [SettingController::class, 'index']);
+    Route::get('/profiledit', [SettingController::class, 'profiledit']);
 });
 
 // Route::get('/kategori1', [KategoriController::class, 'kategori'])->name('kategoriuser');

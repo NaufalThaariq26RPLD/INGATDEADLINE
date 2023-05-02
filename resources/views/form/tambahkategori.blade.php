@@ -12,6 +12,7 @@
         @if ($errors->has('Kategori'))
         <div class="alert alert-danger" role="alert">
             <i class="bi bi-x-lg"></i> {{ $errors->first('kategori') }}
+
            </div>
         @endif
 

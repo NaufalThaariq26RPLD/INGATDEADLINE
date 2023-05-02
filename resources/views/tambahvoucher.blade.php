@@ -27,34 +27,23 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Nama Voucher</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nama_voucher" required placeholder="Nama Voucher">
+                    <input type="text" class="form-control" name="nama_voucher" required placeholder="Nama Voucher" value="{{ old('nama_voucher') }}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Kode</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kode" required placeholder="Kode">
+                    <input type="text" class="form-control" name="kode" required placeholder="Kode" value="{{ old('kode') }}">
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Diskon</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="diskon" required placeholder="diskon">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Link Toko</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="link" required placeholder="link">
-                  </div>
-                </div>
+
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="deskripsi" id="deskripsi" required placeholder="Deskripsi">
+                      <input type="text" class="form-control" name="deskripsi" id="deskripsi" required placeholder="Deskripsi" value="{{ old('deskripsi') }}">
                       <input type="hidden" id="status" name="status" value="Menunggu">
                       <input type="hidden" name="toko" id="toko" value="{{ Auth::user()->tokos->id }}">
-                     
+
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -62,7 +51,9 @@
                       <div class="col-sm-10">
                         <select value="" required id="kategori" name="kategori" class="form-select">
                     @foreach ($kategori as $kategoris)
-                    <option value="{{ $kategoris->id }}">{{ $kategoris->Kategori }}</option>
+                    <option value="{{ $kategoris->id }}"@if (old('kategori') == $kategoris->id)
+                        selected
+                    @endif>{{ $kategoris->Kategori }}</option>
                     @endforeach
 
 
@@ -72,20 +63,20 @@
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Masa Kadaluarsa</label>
                     <div class="col-sm-10">
-                      <input type="date" class="form-control" name="masa_kadaluarsa" id="masa_kadaluarsa" required>
+                      <input type="date" class="form-control" name="masa_kadaluarsa" id="masa_kadaluarsa" required value="{{ old('masa_kadaluarsa') }}">
                     </div>
                   </div>
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Syarat & Ketentuan</label>
                     <div class="col-sm-10">
-                      <textarea name="syarat" id="syarat" cols="30" rows="5" class="form-control"></textarea>
+                      <textarea name="syarat" id="syarat" cols="30" rows="5" class="form-control">{{ old('syarat') }}</textarea>
                     </div>
-                    <p><center>JIKA SYARAT DAN KETERANGAN INGIN SEPERTI LIST HARAP GUNKANAN "," </center></p>
+                    <p><center>JIKA SYARAT DAN KETERANGAN INGIN SEPERTI LIST HARAP GUNAKANAN "," </center></p>
                 </div>
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Kuota</label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="kuota" id="kuota" required placeholder="Kuota">
+                      <input type="number" class="form-control" name="kuota" id="kuota" required placeholder="Kuota" value="{{ old('kuota') }}">
                     </div>
                   </div>
                 <div class="row mb-3">

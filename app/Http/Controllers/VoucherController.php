@@ -44,8 +44,7 @@ class VoucherController extends Controller
             'syarat' => 'required',
             'masa_kadaluarsa' => 'required|date|after_or_equal:'.now(),
             'gambar' => 'file|image',
-            'diskon' => 'required',
-            'link' => 'required'
+
         ]);
 
         if ($files = $request->file('gambar')) {
@@ -65,8 +64,6 @@ class VoucherController extends Controller
             'syarat' => $request->syarat,
             'masa_kadaluarsa' => $request->masa_kadaluarsa,
             'gambar' => $name,
-            'diskon' => $request->diskon,
-            'link' => $request->link
 
         ]);
 

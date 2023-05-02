@@ -31,8 +31,8 @@
             <a href="/products"  class="btn btn-outline-danger" style="float: right;">KEMBALI</a>
             <br/>
             <h5 class="card-title text-dark" style="font-weight:bold">{{ $data->nama_voucher }}</h5>
-            <span class="badge bg-warning text-dark" style="margin-bottom: 10px">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('d F')  }}</span>
-            <span class="badge bg-warning text-dark">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('d F')  }}</span>
+            <span class="badge bg-warning text-dark" style="margin-bottom: 10px">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('D M Y')  }}</span>
+            <span class="badge bg-warning text-dark">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('D M Y')  }}</span>
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
@@ -44,7 +44,7 @@
                 @endphp
                 </div>
                   <div>
-                    <a href="{{ $data->link }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
+                    <a href="{{ $data->tokos->link_website }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
                   </div>
 
               </div>
@@ -81,12 +81,12 @@
 
 
                 @foreach ($data2 as $data2)
-                    
+
                 <div class="card border-0 shadow place-item place-item-one" style="margin-bottom: 30px;">
-                    
+
                     <div class="card-body p-5 p-lg-3 shadow"  style=" height: 330px;">
                       <div class="row gy-7">
-                
+
                     <img class="card-img-top" src="{{ asset('gambarvoucher/'.$data2->gambar) }}"  alt="Card image cap" style="height: 250px; object-fit: cover;">
                     <div class="card-body">
                       <center><a href="/kode/{{ $data2->id }}" style="text-decoration: none; color:black; font-weight: bold">{{ $data2->nama_voucher }}</a></center>
@@ -94,11 +94,11 @@
                     </div>
                     </div>
                     </div>
-                    
+
 
                 @endforeach
-                    
-                   
+
+
             </div>
          </div>
      </section>
