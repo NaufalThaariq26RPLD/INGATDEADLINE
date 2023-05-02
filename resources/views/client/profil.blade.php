@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <!--====== Favicon Icon ======-->
             <link rel="shortcut icon" href=" {{ asset('images/favicon.ico') }}" type="image/png">
@@ -166,12 +173,15 @@
                       (239) 816-9029
                     </div>
                   </div>
+                
                  <br>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                    </div>
+                 <div class="row mb-3">
+                  <div class="col-sm-10">
+                  <a href="/dashboard" type="submit" class="btn btn-danger">Kembali</a>
+                    <button  type="submit" class="btn btn-primary">Edit Profil</button>
+                    
                   </div>
+                </div>
                 </div>
               </div>
 
