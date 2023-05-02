@@ -16,7 +16,7 @@
                                     <nav class="main-menu">
                                         <ul>
                                             <li class="menu-item ">
-                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Halaman</a>
+                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Beranda</a>
 
                                             </li>
                                             <li class="menu-item"><a href="/tentang"
@@ -51,8 +51,7 @@
                                 <div class="col-lg-4 col-5">
                                     <div class="header-right-nav">
                                         <ul class="d-flex align-items-center">
-                                            <li class="user-btn"><a href="/setting" class="icon"><i
-                                                        class="flaticon-avatar"></i></a></li>
+                                            <li class="user-btn"><a href="/setting" class="icon"><i class="flaticon-avatar"></i></a></li>
 
                                             <li class="nav-toggle-btn">
                                                 <div class="navbar-toggler">

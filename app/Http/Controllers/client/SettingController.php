@@ -12,4 +12,9 @@ class SettingController extends Controller
     public function index (){
          return view('client.profil');
     }
+    public function profiledit()
+    {
+        return view('client.profiledit');
+    }
+    
 }

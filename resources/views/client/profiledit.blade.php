@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <!--====== Favicon Icon ======-->
             <link rel="shortcut icon" href=" {{ asset('images/favicon.ico') }}" type="image/png">
@@ -28,7 +34,6 @@
             <!--====== Style css ======-->
             <link rel="stylesheet" href=" {{ asset('css/style.css') }}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
             <style>
                 .divider:after,
@@ -143,30 +148,36 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Username</h6>
+                    <div class="row mb-3">
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="username" id="username"
+                                    value="{{ Auth::user()->username }}">
+                            </div>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      Thaariq
-                    </div>
-                  </div>
                   <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                  <div class="row mb-3">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input name="email" type="email" class="form-control" id="email"
+                                    value="{{ Auth::user()->email }}">
+                        </div>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      naufaltaariq33@gmail.com
-                    </div>
-                  </div>
                   <hr>
-                  
+                  <div class="row mb-3">
+                     <label for="new_password" class=col-sm-2 col-form-label">Password
+                            Baru</label>
+                        <div class="col-sm-10">
+                            <input name="new_password" type="password" class="form-control"
+                                    id="new_password">
+                        </div>
+                    </div>
                 
                  <br>
                  <div class="row mb-3">
                   <div class="col-sm-10">
                   <a href="/dashboard" class="btn btn-danger">Kembali</a>
-                  <a href="/profiledit"><button type="submit" class="btn btn-primary">Edit Profil</button></a>
+                    <a href="/profiledit"><button type="submit" class="btn btn-primary">Simpan Perubahan</button></a>
                     
                   </div>
                 </div>
