@@ -54,7 +54,7 @@
                             </div>
                         </div> --}}
 
-                        <img src="{{ asset('img/bg4.png') }}" alt="" style="width: 80%; object-fit: contain;  border-radius: 50px; margin-inline: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background: white">
+                        <img src="{{ asset('img/bg111.png') }}" alt="" style="width: 80%; object-fit: contain;  border-radius: 50px; margin-inline: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background: white">
 
                         
                     {{-- </div> --}}

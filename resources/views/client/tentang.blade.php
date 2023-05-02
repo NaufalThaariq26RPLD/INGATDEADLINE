@@ -17,7 +17,7 @@
                         <div class="page-title">
                             <h1 class="title">Tentang Kami</h1>
                             <ul class="breadcrumbs-link">
-                                <li><a href="/dashboard" class="link-dark">Home</a></li>
+                                <li><a href="/dashboard" class="link-dark">Halaman</a></li>
                                 <li class="active">Tentang Kami</li>
                             </ul>
                         </div>

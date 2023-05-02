@@ -16,7 +16,7 @@
                                     <nav class="main-menu">
                                         <ul>
                                             <li class="menu-item ">
-                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Home</a>
+                                                <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Halaman</a>
 
                                             </li>
                                             <li class="menu-item"><a href="/tentang"
@@ -31,12 +31,12 @@
 
                                             </li>
                                             <li class="menu-item "><a href="/products"
-                                                    class="{{ request()->is('products') ? 'active' : '' }}">Products</a>
+                                                    class="{{ request()->is('products') ? 'active' : '' }}">Produk</a>
                                             </li>
                                             @if (Auth()->user())
-                                                <li class="menu-item "><a href="/logout">Log Out</a>
+                                                <li class="menu-item "><a href="/logout">Keluar</a>
                                                 @else
-                                                <li class="menu-item "><a href="/login">Login</a>
+                                                <li class="menu-item "><a href="/login">Masuk</a>
                                             @endif
 
                                             </li>
