@@ -153,9 +153,9 @@ class VoucherController extends Controller
             'nama_voucher' => $request->nama_voucher,
             'deskripsi' => $request->deskripsi,
             'kategori' => $request->kategori,
+            'masa_kadaluarsa' => $request->masa_kadaluarsa,
+            'syarat' => $request->syarat,
             'kuota' => $request->kuota,
-            'link' => $request->link,
-            'diskon' => $request->diskon
         ]);
         return redirect()->route('panding')->with('success', 'Data Berhasil Di Edit');
     }

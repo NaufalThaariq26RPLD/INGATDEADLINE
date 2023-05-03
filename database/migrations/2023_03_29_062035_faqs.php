@@ -16,8 +16,8 @@ class Faqs extends Migration
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->text('pertanyaan');
-            $table->text('answer')->nullable();
+            $table->longtext('pertanyaan');
+            $table->longtext('answer')->nullable();
             $table->enum('status', ['Dikonfirmasi','Menunggu'])->default('Menunggu');
             $table->timestamps();
         });

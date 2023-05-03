@@ -88,12 +88,12 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        @foreach ($toko_terlaris as $tokos)
+                                        @foreach ($toko_terlaris as $row)
                                             @php
                                                 ++$no3;
                                             @endphp
                                         @endforeach
-                                        <h6>{{ $toko_terlaris->views }}</h6>
+                                        <h6>{{ $row->views }}</h6>
 
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                             body {
                                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
                             }
-        
+
                             #chartdiv {
                                 width: 550px;
                                 height: 350px;
@@ -126,27 +126,27 @@
                                 border: 1px solid #eee;
                                 float: left;
                             }
-        
+
                             #legend {
-        
+
                                 border: 1px solid #eee;
                                 margin-left: 10px;
                                 float: left;
                             }
-        
+
                             #legend .legend-item {
                                 margin: 10px;
                                 font-size: 15px;
                                 font-weight: bold;
                                 cursor: pointer;
                             }
-        
+
                             #legend .legend-item .legend-value {
                                 font-size: 12px;
                                 font-weight: normal;
                                 margin-left: 22px;
                             }
-        
+
                             #legend .legend-item .legend-marker {
                                 display: inline-block;
                                 width: 12px;
@@ -154,7 +154,7 @@
                                 border: 1px solid #ccc;
                                 margin-right: 10px;
                             }
-        
+
                             #legend .legend-item.disabled .legend-marker {
                                 opacity: 0.5;
                                 background: #ddd;
