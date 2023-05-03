@@ -76,7 +76,7 @@
                                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                                             <div class="meta-icon-title d-flex align-items-center">
                                                 <div class="icon" style="overflow: hidden">
-                                                    <img src="{{ asset('logotoko/'.$datas->tokos->logo) }}" alt="" style="border-radius: 100%">
+                                                    <img src="{{ asset('logotoko/'.$datas->tokos->logo) }}" alt="logo toko" style="border-radius: 100%">
                                                 </div>
                                                 <div class="title">
                                                     <h6>{{ $datas->tokos->nama_toko }}</h6>
@@ -90,7 +90,7 @@
                                             {{ $datas->nama_voucher }}</h3>
                                         <span class="lead"
                                             style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $datas->deskripsi }}</span><br>
-                                            <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa:{{ \Carbon\Carbon::parse($datas->masa_kadaluarsa)->isoFormat('MMM Do YYYY')}}</span>
+                                            <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa: {{ \Carbon\Carbon::parse($datas->masa_kadaluarsa)->isoFormat('Do MMM YYYY')}}</span>
 
                                         <center> <a href="/kode/{{ $datas->id }}"
                                             class="btn btn-outline-warning btn-block" style="display: block">Lihat Voucher</a></center>

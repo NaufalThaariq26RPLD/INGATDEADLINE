@@ -11,11 +11,11 @@
                             <div class="page-title">
                                 <h1 class="title">FAQ</h1>
                                 <ul class="breadcrumbs-link">
-<<<<<<< HEAD
+
                                     <li><a href="/dashboard" class="link-dark">Beranda</a></li>
-=======
+
                                     <li><a href="/dashboard" class="link-dark">Halaman</a></li>
->>>>>>> 7f996002b915b1c8202b7afc1c64a4c04133db76
+
                                     <li class="active">FAQ</li>
                                 </ul>
                             </div>
@@ -123,4 +123,4 @@
   <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
-  ></script> 
+  ></script>

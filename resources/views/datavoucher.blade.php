@@ -17,7 +17,7 @@
             <div class="col-lg-6  w-100">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                    
+
                         <h5 class="card-title">Data Voucher Dikonfirmasi</h5>
                         <div class="card-header py-2">
                             <a type="button" href="/tambahvoucher" class="m-0 font-weight-bold btn btn-success"><i
@@ -40,7 +40,7 @@
                                 </div>
                                 </div>
 
-                                
+
                                 <button type="submit" style="width: 10" class="btn btn-primary">Cari</button>
                             </form>
 </div>
@@ -58,7 +58,6 @@
                                                     <th scope="col">Keterangan</th>
                                                     <th scope="col">Kode</th>
                                                     <th scope="col">Kategori</th>
-                                                    <th scope="col">Stok</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Aksi</th>
                                                 </tr>
@@ -76,7 +75,6 @@
                                                         <td style="max-width: 150px;">{{ $row->deskripsi }}</td>
                                                         <td>{{ $row->kode }}</td>
                                                         <td>{{ $row->kategoris->Kategori }}</td>
-                                                        <td>{{ $row->kuota }}</td>
                                                         <td><span class="badge text-bg-success">{{ $row->status }}</span>
                                                         </td>
                                                         <td><a href="/tampildata/{{ $row->id }}"

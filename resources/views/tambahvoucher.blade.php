@@ -9,7 +9,46 @@
 
     <section class="section">
       <div class="row">
-
+        @if ($errors->has('nama_voucher'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('nama_voucher') }}
+                   </div>
+                @endif
+                @if ($errors->has('deskripsi'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('deskripsi') }}
+                   </div>
+                @endif
+                @if ($errors->has('kategori'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('kategori') }}
+                   </div>
+                @endif
+                @if ($errors->has('kuota'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('kuota') }}
+                   </div>
+                @endif
+                @if ($errors->has('gambar'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('gambar') }}
+                   </div>
+                @endif
+                @if ($errors->has('kode'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('kode') }}
+                   </div>
+                @endif
+                @if ($errors->has('syarat'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('syarat') }}
+                   </div>
+                @endif
+                @if ($errors->has('masa_kadaluarsa'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-x-lg"></i> {{ $errors->first('masa_kadaluarsa') }}
+                   </div>
+                @endif
 
           <div class="card">
             <div class="card-body">
@@ -66,19 +105,15 @@
                       <input type="date" class="form-control" name="masa_kadaluarsa" id="masa_kadaluarsa" required value="{{ old('masa_kadaluarsa') }}">
                     </div>
                   </div>
+                  <p><center>JIKA SYARAT DAN KETERANGAN INGIN SEPERTI LIST HARAP GUNAKANAN "," </center></p>
                 <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">Syarat & Ketentuan</label>
                     <div class="col-sm-10">
                       <textarea name="syarat" id="syarat" cols="30" rows="5" class="form-control">{{ old('syarat') }}</textarea>
                     </div>
-                    <p><center>JIKA SYARAT DAN KETERANGAN INGIN SEPERTI LIST HARAP GUNAKANAN "," </center></p>
+
                 </div>
-                <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">Kuota</label>
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control" name="kuota" id="kuota" required placeholder="Kuota" value="{{ old('kuota') }}">
-                    </div>
-                  </div>
+               
                 <div class="row mb-3">
                   <div class="col-sm-10">
                     <button  type="submit" class="btn btn-primary">Simpan Data</button>
@@ -90,46 +125,7 @@
 
             </div>
           </div>
-          @if ($errors->has('nama_voucher'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('nama_voucher') }}
-                   </div>
-                @endif
-                @if ($errors->has('deskripsi'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('deskripsi') }}
-                   </div>
-                @endif
-                @if ($errors->has('kategori'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('kategori') }}
-                   </div>
-                @endif
-                @if ($errors->has('kuota'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('kuota') }}
-                   </div>
-                @endif
-                @if ($errors->has('gambar'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('gambar') }}
-                   </div>
-                @endif
-                @if ($errors->has('kode'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('kode') }}
-                   </div>
-                @endif
-                @if ($errors->has('syarat'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('syarat') }}
-                   </div>
-                @endif
-                @if ($errors->has('masa_kadaluarsa'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('masa_kadaluarsa') }}
-                   </div>
-                @endif
+
 
 
 

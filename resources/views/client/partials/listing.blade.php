@@ -37,8 +37,7 @@
                     <div class="listing-content">
                         <h3 class="title">{{ $latests->nama_voucher }}</h3>
                         <span class="text-justify mb-2" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $latests->deskripsi }}</span>
-                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa:{{ \Carbon\Carbon::parse($latests->masa_kadaluarsa)->isoFormat('MMM Do YYYY')}}</span>
-                        
+                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa: {{ \Carbon\Carbon::parse($latests->masa_kadaluarsa)->isoFormat('Do MMM YYYY')}}</span>
                         <div class="listing-meta">
                             <center> <a href="/kode/{{ $latests->id }}"
                                 class="btn btn-outline-warning btn-block" style="display: block">Lihat Voucher</a></center>
@@ -55,3 +54,4 @@
 </section>
 
 <!--====== End Place Section ======-->
+
