@@ -276,7 +276,6 @@ class RouteController extends Controller
         $data = Toko::create([
             'nama_toko' => $request->nama_toko,
             'link_website' => $request->link_website,
-            'deskripsi' => $request->deskripsi,
             'logo' => $name,
         ]);
 
