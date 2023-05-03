@@ -28,7 +28,7 @@
                                     <h6>{{ $latests->tokos->nama_toko }}</h6>
                                 </div>
                             </div>
-                            @if ($toko !== null)                                
+                            @if ($toko !== null)
                             <span class="status st-open "><a href="/products?toko={{ $toko->id }}" class="link-dark" style="text-decoration: none">Buka</a></span>
                             @endif
 
@@ -36,10 +36,12 @@
                     </div>
                     <div class="listing-content">
                         <h3 class="title">{{ $latests->nama_voucher }}</h3>
-                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $latests->deskripsi }}</span>
+                        <span class="text-justify mb-2" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $latests->deskripsi }}</span>
+                        <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa:{{ \Carbon\Carbon::parse($latests->masa_kadaluarsa)->isoFormat('MMM Do YYYY')}}</span>
+                        
                         <div class="listing-meta">
                             <center> <a href="/kode/{{ $latests->id }}"
-                                class="btn btn-outline-warning btn-block" style="display: block">LIHAT</a></center>
+                                class="btn btn-outline-warning btn-block" style="display: block">Lihat Voucher</a></center>
                         </div>
                     </div>
                 </div>

@@ -255,7 +255,6 @@ class RouteController extends Controller
         $validateddata = $request->validate([
             'nama_toko' => 'required|unique:tokos,nama_toko,' . $request->id . ',id|max:191',
             'link_website' => 'required|url',
-            'deskripsi' => 'required',
             'logo' => 'required|file|image'
         ], [
             'nama_toko.required' => 'Masukkan Nama Toko Terlebih Dahulu',

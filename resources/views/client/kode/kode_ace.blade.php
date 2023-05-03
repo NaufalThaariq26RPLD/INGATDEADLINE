@@ -31,8 +31,8 @@
             <a href="/products"  class="btn btn-outline-danger" style="float: right;">KEMBALI</a>
             <br/>
             <h5 class="card-title text-dark" style="font-weight:bold">{{ $data->nama_voucher }}</h5>
-            <span class="badge bg-warning text-dark" style="margin-bottom: 10px">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('D M Y')  }}</span>
-            <span class="badge bg-warning text-dark">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('D M Y')  }}</span>
+            <span class="badge bg-success text-white" style="margin-bottom: 10px">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('D M Y')  }}</span>
+            <span class="badge bg-danger text-white">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('D M Y')  }}</span>
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
@@ -44,7 +44,7 @@
                 @endphp
                 </div>
                   <div>
-                    <a href="{{ $data->tokos->link_website }}" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
+                    <a href="{{ $data->tokos->link_website }}" class="btn btn-outline-warning"  style="display: inline-block; " target="_blank" >PERGI KE TOKO</a>
                   </div>
 
               </div>

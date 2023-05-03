@@ -26,7 +26,7 @@
         </div>
     </div>
 </section>
-<!--====== End Hero Section ======-->   
+<!--====== End Hero Section ======-->
   <!--====== Start Listing Section ======-->
   <section class="listing-grid-area pt-120 pb-90">
     <div class="" style="padding-left: 20px; padding-right: 20px; justify-content: center;">
@@ -45,7 +45,7 @@
                                     <select class="wide" name="kategori">
                                         <option data-dsplay="Category" value="">Kategori</option>
                                         @foreach ($kategori as $kategoris)
-                                            
+
                                         <option value="{{ $kategoris->id }}" {{ (request('kategori') == $kategoris->id )? 'selected' : '' }}>{{ $kategoris->Kategori }}</option>
                                         @endforeach
 
@@ -55,20 +55,20 @@
                                     <select class="wide" name="toko">
                                         <option data-dsplay="Category">Toko</option>
                                         @foreach ($filter_toko as $toko)
-                                            
+
                                         <option value="{{ $toko->id }}">{{ $toko->nama_toko }}</option>
                                         @endforeach
-                                        
+
                                     </select>
                                 </div> --}}
-                                
+
                             </div>
                             <div class="form_group">
                                 <button type="submit" class="main-btn icon-btn">Cari disini</button>
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -77,10 +77,10 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="filter-left d-flex align-items-center">
-                   
+
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
                 <div class="listing-grid-wrapper">
@@ -94,10 +94,10 @@
 
                                 <h1 style="text-transform: uppercase; font-family: serif; font-size: 30px; text-align: center; margin-top: 20px">{{ request('search') }} YANG KAMU CARI BELOM DITEMUKAN</h1>
                             @endif
-                            
+
                         @endif
                         @foreach ($data as $datas)
-                            
+
 
                         <div class="col-md-4 col-sm-12">
 
@@ -105,7 +105,7 @@
                                 <div class="listing-thumbnail">
                                     <img src="{{ asset('logotoko/'.$datas->logo) }}" alt="Client Image" style="width: 100%; height: 300px; object-fit: cover">
                                     <span class="featured-btn">Pakaian</span>
-                                   
+
                                 </div>
                                 <div class="listing-content">
                                     <h3 class="title">{{ $datas->nama_toko }}</a></h3>
@@ -126,7 +126,7 @@
                                   <p class="lead" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ $datas->deskripsi }}</p>
 
                                     <form action="/products">
-                                        <button name="toko" type="submit" class="btn btn-outline-warning btn-block" style="display: block; width: 100%" value="{{ $datas->id }}">Lihat</button>
+                                        <button name="toko" type="submit" class="btn btn-outline-warning btn-block" style="display: block; width: 100%" value="{{ $datas->id }}">Lihat Toko</button>
                                     </form>
                                 </div>
                               </div>
