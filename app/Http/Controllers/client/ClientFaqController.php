@@ -48,7 +48,7 @@ class ClientFaqController extends Controller
 
         $check = Faq::where('pertanyaan', $validasi['message'])->get();
 
-        if($check->count() > 0){
+        if($check->count() > 0){    
             return back()->with('success','Question Sudah Ada !!');
 
 

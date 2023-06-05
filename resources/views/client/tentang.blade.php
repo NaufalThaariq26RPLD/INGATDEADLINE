@@ -17,7 +17,7 @@
                         <div class="page-title">
                             <h1 class="title">Tentang Kami</h1>
                             <ul class="breadcrumbs-link">
-                                <li><a href="/dashboard" class="link-dark">Home</a></li>
+                                <li><a href="/dashboard" class="link-dark">Beranda</a></li>
                                 <li class="active">Tentang Kami</li>
                             </ul>
                         </div>
@@ -93,16 +93,16 @@
     </section>
     <!--====== End Features Section ======-->
     <!--====== Start Features Section ======-->
-    <section class="features-area">
-        <div class="features-wrapper-four pt-80 pb-115">
+    <section class="features-area"  style="padding-top: 10px">
+        <div class="features-wrapper-four  ">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
                         <div class="features-img wow fadeInLeft">
                             <img src=" {{ asset('images/icon/GETVOUCHER.png') }}" alt="Features Image">
                         </div>
-                    </div>  
-                    <div class="col-lg-6">
+                    </div>   --}}
+                    {{-- <div class="col-lg-6">
                         <div class="features-content-box features-content-box-one">
                             <div class="section-title section-title-left mb-30 wow fadeInUp">
                                 <span class="sub-title">CARA MENJADI ANGGOTA    </span>
@@ -147,7 +147,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
+                    <img src="{{ asset('img/bg7.png') }}" alt="" style="width: 80%; object-fit: contain;  border-radius: 50px; margin-inline: auto; ">
+
                 </div>
             </div>
         </div>
@@ -155,7 +157,7 @@
     <!--====== End Features Section ======-->
     <!--====== Start Testimonial Section ======-->
     <!--====== Start Testimonial Section ======-->
-    <section class="team-area pt-115 pb-85">
+    <section class="team-area" style="padding-top: 10px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -342,11 +344,11 @@
      </section>
 
     <!--====== Start Team Section ======-->
-    <section class="team-area pt-115 pb-85">
+    <section class="team-area  pb-85"  style="padding-top: 10px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <div class="section-title text-center mb-50 wow fadeInUp">
+                    <div class="section-title text-center mb-30 wow fadeInUp">
                         <span class="sub-title">GOSIP.COM</span>
                         <h2>TEAM</h2>
                     </div>

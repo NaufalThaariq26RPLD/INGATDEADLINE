@@ -16,30 +16,49 @@
     <section class="section">
       <div class="row">
 
-
+        @if ($errors->has('username'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('username') }}
+           </div>
+        @endif
+        @if ($errors->has('password'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('password') }}
+           </div>
+        @endif
+        @if ($errors->has('email'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('email') }}
+           </div>
+        @endif
+        @if ($errors->has('toko'))
+        <div class="alert alert-danger" role="alert">
+            <i class="bi bi-x-lg"></i> {{ $errors->first('toko') }}
+           </div>
+        @endif
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Masukkan Data Admin Dibawah Sini</h5>
 
               <!-- General Form Elements -->
-              <form action="/insertadmin" method="post" enctype="multipart/form-data">
+              <form action="/insertadmin" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Username</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Username" value="{{ old('username') }}" autofocus  autocomplete="new-username">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" value="{{ old('email') }}" autocomplete="new-email">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password" autocomplete="new-password">
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -55,26 +74,7 @@
                       </select>
                   </div>
                 </div>
-                @if ($errors->has('username'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('username') }}
-                   </div>
-                @endif
-                @if ($errors->has('password'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('password') }}
-                   </div>
-                @endif
-                @if ($errors->has('email'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('email') }}
-                   </div>
-                @endif
-                @if ($errors->has('toko'))
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-x-lg"></i> {{ $errors->first('toko') }}
-                   </div>
-                @endif
+
 
 
                 <div class="row mb-3">

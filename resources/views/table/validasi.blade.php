@@ -19,9 +19,12 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <h5 class="card-title">Validasi Voucher</h5>
+                  <a href="#" id="konfirmasiallselecteddata" type="button" class="btn btn-success mb-3">Konfirmasi Semua Data Yang Dipilih <i class="bi bi-check2"></i></a>
+
                   <table class="table table-borderless datatable">
                     <thead>
-                      <tr>
+                      <tr></tr>
+                        <th><input style="font-size: 20px;clear:" type="checkbox" name="" id="select_all_ids" class="form-check-input" ></th>
                         <th scope="col">No</th>
                         <th scope="col">Nama Voucher</th>
                         <th scope="col">Deskripsi Voucher</th>
@@ -39,7 +42,8 @@
                             $no=0;
                         @endphp
                         @foreach ($voucher as $table)
-                        <tr>
+                        <tr id="voucher{{ $table->id }}">
+                            <th><input style="font-size: 20px" type="checkbox" name="ids" id="checkbox" class="form-check-input checkbox_ids" value="{{ $table->id }}"></th>
                             <th scope="row">{{ ++$no }}</th>
                             <td>{{ $table->nama_voucher }}</td>
                             <td style="max-width:100px ;">{{ $table->deskripsi }}</td>
@@ -120,6 +124,59 @@
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <script>
+
+          $(function(e){
+          $("#select_all_ids").click(function(){
+              $('.checkbox_ids').prop('checked',$(this).prop('checked'));
+          });
+          $('#konfirmasiallselecteddata').click(function(e){
+              e.preventDefault();
+              var all_ids = [];
+              $('input:checkbox[name=ids]:checked').each(function(){
+                  all_ids.push($(this).val());
+              });
+
+              $.ajax({
+                  url:"{{ route('konfirmasiall') }}",
+                  method:"POST",
+                  data:{
+                      ids:all_ids,
+                      _token:'{{csrf_token()}}'
+                  },
+                  success:function(response){
+                      $.each(all_ids,function(key,val){
+                          $('#voucher'+val).remove();
+                      })
+                  }
+              })
+          })
+          $('#tolakallselecteddata').click(function(e){
+              e.preventDefault();
+              var all_ids = [];
+              $('input:checkbox[name=ids]:checked').each(function(){
+                  all_ids.push($(this).val());
+              });
+
+              $.ajax({
+                  url:"{{ route('tolakall') }}",
+                  type:"POST",
+                  data:{
+                      ids:all_ids,
+                      _token:'{{csrf_token()}}'
+                  },
+                  success:function(response){
+                      $.each(all_ids,function(key,val){
+                          $('#voucher'+val).remove();
+                      })
+                  }
+              })
+          })
+          });
+
+  </script>
 </body>
 
 </html>

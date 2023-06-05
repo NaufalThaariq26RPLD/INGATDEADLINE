@@ -20,15 +20,21 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }       
 
-    public function index(){
+    public function Chart(){
         $kategori=kategori::all();
-        $data=DB::table('kategoris')->paginate(3);
-        $voucher=DB::table('vouchers')->paginate(3);
+        $voucher = Voucher::where('status','dikonfirmasi')->get();
+        $voucher_best = Voucher::where('status', 'dikonfirmasi')->orderBy('views', 'DESC')->paginate(10);
+        $toko_terlaris = Toko::orderBy('views', 'DESC')->paginate(10);
         $user= User::where('level','=','admin')->where('id','=',Auth()->user()->id)->first();
-        $toko = Toko::where('id', $user->toko)->first();
-        return view('dashboard',compact('data','kategori','voucher','user','toko'));
-        $vouchers = voucher::paginate(10);
-        echo $vouchers->voucher;
+        $toko = Toko::where('id', $user->toko)->first();       
+
+        //chart
+        $diterima = Voucher::where('status', "Dikonfirmasi")->count();
+        $ditolak = Voucher::where('status', "Ditolak")->count();
+        $pending = Voucher::where('status', "Menunggu")->count();
+
+
+        return view('dashboard',compact('kategori','voucher','user','toko','diterima','ditolak','pending', 'voucher_best', 'toko_terlaris'));
     }
 
 
@@ -39,18 +45,12 @@ class DashboardController extends Controller
         if(request('search')){
             $search = voucher::where('nama_voucher', 'like', '%'. request('search') . '%')->orWhere('kategori', 'like', '%' . request('search') . '%')->get();
         }
+
+
         return view('client.dashboard', [
             'search' => $search,
+        
         ]);
-    }
-
-    public function kategori(){
-        $kt= resident::where('kategori_id',Auth::kategori()->id)->count();
-        $baju = resident::where('kt','baju')->where('kategori_id',Auth::kategori()->id)->count();
-        $celana = resident::where('kt','celana')->where('kategori_id',Auth::kategori()->id)->count();
-        $jaket = resident::where('kt','jaket')->where('kategori_id',Auth::kategori()->id)->count();
-
-        return view('dashboard', compact('kt','baju','celana','jaket'));
     }
 
     public function store(Request $voucher) {

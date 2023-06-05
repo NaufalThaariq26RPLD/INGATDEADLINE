@@ -35,15 +35,21 @@ class VoucherController extends Controller
     {
         $validateddata = $request->validate([
             'kode' => 'required|unique:vouchers,kode,',
-            'nama_voucher' => 'required',
+            'nama_voucher' => 'required|max:191',
             'deskripsi' => 'required',
             'kategori' => 'required',
-            'kuota' => 'required',
             'status' => 'required',
             'toko' => 'required',
             'syarat' => 'required',
-            'masa_kadaluarsa' => 'required|date',
-            'gambar' => 'file|image'
+            'masa_kadaluarsa' => 'required|date|after_or_equal:'.now(),
+            'gambar' => 'file|image|required',
+
+        ],[
+            'gambar.required'=>'Masukkan Gambar Voucher Terlebih Dahulu',
+            'kode.uniques'=>'Kode Tidak Boleh Duplikat',
+            'masa_kadaluarsa.date'=>'Masa Kadaluarsa Harus Berupa Tanggal',
+            'masa_kadaluarsa.after_or_equal'=>'Tanggal Masa Kadaluarsa Tidak Boleh Melewati Hari Ini',
+            'gambar.image'=>'Gambar Voucher Harus Berupa Gambar',
         ]);
 
         if ($files = $request->file('gambar')) {
@@ -57,12 +63,11 @@ class VoucherController extends Controller
             'nama_voucher' => $request->nama_voucher,
             'deskripsi' => $request->deskripsi,
             'kategori' => $request->kategori,
-            'kuota' => $request->kuota,
             'status' => $request->status,
             'toko' => $request->toko,
             'syarat' => $request->syarat,
             'masa_kadaluarsa' => $request->masa_kadaluarsa,
-            'gambar' => $name
+            'gambar' => $name,
 
         ]);
 
@@ -98,6 +103,24 @@ class VoucherController extends Controller
 
     public function updatedata(Request $request, $id)
     {
+        $validateddata = $request->validate([
+            'kode' => 'required|unique:vouchers,kode,',
+            'nama_voucher' => 'required|max:191',
+            'deskripsi' => 'required',
+            'kategori' => 'required',
+            'status' => 'required',
+            'toko' => 'required',
+            'syarat' => 'required',
+            'masa_kadaluarsa' => 'required|date|after_or_equal:'.now(),
+            'gambar' => 'file|image|required',
+
+        ],[
+            'gambar.required'=>'Masukkan Gambar Terlebih Dahulu',
+            'kode.uniques'=>'Kode Tidak Boleh Duplikat',
+            'masa_kadaluarsa.date'=>'Masa Kadaluarsa Harus Berupa Tanggal',
+            'masa_kadaluarsa.after_or_equal'=>'Tanggal Masa Kadaluarsa Tidak Boleh Melewati Hari Ini',
+            'gambar.image'=>'Gambar Voucher Harus Berupa Gambar',
+        ]);
         $voucher = Voucher::find($id);
 
 
@@ -152,7 +175,8 @@ class VoucherController extends Controller
             'nama_voucher' => $request->nama_voucher,
             'deskripsi' => $request->deskripsi,
             'kategori' => $request->kategori,
-            'kuota' => $request->kuota
+            'masa_kadaluarsa' => $request->masa_kadaluarsa,
+            'syarat' => $request->syarat,
         ]);
         return redirect()->route('panding')->with('success', 'Data Berhasil Di Edit');
     }

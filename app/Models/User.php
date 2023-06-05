@@ -17,10 +17,6 @@ class User extends Authenticatable
     use HasFactory,Notifiable;
     protected $guarded=['id'];
 
-    public function hasRole($role)
-{
-    return $this->roles()->where('name', $role)->exists();
-}
     public function tokos(){
     return $this->belongsTo(Toko::class,'toko','id');
 }

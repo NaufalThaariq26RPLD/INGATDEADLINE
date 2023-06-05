@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class LoginSuperController extends Controller
             'username'=>'required|min:4|unique:users,username,except,id',
             'email'=>'required|email|min:4|unique:users,email,except,id',
             'password'=>'required|min:4',
-            'confirm'=>'required|same:password' 
+            'confirm'=>'required|same:password'
         ]);
         $data['password']= Hash::make($data['password']);
         User::create($data);
@@ -40,6 +41,9 @@ class LoginSuperController extends Controller
     public function user(){
         return view('user',[
             'title'=>'Profil',
+            'FAQ' => DB::table('faqs')
+                ->orderBy('created_at', 'desc')
+                ->get(),
         ]);
     }
     public function loginuser(Request $request){
@@ -64,11 +68,11 @@ class LoginSuperController extends Controller
     public function logout(Request $request)
     {
     Auth::logout();
- 
+
     $request->session()->invalidate();
- 
+
     $request->session()->regenerateToken();
- 
+
     return redirect('/login');
     }
 }

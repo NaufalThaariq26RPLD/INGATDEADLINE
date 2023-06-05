@@ -9,8 +9,21 @@
 
     <section class="section">
         <div class="row">
-
-
+            @if ($errors->has('nama_toko'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('nama_toko') }}
+            </div>
+        @endif
+        @if ($errors->has('logo'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('logo') }}
+            </div>
+        @endif
+        @if ($errors->has('link_website'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-x-lg"></i> {{ $errors->first('link_website') }}
+            </div>
+        @endif
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Masukkan Data Dibawah Sini</h5>
@@ -22,6 +35,14 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="nama_toko" id="nama_toko"
                                     placeholder="Nama Toko" value="{{ $data->nama_toko }}">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi Toko</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="deskripsi" id="deskripsi"
+                                    placeholder="Deskripsi Toko" value="{{ $data->deskripsi }}">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -38,21 +59,7 @@
                                     placeholder="Link Website Toko" value="{{ $data->link_website }}">
                             </div>
                         </div>
-                        @if ($errors->has('nama_toko'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('nama_toko') }}
-                            </div>
-                        @endif
-                        @if ($errors->has('logo'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('logo') }}
-                            </div>
-                        @endif
-                        @if ($errors->has('link_website'))
-                            <div class="alert alert-danger" role="alert">
-                                <i class="bi bi-x-lg"></i> {{ $errors->first('link_website') }}
-                            </div>
-                        @endif
+
 
 
                         <div class="row mb-3">

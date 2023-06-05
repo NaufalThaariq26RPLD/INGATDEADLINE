@@ -11,7 +11,11 @@
                             <div class="page-title">
                                 <h1 class="title">FAQ</h1>
                                 <ul class="breadcrumbs-link">
-                                    <li><a href="index.html">Home</a></li>
+
+                                    <li><a href="/dashboard" class="link-dark">Beranda</a></li>
+
+                                    <li><a href="/dashboard" class="link-dark">Halaman</a></li>
+
                                     <li class="active">FAQ</li>
                                 </ul>
                             </div>
@@ -66,6 +70,22 @@
                   </div>
 
                 </div>
+                @if (Session::has('warning'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="justify-content: space-between; display: flex">
+                    {{ Session('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  @elseif (Session::has('success'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert" style="justify-content: space-between; display: flex">
+                    {{ Session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="background-color: transparent">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
                     <div class="col-lg-8">
                         <div class="contact-wrapper-one mb-30 wow fadeInRight">
                             <div class="contact-form">
@@ -73,12 +93,6 @@
                                     @csrf
                                     <div class="row">
 
-                                        <div class="col-lg-6">
-                                            <div class="form_group">
-                                                <input type="hidden"  name="email" value="{{ Auth::user()->email }}" required>
-                                                <input type="hidden" name="username" value="{{ Auth::user()->username }}" required>
-                                            </div>
-                                        </div>
 
                                         <div class="col-lg-12">
                                             <div class="form_group">
@@ -104,3 +118,9 @@
 
 
 @endsection
+@section('script')
+<!-- MDB -->
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+  ></script>

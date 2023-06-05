@@ -13,8 +13,13 @@
 <br>
 <div class="container pt-50">
     <div class="section-title text-center mb-25 wow fadeInUp">
+      @php
+      DB:: table('vouchers')
+      ->where('id', $data->id)
+      ->increment('views');
+      @endphp
       <span class="sub-title">KODE VOUCHER</span>
-      <h2>{{ $data->tokos->nama_toko }}</h2>
+      <h2 style="font-family: serif">{{ $data->tokos->nama_toko }}</h2>
   </div>
   <div class="card mb-5 mt-5" style="max-width: 2000px;">
       <div class="row ">
@@ -25,18 +30,21 @@
           <div class="card-body">
             <a href="/products"  class="btn btn-outline-danger" style="float: right;">KEMBALI</a>
             <br/>
-            <h5 class="card-title text-dark">{{ $data->nama_voucher }}</h5>
-            <span class="badge bg-warning text-dark">Masuk Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('d F')  }}</span>
-            <span class="badge bg-warning text-dark">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('d F')  }}</span>
+            <h5 class="card-title text-dark" style="font-weight:bold">{{ $data->nama_voucher }}</h5>
+            <span class="badge bg-success text-white" style="margin-bottom: 10px">Mulai Tanggal {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y')  }}</span>
+            <span class="badge bg-danger text-white">Kadaluwarsa Tanggal {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('d M Y')  }}</span>
             <p class="card-text">{{ $data->deskripsi }}</p><br/>
             <div class="">
               <div class="d-flex justify-content-between">
               <div class="d-flex">
                   <input type="text" value="{{ $data->kode }}" class="form-control-sm mb-2" id="code_value" style="height: 45px; margin-right: 10px;" readonly>
                   <button type="button" class="btn btn-danger"  style="margin-left:-3px ; height: 45px;" id="salin_btn" >Salin Kode</button>
+                @php
+                App\Models\Voucher::where('id',$data->id)->update ([ 'terlaris' => $data->terlaris + 1 ]);
+                @endphp
                 </div>
                   <div>
-                    <a href="https://www.ruparupa.com/acestore/p/soleil-kursi-ayun-krem-beige.html?itm_source=product-recommendation-search-result-ace&itm_campaign=direct-search&itm_term=10488570&itm_device=desktop" class="btn btn-outline-warning"  style="display: inline-block; ">PERGI KE TOKO</a>
+                    <a href="{{ $data->tokos->link_website }}" class="btn btn-outline-warning"  style="display: inline-block; " target="_blank" >PERGI KE TOKO</a>
                   </div>
 
               </div>
@@ -45,7 +53,9 @@
             <div class="col-md-8">
               <div class="card-body">
                 <p class="card-title">Syarat dan Ketentuan :</p>
-                <li>{{ $data->syarat }}</li>
+                @foreach ($syarat as $s)
+                  <li>{{ $s }}</li>
+                @endforeach
               </div>
               </div>
             </div>
@@ -63,7 +73,7 @@
                 <div class="col-lg-6">
                     <div class="section-title text-center mb-50 wow fadeInUp">
                         <span class="sub-title">REKOMENDASI</span>
-                        <h3>Voucher Produk {{ $data->tokos->nama_toko }} Lainnya</h3>
+                        <h3 style="font-family: serif">Voucher Produk {{ $data->tokos->nama_toko }} Lainnya</h3>
                     </div>
                 </div>
             </div>
@@ -71,24 +81,24 @@
 
 
                 @foreach ($data2 as $data2)
-                    
+
                 <div class="card border-0 shadow place-item place-item-one" style="margin-bottom: 30px;">
-                    
+
                     <div class="card-body p-5 p-lg-3 shadow"  style=" height: 330px;">
                       <div class="row gy-7">
-                
+
                     <img class="card-img-top" src="{{ asset('gambarvoucher/'.$data2->gambar) }}"  alt="Card image cap" style="height: 250px; object-fit: cover;">
                     <div class="card-body">
-                      <center><a href="/kode/{{ $data2->id }}">{{ $data2->nama_voucher }}</a></center>
+                      <center><a href="/kode/{{ $data2->id }}" style="text-decoration: none; color:black; font-weight: bold">{{ $data2->nama_voucher }}</a></center>
                     </div>
                     </div>
                     </div>
                     </div>
-                    
+
 
                 @endforeach
-                    
-                   
+
+
             </div>
          </div>
      </section>

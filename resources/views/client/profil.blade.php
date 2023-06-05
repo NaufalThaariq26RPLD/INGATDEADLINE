@@ -1,6 +1,120 @@
-@extends('layout.main')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-@section('container')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+            <!--====== Favicon Icon ======-->
+            <link rel="shortcut icon" href=" {{ asset('images/favicon.ico') }}" type="image/png">
+            <!--====== Bootstrap css ======-->
+            <!--====== FontAwesoem css ======-->
+            <link rel="stylesheet" href=" {{ asset('fonts/themify-icons/themify-icons.css') }} ">
+            <!--====== Flaticon css ======-->
+            <link rel="stylesheet" href=" {{ asset('fonts/flaticon/flaticon.css') }} ">
+            <!--====== Magnific Popup css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/magnific-popup.css') }} ">
+            <!--====== Slick css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/slick.css') }} ">
+            <!--====== Nice-select css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/nice-select.css') }}">
+            <!--====== Jquery ui css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/jquery-ui.min.css') }}">
+            <!--====== Animate css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/animate.css') }}">
+            <!--====== Default css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/default.css') }}">
+            <!--====== Style css ======-->
+            <link rel="stylesheet" href=" {{ asset('css/style.css') }}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+            <style>
+                .divider:after,
+                .divider:before {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: #eee;
+                }
+            </style>
+    <title>Profil</title>
+</head>
+<body>
+          <!--====== Start Header Section ======-->
+          <header class="header-area header-area-one">
+            <div class="header-navigation">
+                <div class="container-fluid">
+                    <div class="primary-menu">
+                        <div class="row">
+                            <div class="col-lg-2 col-5">
+                                <div class="site-branding">
+                                    <a href="index.html"><img src=" {{asset('images/Header.jpeg') }}" alt="Brand Logo"></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-2">
+                                <div class="nav-menu">
+                                    <div class="navbar-close"><i class="ti-close"></i></div>
+                                    <nav class="main-menu">
+                                        <ul>
+                                            <li class="menu-item "><a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">Halaman</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                    
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item"><a href="/tentang" class="{{ request()->is('tentang') ? 'active' : '' }}">Tentang</a></li>
+                                            <li class="menu-item "><a href="/toko" class="{{ request()->is('toko') ? 'active' : '' }}">Toko</a>
+                                                @if(Auth())
+                                            <li class="menu-item "><a href="/FAQ"class="{{ request()->is('FAQ') ? 'active' : '' }}">FAQ</a>
+                                                @endif
+                                                
+                                            </li>
+                                            <li class="menu-item "><a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">Produk</a>
+                                            </li>
+                                           
+                                            @if (Auth()->user())
+                                            
+                                                
+                                            <li class="menu-item "><a href="/logout">Keluar</a>
+                                            @else
+                                            <li class="menu-item "><a href="/login">Masuk</a>
+
+                                            @endif
+                                            
+                                            </li>
+                                        </ul>
+                                        
+                                    </nav>
+                                </div>
+                            </div>
+                          
+                            @if (Auth()->user())
+                                
+                            <div class="col-lg-4 col-5">
+                                <div class="header-right-nav">
+                                    <ul class="d-flex align-items-center">
+                                        <li class="user-btn"><a href="/setting" class="icon"><i class="flaticon-avatar"></i></a></li>
+                                      
+                                        <li class="nav-toggle-btn">
+                                            <div class="navbar-toggler">
+                                                <span></span><span></span><span></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @endif
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--====== End Header Section ======-->
+     
       <!--====== Start Preloader ======-->
       <div class="preloader" >
         <div class="loader">
@@ -8,42 +122,113 @@
         </div>
     </div>
 
-    <div class="col-xl-8">
-
-        <div class="card">
-        <div class="card-body pt-3 pb-3" style="margin-bottom: 20px; margin-top: 10px">
-                  <form>
-                      <div class="row mb-3 mt-5">
-                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"> Foto profil</label>
-                        <div class="col-md-8 col-lg-9">
-                          <img src="https://static.vecteezy.com/system/resources/previews/000/606/536/large_2x/vector-luxury-letter-k-logo-design-concept-template.jpg" alt="Profile" height="100">
-                          <div class="pt-2">
-                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload">EDIT</i></a>
-                          </div>
-                        </div>
-                      </div>
-  
-                      <div class="row mb-3">
-                        <label for="Username" class="col-md-4 col-lg-3 col-form-label"> Username</label>
-                        <div class="col-md-8 col-lg-9">
-                          <input name="username" type="text" class="form-control" id="username" value="">
-                        </div>
-                      </div>
-                      
-                      <div class="row mb-3">
-                        <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                        <div class="col-md-8 col-lg-9">
-                          <input name="email" type="email" class="form-control" id="email" value="">
-                        </div>
-                      </div>
-                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        <a href="/" class="btn btn-danger">Kembali</a>
-                      </div>
-                    </form>
+   <div class="container mt-5">
+    <div class="main-body">
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3 mt-5">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.HHVUf3TYqncgpJXyCMmxyAHaHa&pid=Api&P=0" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>Thaariq</h4>
+                     
                     </div>
+                  </div>
+                </div>
+              </div>
             </div>
-  
+            <div class="col-md-8 mt-5">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Username</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      Thaariq
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      naufaltaariq33@gmail.com
+                    </div>
+                  </div>
+                  <hr>
+                  
+                
+                 <br>
+                 <div class="row mb-3">
+                  <div class="col-sm-10">
+                  <a href="/dashboard" class="btn btn-danger">Kembali</a>
+                  <a href="/profiledit"><button type="submit" class="btn btn-primary">Edit Profil</button></a>
+                    
+                  </div>
+                </div>
+                </div>
+              </div>
+
+
+            </div>
           </div>
 
-@endsection
+        </div>
+    </div>
+
+      <!-- MDB -->
+      <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+      ></script>
+
+      
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+                <!--====== Jquery js ======-->
+                <script src=" {{ asset('js/vendor/jquery-3.6.0.min.js')}} "></script>
+                <!--====== Popper js ======-->
+                <script src=" {{ asset('js/popper.min.js') }} "></script>
+                <!--====== Slick js ======-->
+            </div>
+        <script src=" {{ asset('js/slick.min.js') }} "></script>
+        <!--====== Magnific Popup js ======-->
+        <script src=" {{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+        <!--====== Isotope js ======-->
+        <script src=" {{ asset('js/isotope.pkgd.min.js') }}"></script>
+        <!--====== Imagesloaded js ======-->
+        <script src=" {{ asset('js/imagesloaded.pkgd.min.js') }}"></script>
+        <!--====== Nice-select js ======-->
+        <script src=" {{asset('js/jquery.nice-select.min.js') }}"></script>
+        <!--====== counterup js ======-->
+        <script src=" {{asset('js/jquery.counterup.min.js') }}"></script>
+        <!--====== waypoints js ======-->
+        <script src=" {{asset('js/jquery.waypoints.js') }}"></script>
+        <!--====== Ui js ======-->
+        <script src=" {{asset('js/jquery-ui.min.js') }}"></script>
+        <!--====== Wow js ======-->
+        <script src=" {{asset('js/wow.min.js') }}"></script>
+        <!--====== Main js ======-->
+        <script src=" {{asset('js/main.js') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            const SalinBtn = document.getElementById('salin_btn')
+            const CodeValue = document.getElementById('code_value')
+            
+            SalinBtn.onclick = () => {
+                CodeValue.select();    // Selects the text inside the input
+                document.execCommand('copy');    // Simply copies the selected text to clipboard 
+                 Swal.fire({         //displays a pop up with sweetalert
+                    icon: 'success',
+                    title: 'Text copied to clipboard',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            }
+        </script>
+</body>
+</html>

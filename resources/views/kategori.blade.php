@@ -54,14 +54,14 @@
 
                                 <div class="search-form">
                                     <div class="form_group">
-                                        <select class="form-select" style="width: 150px" name="search"
-                                            aria-label="Default select example">
+                                        <select class="form-select" style="width: 150px" name="status" aria-label="Default select example">
                                             <option data-dsplay="Category" value="">Status</option>
-                                            @foreach ($data as $row)
-                                                <option value="{{ $row->status }}"
-                                                    {{ request('search') === $row->status ? 'selected' : '' }}>
-                                                    {{ $row->status }}</option>
-                                            @endforeach
+                                                <option value="Dikonfirmasi">
+                                                    Dikonfirmasi</option>
+                                                <option value="Menunggu" >
+                                                    Menunggu</option>
+                                                <option value="Ditolak">
+                                                    Ditolak</option>
                                         </select>
                                     </div>                       
                                 </div>

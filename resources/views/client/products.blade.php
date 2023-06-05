@@ -18,7 +18,7 @@
                         <div class="page-title">
                             <h1 class="title">SEMUA PRODUK </h1>
                             <ul class="breadcrumbs-link">
-                                <li><a href="/dashboard" class="link-dark">Home</a></li>
+                                <li><a href="/dashboard" class="link-dark">Beranda</a></li>
                                 <li class="active">Produk</li>
                             </ul>
                         </div>
@@ -59,66 +59,55 @@
                     </div>
                     <div class="row">
 
-                        @foreach ($data as $data)
+
+                        @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-6 col-sm-12">
+                                @php
+                                DB:: table('tokos')
+                                ->where('id', $datas->id)
+                                ->increment('views');
+                                @endphp
                                 <div class="listing-item listing-grid-one mb-45 wow fadeInUp" dta-wow-delay="20ms"
                                     style="height: 685px; overflow: hidden;">
                                     <div class="listing-thumbnail">
-                                        <img src="{{ asset('gambarvoucher/' . $data->gambar) }}" alt="Listing Image"
+                                        <img src="{{ asset('gambarvoucher/' . $datas->gambar) }}" alt="Listing Image"
                                             style="width: 374px; height: 374px; object-fit: cover">
 
                                         <div class="thumbnail-meta d-flex justify-content-between align-items-center">
                                             <div class="meta-icon-title d-flex align-items-center">
-                                                <div class="icon">
-                                                    <img src="{{ asset('images/uniqlo.jpeg') }}" alt="">
+                                                <div class="icon" style="overflow: hidden">
+                                                    <img src="{{ asset('logotoko/'.$datas->tokos->logo) }}" alt="logo toko" style="border-radius: 100%">
                                                 </div>
                                                 <div class="title">
-                                                    <h6>{{ $data->tokos->nama_toko }}</h6>
+                                                    <h6>{{ $datas->tokos->nama_toko }}</h6>
                                                 </div>
                                             </div>
-                                            <span class="status st-close">DISKON 25%</span>
+                                            <span class="status st-close">{{ $datas->kategoris->Kategori }}</span>
                                         </div>
                                     </div>
                                     <div class="listing-content">
                                         <h3 class="title">
-                                            {{ $data->nama_voucher }}</h3>
-                                        <span class="badge bg-danger">Kadaluwarsa Tanggal
-                                            {{ \Carbon\Carbon::parse($data->masa_kadaluarsa)->format('d F') }}</span>
-                                        <span class="price"
-                                            style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $data->deskripsi }}</span><br>
-                                        <center> <a href="/kode/{{ $data->id }}"
-                                                class="btn btn-outline-warning">LIHAT</a></center>
+                                            {{ $datas->nama_voucher }}</h3>
+                                        <span class="lead"
+                                            style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">{{ $datas->deskripsi }}</span><br>
+                                            <span class="text-justify mb-3" style="  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;color:red;">Tanggal Kadaluarsa: {{ \Carbon\Carbon::parse($datas->masa_kadaluarsa)->isoFormat('Do MMM YYYY')}}</span>
+
+                                        <center> <a href="/kode/{{ $datas->id }}"
+                                            class="btn btn-outline-warning btn-block" style="display: block">Lihat Voucher</a></center>
 
                                     </div>
                                 </div>
                             </div>
                         @endforeach
 
-
+                        {{ $data->links('vendor.pagination.bootstrap-4') }}
 
 
                     </div>
 
-
-
-
-
-
                 </div>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+
             </div>
     </section>
 
@@ -126,3 +115,5 @@
 
     <!--====== End Products Section ======-->
 @endsection
+
+

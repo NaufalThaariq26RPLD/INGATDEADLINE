@@ -10,7 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TolakController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\client\SettingController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
@@ -47,7 +47,11 @@ use App\Http\Controllers\LoginSuperController;
 Route::get('/', [HomeController::class, 'index_client']);
 Route::get('/dashboard', [HomeController::class, 'index_client'])->name('dashboarduser');
 Route::get('/toko', [TokoController::class, 'index_client'])->name('tokouser');
+Route::get('/toko/search', [TokoController::class, 'index_client'])->name('search');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/FAQ', [FaqController::class, 'client_index']);
+Route::get('/products', [ProdukController::class, 'index']);
+
 
 
 
@@ -55,6 +59,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 Route::middleware('user')->group(function () {
     Route::get('/setting', [SettingController::class, 'index']);
+    Route::get('/profiledit', [SettingController::class, 'profiledit']);
 });
 
 // Route::get('/kategori1', [KategoriController::class, 'kategori'])->name('kategoriuser');
@@ -63,11 +68,9 @@ Route::get('/tentang', function () {
     return view('client.tentang');
 });
 
-Route::middleware('user','auth')->group(function () {
-    Route::get('/FAQ', [FaqController::class, 'client_index']);
+Route::middleware('user', 'auth')->group(function () {
     Route::post('/add/faq', [FaqController::class, 'store']);
     Route::get('/kode/{id}', [ProdukController::class, 'kode']);
-    Route::get('/products', [ProdukController::class, 'index']);
 });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginSuperController::class, 'login'])->name('login');
@@ -76,7 +79,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/registeruser', [LoginSuperController::class, 'registeruser']);
 });
 
-Route::middleware('superadmin','auth')->group(function () {
+Route::middleware('superadmin', 'auth')->group(function () {
     Route::get('/user', [LoginSuperController::class, 'user'])->name('profil');
     Route::get('/table_user', [RouteController::class, 'user'])->name('user');
     Route::post('/updateprofil/{id}', [RouteController::class, 'updateprofil'])->name('updateprofil');
@@ -106,13 +109,13 @@ Route::middleware('superadmin','auth')->group(function () {
 
 
     Route::get('/data_voucher', [RouteController::class, 'voucher'])->name('datavoucher');
+    
     Route::get('/deletevoucher/{id}', [RouteController::class, 'deletevoucher'])->name('deletevoucher');
 
     Route::get('/validasi', [RouteController::class, 'validasi'])->name('validasi');
     Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
     Route::get('/konfirmasi/{id}/{status}', [RouteController::class, 'konfirmasi'])->name('konfirmasi');
     Route::get('/tolak/{id}/{status}', [RouteController::class, 'tolak'])->name('tolak');
-    Route::post('/updatetolak/{id}', [RouteController::class, 'updatetolak'])->name('updatetolak');
 
     Route::get('/kategori', [RouteController::class, 'kategori'])->name('kategori');
     Route::get('/tambahkategori', [RouteController::class, 'tambahkategori'])->name('tambahkategori');
@@ -127,13 +130,25 @@ Route::middleware('superadmin','auth')->group(function () {
     Route::get('/faqtampil/{id}', [FaqController::class, 'show']);
     Route::get('/faqupdates/{id}', [FaqController::class, 'tampilfaq']);
     Route::post('/faqupdate/{id}', [FaqController::class, 'update']);
+
+    Route::delete('/deleteadminselected', [RouteController::class, 'deleteadminall'])->name('deleteadminall');
+    Route::delete('/deletetokoselected', [RouteController::class, 'deletetokoall'])->name('deletetokoselected');
+    Route::delete('/deletesuperall', [RouteController::class, 'deletesuperall'])->name('deletesuperall');
+    Route::post('/konfirmasiall', [RouteController::class, 'konfirmasiall'])->name('konfirmasiall');
+    Route::post('/tolakall', [RouteController::class, 'tolakall'])->name('tolakall');
+    Route::post('/kategoriall', [RouteController::class, 'kategoriall'])->name('kategoriall');
+    Route::post('/voucherall', [RouteController::class, 'voucherall'])->name('voucherall');
+    Route::delete('/faqall', [FaqController::class, 'faqall'])->name('faqall');
+    Route::get('/searchfaq', [RouteController::class, 'searchfaq'])->name('searchfaq');
+    Route::get('/searchfaq2', [RouteController::class, 'searchfaq2'])->name('searchfaq2');
 });
 
-Route::middleware('admin','auth')->group(function () {
+Route::middleware('admin', 'auth')->group(function () {
     Route::get('/adminuser', [LoginSuperController::class, 'adminuser'])->name('adminuser');
     // DASHBOARD
 
-    Route::get('/admin/toko', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/toko', [DashboardController::class, 'Chart'])->name('dashboard');
+    Route::get('/deletevoucher/{id}', [DashboardController::class, 'deletevoucher'])->name('deletevoucher');
 
     // DATA VOUCHER
 
@@ -150,6 +165,7 @@ Route::middleware('admin','auth')->group(function () {
     // KATEGORI
 
     Route::get('/kategoritoko', [KategoriController::class, 'index'])->name('kategoritoko');
+    Route::get('/kategoritoko/{status}', [KategoriController::class, 'status'])->name('status');
 
     // KONFIRMASI
 
@@ -174,3 +190,4 @@ Route::middleware('admin','auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginSuperController::class, 'logout'])->name('logout');
 });
+

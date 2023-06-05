@@ -15,7 +15,6 @@ class Setting extends Migration
     {
         Schema::create('setting', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar');
             $table->string('username');
             $table->string('email')->unique();
             $table->timestamps();
